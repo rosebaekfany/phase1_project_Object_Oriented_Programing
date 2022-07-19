@@ -6,7 +6,7 @@ import java.util.* ;
 
 public class Person {
 
-    //public String userType = new String() ;
+    public String userType = "public" ;
     public String userAccountType = new String("General_Account") ;
     public String name = new String() ;
     public String userID = new String() ;
@@ -17,6 +17,7 @@ public class Person {
     public ArrayList<Person> folowings = new ArrayList<>() ;
     public ArrayList<Post> likedPhotoes = new ArrayList<>() ;
     public ArrayList<Post> posts = new ArrayList<>() ;
+    public ArrayList<String> massageRequests = new ArrayList<>() ;
 
     /*public void changeUsername{
         name= Edit.change() ;

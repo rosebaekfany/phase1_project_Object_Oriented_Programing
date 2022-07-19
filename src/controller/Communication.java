@@ -5,22 +5,29 @@ import media.* ;
 public class Communication {
 
     public static void followSb(RegisterMenu myRegester , Person myPerson ,String id){
-        int i ;
+        int i , flag=0 ;
         for (i=0 ; i<myRegester.allRegisters.size() ; i++){
             if(myRegester.allRegisters.get(i).userID.equals(id)){
-                myRegester.allRegisters.get(i).folowers.add(myPerson) ;
-                myPerson.folowings.add(myRegester.allRegisters.get(i)) ;
-                System.out.println(id+" is now added to your followings");
+                if(myRegester.allRegisters.get(i).userType.equals("private")){
+                    myRegester.allRegisters.get(i).massageRequests.add(myPerson.userID+" wants to follow you!") ;
+                    System.out.println("you have requested "+id+" to follow you");
+                }
+                else{
+                    myRegester.allRegisters.get(i).folowers.add(myPerson) ;
+                    myPerson.folowings.add(myRegester.allRegisters.get(i)) ;
+                    System.out.println(id+" is now added to your followings");
+                }
+                flag=1 ;
                 break;
             }
         }
-        if(i==myRegester.allRegisters.size()-1){
+        if(flag==0){
             System.out.println("the userId is incorrect");
         }
     }
 
     public static void unfollowSb(RegisterMenu myRegester , Person myPerson ,String id){
-        int i ,j ,h ;
+        int i ,j ,h , flag=0 ;
         for (i=0 ; i<myRegester.allRegisters.size() ; i++){
             if(myRegester.allRegisters.get(i).userID.equals(id)){
                 for (j=0 ; j<myRegester.allRegisters.get(i).folowers.size() ; j++){
@@ -36,12 +43,33 @@ public class Communication {
                         break;
                     }
                 }
+                flag=1 ;
                 break;
             }
         }
-        if(i==myRegester.allRegisters.size()-1){
+        if(flag==0){
             System.out.println("the userId is incorrect");
         }
     }
+
+    public static void removeFollower(RegisterMenu myRegester , Person myPerson ,String id){
+        int i , flag=0;
+        for(i=0 ; i<myPerson.folowers.size() ; i++){
+            if(myPerson.folowers.get(i).userID.equals(id)){
+                System.out.println(id+" is removed from your folowers");
+                myPerson.folowers.remove(i) ;
+                flag=1 ;
+                break;
+            }
+        }
+        if(flag==0){
+            System.out.println("the userId is incorrect");
+        }
+    }
+
+    public static void blockSb(RegisterMenu myRegister , Person myPerson , String id){
+        ;
+    }
+
 
 }

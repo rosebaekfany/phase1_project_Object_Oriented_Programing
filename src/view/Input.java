@@ -28,7 +28,7 @@ public class Input {
     public void inputRegister() {
 
         sample = sc.nextLine();
-        String[] split = new String[3];
+        String[] split ;
         split = sample.split(" ");
 
         if (split[0].equals("register")) {
@@ -163,12 +163,18 @@ public class Input {
                         "change_userId [user_Id]\n" +
                         "change_bio [user_bio]\n" +
                         "choose_accountType [user_AT]\n" +
+                        "change_userType [UT]\n"+
                         "showMyAccount\n" +
                         "log out\n" +
                         "showAllUser\n" +
                         "showProfile [userId]\n" +
                         "follow [userId]\n" +
-                        "follow [userId]\n" +
+                        "unfollow [userId]\n" +
+                        "removeFollower [userId]\n" +
+                        "showFollowerList [userId]\n" +
+                        "showFollowingList [userId]\n" +
+                        "showMyRequests\n" +
+                        "confirmFollowRequest [request nmber]\n" +
                         ""
                 );
             }
@@ -184,7 +190,7 @@ public class Input {
 
             else if(split[0].equals("change_password")){
                 if(successfulLog==1){
-                    Edit.changePassword(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                    Edit.changePassword(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
                 }
                 else{
                     System.out.println("please login first!");
@@ -202,7 +208,7 @@ public class Input {
 
             else if(split[0].equals("change_bio")){
                 if(successfulLog==1){
-                    Edit.changeBio(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                    Edit.changeBio(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
                 }
                 else{
                     System.out.println("please login first!");
@@ -211,7 +217,16 @@ public class Input {
 
             else if(split[0].equals("choose_accountType")){
                 if(successfulLog==1){
-                    Edit.changeAccountType(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                    Edit.changeAccountType(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                }
+                else{
+                    System.out.println("please login first!");
+                }
+            }
+
+            else if(split[0].equals("change_userType")){
+                if(successfulLog==1){
+                    Edit.changeUserType(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
                 }
                 else{
                     System.out.println("please login first!");
@@ -238,7 +253,7 @@ public class Input {
             }
 
             else if(split[0].equals("showProfile")){
-                Show.show_userProfile(myRegister,split[1]);
+                Show.show_userProfile(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
             }
 
             else if(split[0].equals("follow")){
@@ -248,6 +263,28 @@ public class Input {
             else if(split[0].equals("unfollow")){
                 Communication.unfollowSb(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
             }
+
+            else if(split[0].equals("removeFollower")){
+                Communication.removeFollower(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+
+            else if(split[0].equals("showFollowerList")){
+                Show.show_userFollowerList(myRegister,split[1]);
+            }
+
+            else if(split[0].equals("showFollowingList")){
+                Show.show_userFollowingList(myRegister,split[1]);
+            }
+
+            else if(sample.equals("showMyRequests")){
+                Show.show_userRequsts(myRegister.allRegisters.get(myRegister.logedInAccount));
+            }
+
+            else if(split[0].equals("confirmFollowRequest")){
+                Edit.confirmFollow(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+
+
 
 
 
