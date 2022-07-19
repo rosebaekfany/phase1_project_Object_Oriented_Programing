@@ -12,7 +12,7 @@ public class Input {
 
 
     public int i,j ;
-    public int registerMenu=0 ;
+    public int registerMenu=0  , accountMenu=0 ;
     public int registerflag=0 , loginflag=0 , successfulLog=0 , deleteAccountflag=0 , successfulDeleteAccount   ;
 
     public void backToDefault(){
@@ -78,6 +78,7 @@ public class Input {
                             System.out.println("login successful");
                             successfulLog = 1;
                             myRegister.logedInAccount=i ;
+                            accountMenu=1 ;
                             break;
                         }
                         else {
@@ -144,85 +145,119 @@ public class Input {
             }
         }
 
-        else if(sample.equals("help") && registerMenu==1){
+        else if(sample.equals("help") && registerMenu==1 && accountMenu==0){
             System.out.println("register [user_name] [password] [your favorite flower's name] \n" +
                     "login [user_name] [password] \n" +
                     "deleteAccount [user_name] [password] \n" +
-                    "exitApp \n" +
-                    "forget_password [user name] [your favorite flower's name] [new password]\n" +
-                    "change_username [user_name]\n" +
-                    "change_password [user_pass]\n" +
-                    "change_userId [user_Id]\n" +
-                    "change_bio [user_bio]\n" +
-                    "choose_accountType [user_AT]\n" +
-                    "showMyAccount\n" +
-                    "");
-        }
-
-        else if(split[0].equals("change_username")){
-            if(successfulLog==1){
-                Edit.changeUsername(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
-            }
-            else{
-                System.out.println("please login first!");
-            }
-        }
-
-        else if(split[0].equals("change_password")){
-            if(successfulLog==1){
-                Edit.changePassword(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
-            }
-            else{
-                System.out.println("please login first!");
-            }
-        }
-
-        else if(split[0].equals("change_userId")){
-            if(successfulLog==1){
-                Edit.changeUserId(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
-            }
-            else{
-                System.out.println("please login first!");
-            }
-        }
-
-        else if(split[0].equals("change_bio")){
-            if(successfulLog==1){
-                Edit.changeBio(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
-            }
-            else{
-                System.out.println("please login first!");
-            }
-        }
-
-        else if(split[0].equals("choose_accountType")){
-            if(successfulLog==1){
-                Edit.changeAccountType(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
-            }
-            else{
-                System.out.println("please login first!");
-            }
-        }
-
-        else if(split[0].equals("showMyAccount")){
-            if(successfulLog==1) {
-                Show.show_account(myRegister.allRegisters.get(myRegister.logedInAccount));
-            }
-            else{
-                System.out.println("please login first!");
-            }
-        }
-
-        else if(sample.equals("log out")){
-            successfulLog=0 ;
-            myRegister.logedInAccount=-1 ;
-            System.out.println("you logged out");
+                    "exitApp\n"+
+                    "forget_password [user name] [your favorite flower's name] [new password]\n");
         }
 
 
+        if(accountMenu==1){
+
+            if(sample.equals("help") && accountMenu==1){
+                System.out.println("exitApp \n" +
+                        "change_username [user_name]\n" +
+                        "change_password [user_pass]\n" +
+                        "change_userId [user_Id]\n" +
+                        "change_bio [user_bio]\n" +
+                        "choose_accountType [user_AT]\n" +
+                        "showMyAccount\n" +
+                        "log out\n" +
+                        "showAllUser\n" +
+                        "showProfile [userId]\n" +
+                        "follow [userId]\n" +
+                        "follow [userId]\n" +
+                        ""
+                );
+            }
+
+            else if(split[0].equals("change_username")){
+                if(successfulLog==1){
+                    Edit.changeUsername(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                }
+                else{
+                    System.out.println("please login first!");
+                }
+            }
+
+            else if(split[0].equals("change_password")){
+                if(successfulLog==1){
+                    Edit.changePassword(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                }
+                else{
+                    System.out.println("please login first!");
+                }
+            }
+
+            else if(split[0].equals("change_userId")){
+                if(successfulLog==1){
+                    Edit.changeUserId(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                }
+                else{
+                    System.out.println("please login first!");
+                }
+            }
+
+            else if(split[0].equals("change_bio")){
+                if(successfulLog==1){
+                    Edit.changeBio(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                }
+                else{
+                    System.out.println("please login first!");
+                }
+            }
+
+            else if(split[0].equals("choose_accountType")){
+                if(successfulLog==1){
+                    Edit.changeAccountType(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                }
+                else{
+                    System.out.println("please login first!");
+                }
+            }
+
+            else if(split[0].equals("showMyAccount")){
+                if(successfulLog==1) {
+                    Show.show_account(myRegister.allRegisters.get(myRegister.logedInAccount));
+                }
+                else{
+                    System.out.println("please login first!");
+                }
+            }
+
+            else if(sample.equals("log out")){
+                successfulLog=0 ;
+                myRegister.logedInAccount=-1 ;
+                System.out.println("you logged out");
+            }
+
+            else if(sample.equals("showAllUser")){
+                Show.show_allProfiles(myRegister);
+            }
+
+            else if(split[0].equals("showProfile")){
+                Show.show_userProfile(myRegister,split[1]);
+            }
+
+            else if(split[0].equals("follow")){
+                Communication.followSb(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+
+            else if(split[0].equals("unfollow")){
+                Communication.unfollowSb(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+
+
+
+
+        }
 
 
     }
+
+
 
 
 
