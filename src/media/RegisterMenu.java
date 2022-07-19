@@ -6,6 +6,6 @@ import controller.* ;
 public class RegisterMenu {
 
     public ArrayList<Person> allRegisters = new ArrayList<>() ;
-    public int logedInAccount ;
+    public int logedInAccount=-1 ;
 
 }

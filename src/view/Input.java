@@ -3,8 +3,6 @@ package view;
 import controller.* ;
 import media.*;
 import java.util.*;
-import controller.*;
-import view.*;
 import java.util.regex.Pattern;
 
 public class Input {
@@ -55,6 +53,7 @@ public class Input {
                     newPerson.name = split[1];
                     newPerson.userPasswords = split[2];
                     newPerson.securityQuestion= split[3] ;
+                    newPerson.userID = "@"+String.valueOf(myRegister.allRegisters.size())+"***" ;
                     myRegister.allRegisters.add(newPerson);
                     System.out.println("register successful");
                 }
@@ -133,13 +132,13 @@ public class Input {
             System.out.println("program ended");
         }
 
-        else if (sample.equals("forget password")){
-            System.out.println("[user name] [your favorite flower's name] [new password]");
+        else if (split[0].equals("forget_password")){
+            //System.out.println("[user name] [your favorite flower's name] [new password]");
             for(i=0 ; i<myRegister.allRegisters.size() ; i++){
-                if(myRegister.allRegisters.get(i).name.equals(split[0])){
-                    if(myRegister.allRegisters.get(i).securityQuestion.equals(split[1])){
+                if(myRegister.allRegisters.get(i).name.equals(split[1])){
+                    if(myRegister.allRegisters.get(i).securityQuestion.equals(split[2])){
                         System.out.println("password is changed");
-                        myRegister.allRegisters.get(i).userPasswords=split[2] ;
+                        myRegister.allRegisters.get(i).userPasswords=split[3] ;
                     }
                 }
             }
@@ -150,7 +149,74 @@ public class Input {
                     "login [user_name] [password] \n" +
                     "deleteAccount [user_name] [password] \n" +
                     "exitApp \n" +
-                    "forget password");
+                    "forget_password [user name] [your favorite flower's name] [new password]\n" +
+                    "change_username [user_name]\n" +
+                    "change_password [user_pass]\n" +
+                    "change_userId [user_Id]\n" +
+                    "change_bio [user_bio]\n" +
+                    "choose_accountType [user_AT]\n" +
+                    "showMyAccount\n" +
+                    "");
+        }
+
+        else if(split[0].equals("change_username")){
+            if(successfulLog==1){
+                Edit.changeUsername(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+            else{
+                System.out.println("please login first!");
+            }
+        }
+
+        else if(split[0].equals("change_password")){
+            if(successfulLog==1){
+                Edit.changePassword(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+            else{
+                System.out.println("please login first!");
+            }
+        }
+
+        else if(split[0].equals("change_userId")){
+            if(successfulLog==1){
+                Edit.changeUserId(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+            else{
+                System.out.println("please login first!");
+            }
+        }
+
+        else if(split[0].equals("change_bio")){
+            if(successfulLog==1){
+                Edit.changeBio(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+            else{
+                System.out.println("please login first!");
+            }
+        }
+
+        else if(split[0].equals("choose_accountType")){
+            if(successfulLog==1){
+                Edit.changeAccountType(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+            else{
+                System.out.println("please login first!");
+            }
+        }
+
+        else if(split[0].equals("showMyAccount")){
+            if(successfulLog==1) {
+                Show.show_account(myRegister.allRegisters.get(myRegister.logedInAccount));
+            }
+            else{
+                System.out.println("please login first!");
+            }
+        }
+
+        else if(sample.equals("log out")){
+            successfulLog=0 ;
+            myRegister.logedInAccount=-1 ;
+            System.out.println("you logged out");
         }
 
 

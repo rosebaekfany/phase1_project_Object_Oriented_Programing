@@ -6,16 +6,17 @@ import java.util.* ;
 
 public class Person {
 
-    public String userType = new String() ;
-    public String userAccountType = new String() ;
+    //public String userType = new String() ;
+    public String userAccountType = new String("General_Account") ;
     public String name = new String() ;
     public String userID = new String() ;
     public String userPasswords = new String() ;
     public String securityQuestion = new String() ;
-    public String bio = new String() ;
-    public ArrayList<String> folowers = new ArrayList<>() ;
-    public ArrayList<String> folowings = new ArrayList<>() ;
-    public ArrayList<String> likedPhotoes = new ArrayList<>() ;
+    public String bio = new String("") ;
+    public ArrayList<Person> folowers = new ArrayList<>() ;
+    public ArrayList<Person> folowings = new ArrayList<>() ;
+    public ArrayList<Post> likedPhotoes = new ArrayList<>() ;
+    public ArrayList<Post> posts = new ArrayList<>() ;
 
     /*public void changeUsername{
         name= Edit.change() ;

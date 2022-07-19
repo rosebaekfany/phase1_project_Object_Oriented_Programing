@@ -1,4 +1,6 @@
+package media;
 import java.util.ArrayList;
+import temporary.* ;
 
 public class personalChat {
     String user1 ;

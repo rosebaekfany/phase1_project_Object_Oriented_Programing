@@ -1,4 +1,4 @@
-import media.Person;
+package media;
 
 import java.util.ArrayList;
 
