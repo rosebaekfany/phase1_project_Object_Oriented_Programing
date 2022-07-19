@@ -1,34 +1,24 @@
 package media;
 
-import controller.Edit;
-import view.Input;
-import java.util.*
+import controller.Edit ;
+import view.Input ;
+import java.util.* ;
 
-public abstract class person {
-    Input Input = new Input() ;
-    Edit Edit = new Edit() ;
-    String userType = new String() ;
-    String userAccountType = new String() ;
-    String username = new String() ;
-    String userID = new String() ;
-    String bio = new String() ;
-    ArrayList<String> folowers = new ArrayList<>() ;
-    ArrayList<String> folowings = new ArrayList<>() ;
-    ArrayList<String> likedPhotoes = new ArrayList<>() ;
-    public person(String username, String userID, String bio, ArrayList<String> folowers, ArrayList<String> folowings, ArrayList<String> likedPhotoes) {
-        this.username = username;
-        this.userID = userID;
-        this.bio = bio;
-        this.folowers = folowers;
-        this.folowings = folowings;
-        this.likedPhotoes = likedPhotoes;
-        this.userType = userType;
-        this.userAccountType = userAccountType ;
-        this.Input =
+public class Person {
 
-    }
-    public void changeUsername{
-        username= Edit.change() ;
+    public String userType = new String() ;
+    public String userAccountType = new String() ;
+    public String name = new String() ;
+    public String userID = new String() ;
+    public String userPasswords = new String() ;
+    public String securityQuestion = new String() ;
+    public String bio = new String() ;
+    public ArrayList<String> folowers = new ArrayList<>() ;
+    public ArrayList<String> folowings = new ArrayList<>() ;
+    public ArrayList<String> likedPhotoes = new ArrayList<>() ;
+
+    /*public void changeUsername{
+        name= Edit.change() ;
     }
     public String commenting(){
         return Input.getComment() ;
@@ -36,7 +26,7 @@ public abstract class person {
     public String liking(){
         //post goes to ArrayList likedPhotoes
         return Input.getLike() ;
-    }
+    }*/
     public void addfollowing(String folowingID ){
         //adding folowingID to ArrayList<String> folowings ;
         //adding userID from folowingID's followers
@@ -47,3 +37,4 @@ public abstract class person {
     }
 
 }
+

@@ -1,8 +1,11 @@
+import view.Input;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hi Yekta");
-        System.out.println("1");
-        //test2
-        System.out.println("test3");
+        Input myInput = new Input() ;
+        myInput.register_menu();
+        while (myInput.registerMenu==1){
+            myInput.inputRegister();
+        }
     }
 }

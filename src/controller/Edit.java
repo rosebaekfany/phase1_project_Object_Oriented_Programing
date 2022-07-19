@@ -1,10 +1,10 @@
 package controller;
 
-import view.Input;
+import view.* ;
 
 public class Edit {
-    public String change(){
-        return Input.getAccountType() ;
-    }
+/*    public String change(){
+        //return Input.getAccountType() ;
+    }*/
     //and other functions for editing
 }

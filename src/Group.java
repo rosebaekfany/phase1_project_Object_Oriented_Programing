@@ -1,8 +1,10 @@
+import media.Person;
+
 import java.util.ArrayList;
 
 public class Group {
     String groupName ;
-    ArrayList<User> groupUsers = new ArrayList<>() ;
+    ArrayList<Person> groupUsers = new ArrayList<>() ;
     ArrayList<Post> posts = new ArrayList<>() ;
     String[] adminID = new String[50] ;
     Group(String groupName , String[] adminID){
