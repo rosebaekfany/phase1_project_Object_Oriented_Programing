@@ -1,6 +1,7 @@
 package media;
 
 import controller.Edit;
+import temporary.CommercialGenres;
 import view.Input;
 
 import java.util.*;
@@ -20,6 +21,16 @@ public class Person {
     public ArrayList<Post> posts = new ArrayList<>();
     public ArrayList<String> massageRequests = new ArrayList<>();
     public ArrayList<Post> draftPosts = new ArrayList<>();
+
+    CommercialGenres[] favoriteGenres = new CommercialGenres[3];
+
+    public boolean equals(Person person){
+        if (this.name.equals(person.name)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /*public void changeUsername{
         name= Edit.change() ;
