@@ -36,5 +36,7 @@ public class Post {
 
     public static void editPost(Post myPost , String myString ) {
         myPost.script=myString ;
+        myPost.edited="edited";
     }
+
 }
