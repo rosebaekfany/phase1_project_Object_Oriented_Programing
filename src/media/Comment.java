@@ -1,20 +1,20 @@
 package media;
-import temporary.* ;
 
-public class Comment {
-    String script ;
-    Emoji emoji = new Emoji() ;
-    String commentID ;
+import temporary.*;
 
-    void commentInPost(){
+public class Comment extends Post {
 
-    }
+    public Post postOfTheComment = new Post();
 
-    void commentInPersonalChat (){
+    void commentInPost() {
 
     }
 
-    void copyComment(){
+    void commentInPersonalChat() {
+
+    }
+
+    void copyComment() {
 
     }
 }
