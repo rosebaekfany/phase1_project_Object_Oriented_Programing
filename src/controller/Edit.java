@@ -56,6 +56,9 @@ public class Edit {
         if(flag==0){
             System.out.println("successfull change");
             myPerson.userID=newString ;
+            for (i=0 ; i<myPerson.posts.size() ;i++){
+                myPerson.posts.get(i).usersPostId=newString ;
+            }
         }
     }
 

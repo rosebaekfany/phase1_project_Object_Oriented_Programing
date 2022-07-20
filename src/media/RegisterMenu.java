@@ -8,4 +8,5 @@ public class RegisterMenu {
     public ArrayList<Person> allRegisters = new ArrayList<>() ;
     public int logedInAccount=-1 ;
 
+
 }
