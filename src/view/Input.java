@@ -3,6 +3,7 @@ package view;
 import controller.* ;
 import media.*;
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Input {
@@ -215,9 +216,53 @@ public class Input {
                 }
             }
 
-            else if(split[0].equals("choose_accountType")){
+            else if(split[0].equals("choose_accountType")){ // ToDo
                 if(successfulLog==1){
-                    Edit.changeAccountType(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+                    if (split[1].equals("General_Account")){
+                        if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
+                                .equals("Business_Account")){
+                            Edit.changeAccountTypeToGeneral((BusinessUser)
+                                    myRegister.allRegisters.get(myRegister.logedInAccount));
+                            System.out.println("successful change");
+                        } else {
+                            System.out.println("your account is already general");
+                        }
+
+                    } else if (split[1].equals("Business_Account")) {
+                        System.out.println("Enter your business phoneNumber");
+                        String phoneNumber = sc.nextLine();
+                        String regexStr = "^(\\d{4,17})$";
+                        Pattern pattern = Pattern.compile(regexStr);
+                        Matcher matcher  = pattern.matcher(phoneNumber);
+                        if (matcher.matches()) {
+                            if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
+                                    .equals("General_Account")) {
+                                BusinessUser myBusinessUser =Edit.changeAccountTypeToBusiness
+                                        (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber);
+                                myRegister.businessUsers.add(myBusinessUser);
+                                for (BusinessUser businessUser : myRegister.businessUsers) {
+                                    System.out.println(businessUser.name);
+                                }
+                                myRegister.allRegisters.add(myBusinessUser);
+                                for (Person allRegister : myRegister.allRegisters) {
+                                    System.out.println(allRegister.name);
+                                }
+                                myRegister.allRegisters.remove(myRegister.logedInAccount);
+                                for (Person allRegister : myRegister.allRegisters) {
+                                    System.out.println(allRegister.name);
+                                }
+                                myRegister.logedInAccount = myRegister.allRegisters.size() - 1;
+                                System.out.println(myRegister.logedInAccount);
+                                System.out.println("successful change");
+                            } else {
+                                System.out.println("your account is already Business_Account");
+                            }
+                        } else {
+                            System.out.println("Invalid phoneNumber format");
+                        }
+                    } else {
+                        System.out.println("choose between General_Account or Business_Account");
+                    }
                 }
                 else{
                     System.out.println("please login first!");
