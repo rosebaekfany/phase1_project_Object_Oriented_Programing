@@ -416,7 +416,7 @@ public class Input {
             }
 
             else if(sample.equals("enterMainPage")){
-
+;
             }
 
 
