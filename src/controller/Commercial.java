@@ -105,7 +105,7 @@ public class Commercial {
             int coef = 1 ;
             for (int i = 0; i < 6; i++) {
                 if (((BusinessPost) post).postGenre.equals(myPerson.favoriteGenres[i])){
-                    coef = i;
+                    coef = 6-i;
                     break;
                 }
             }
