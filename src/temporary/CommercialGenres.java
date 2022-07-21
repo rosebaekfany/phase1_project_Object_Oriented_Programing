@@ -6,9 +6,7 @@ public enum CommercialGenres {
     FASHION,
     SCIENCE_AND_TECHNOLOGY,
     STOCK_MARKET,
-    ARTIFICIAL_ARTS,
-    MUSIC,
-    CINEMA_AND_THEATER,
+    ARTS,
     GAMING;
 
 }

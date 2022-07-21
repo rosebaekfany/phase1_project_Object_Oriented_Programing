@@ -1,5 +1,9 @@
 package controller;
+import media.BusinessPost;
+import media.BusinessUser;
 import media.Person;
+import media.Post;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +23,6 @@ public class Commercial {
         similarityPercentage = (double)similarThings / (double) things1.size();
         return similarityPercentage;
     }
-
-    // ToDo : An equal methode for person
 
     public HashMap<Person , Integer> recommendPerson(Person myPerson){
         //make followings of myPerson's followings list
@@ -47,11 +49,72 @@ public class Commercial {
     }
 
 
-    public void commercialPosts(){
+    public HashMap<Post, Integer> recommendedPosts(Person myPerson , ArrayList<BusinessUser> businesses){
+        HashMap<Post , Integer> recommendation = new HashMap<>();
 
+        // setting non-viewed posts in the recommendation-map
+        for (BusinessUser business : businesses) {
+            for (Post post : business.posts) {
+                for (Post viewedPost : myPerson.viewedPosts) {
+                    if (viewedPost.postID.equals(post.postID)){
+                        break;
+                    } else {
+                        recommendation.put(post , 0);
+                    }
+                }
+            }
+        }
 
+        // setting non-liked posts
+        ArrayList<Post> non_liked_post = myPerson.getUnLikedCommercialPosts();
 
+        // setting recommendation-map based on liked-people
+        for (Post likedPhotoe : myPerson.likedPhotoes) {
+            for (Person likedUser : likedPhotoe.likedUsers) {
+                for (Post photoe : likedUser.likedPhotoes) {
+                    if (recommendation.containsKey(photoe)){
+                        try {
+                            int rate = recommendation.get(photoe);
+                            rate++;
+                            recommendation.replace(photoe , rate);
+                        } catch(Exception e){
+                            break;
+                        }
+                    }
+                }
+            }
+        }
 
+        // setting recommendation-map based on unliked-people
+        for (Post myPerson_non_liked_post : non_liked_post) {
+            for (Person unlikedUser : myPerson_non_liked_post.getUnlikedUsers()) {
+                for (Post unLikedCommercialPost : unlikedUser.getUnLikedCommercialPosts()) {
+                    try {
+                        int rate = recommendation.get(unLikedCommercialPost);
+                        rate++;
+                        recommendation.replace(unLikedCommercialPost , rate);
+                    } catch (Exception e){
+                        break;
+                    }
+                }
+            }
+        }
+
+        // setting recommendation-map based on favorite categories
+        for (Post post : recommendation.keySet()) {
+            int coef = 1 ;
+            for (int i = 0; i < 6; i++) {
+                if (((BusinessPost) post).postGenre.equals(myPerson.favoriteGenres[i])){
+                    coef = i;
+                    break;
+                }
+            }
+            int preRate = recommendation.get(post);
+            int rate = coef*preRate;
+            recommendation.replace(post , rate);
+        }
+
+        return recommendation;
     }
 
     /*public List<Person> recommendPerson(Person myPerson , Person otherPerson){

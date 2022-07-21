@@ -10,10 +10,8 @@ public class BusinessPost extends Post{
 
     HashMap<Person , LocalDateTime> viewed = new HashMap<>();
 
-    private CommercialGenres postGenre;
+    public CommercialGenres postGenre;
 
 
-    public void setPostGenre(CommercialGenres postGenre) {
-        this.postGenre = postGenre;
-    }
+
 }

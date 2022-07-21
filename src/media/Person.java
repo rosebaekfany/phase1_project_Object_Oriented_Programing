@@ -18,11 +18,12 @@ public class Person {
     public ArrayList<Person> folowers = new ArrayList<>();
     public ArrayList<Person> folowings = new ArrayList<>();
     public ArrayList<Post> likedPhotoes = new ArrayList<>();
+    public ArrayList<Post> viewedPosts = new ArrayList<>();
     public ArrayList<Post> posts = new ArrayList<>();
     public ArrayList<String> massageRequests = new ArrayList<>();
     public ArrayList<Post> draftPosts = new ArrayList<>();
 
-    CommercialGenres[] favoriteGenres = new CommercialGenres[3];
+    public CommercialGenres[] favoriteGenres = new CommercialGenres[6];
 
     public boolean equals(Person person){
         if (this.name.equals(person.name)){
@@ -30,6 +31,16 @@ public class Person {
         } else {
             return false;
         }
+    }
+
+    public ArrayList<Post> getUnLikedCommercialPosts(){
+        ArrayList<Post> non_liked_post = new ArrayList<>();
+        for (Post viewedPost : this.viewedPosts) {
+            if (!likedPhotoes.contains(viewedPost)) {
+               non_liked_post.add(viewedPost);
+            }
+        }
+        return non_liked_post;
     }
 
     /*public void changeUsername{
