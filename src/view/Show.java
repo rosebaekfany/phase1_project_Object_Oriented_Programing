@@ -34,8 +34,7 @@ public class Show {
                             break;
                         }
                     }
-                }
-                else {
+                } else {
                     flag = 1;
                 }
                 ff = 1;
@@ -93,65 +92,66 @@ public class Show {
         }
     }
 
-    public static void show_sbPosts(RegisterMenu myRegister ,Person myPerson) {
-        int i ,j , flag=0 ;
-        for(i=0 ; i< myRegister.allRegisters.size() ; i++){
-            if(myRegister.allRegisters.get(i).userID.equals(myPerson.userID)){
-                if (myRegister.allRegisters.get(i).userType.equals("private")){
+    public static void show_sbPosts(RegisterMenu myRegister, Person myPerson) {
+        int i, j, flag = 0;
+        for (i = 0; i < myRegister.allRegisters.size(); i++) {
+            if (myRegister.allRegisters.get(i).userID.equals(myPerson.userID)) {
+                if (myRegister.allRegisters.get(i).userType.equals("private")) {
                     for (j = 0; j < myRegister.allRegisters.get(i).folowers.size(); j++) {
                         if (myRegister.allRegisters.get(i).folowers.get(j).userID.equals(myPerson.userID)) {
-                            flag=1 ;
+                            flag = 1;
                             break;
                         }
                     }
-                }
-                else{
-                    flag=1 ;
+                } else {
+                    flag = 1;
                 }
                 break;
             }
         }
-        if(flag==1) {
+        if (flag == 1) {
             for (i = 0; i < myPerson.posts.size(); i++) {
-                System.out.println("id: " + myPerson.posts.get(i).postID + "  " + myPerson.posts.get(i).script);
-                System.out.println("liked " + myPerson.posts.get(i).likedUsers.size() + "commented " + myPerson.posts.get(i).postComments.size());
+                System.out.println("id: " + myPerson.posts.get(i).postID + "  " + myPerson.posts.get(i).script + "  " + myPerson.posts.get(i).edited);
+                System.out.println("liked " + myPerson.posts.get(i).likedUsers.size() + "  commented " + myPerson.posts.get(i).postComments.size());
                 System.out.println("  time: " + myPerson.posts.get(i).postDate.toString());
                 System.out.println("--------");
             }
-        }
-        else{
+        } else {
             System.out.println("account is private");
         }
     }
 
-    public static void show_selectedPost(RegisterMenu myRegister ,Post myPost ){
-        int i ,j , flag=0 ;
+    public static void show_selectedPost(RegisterMenu myRegister, Post myPost) {
+        int i, j, flag = 0;
 
-        for(i=0 ; i< myRegister.allRegisters.size() ; i++){
-            if(myRegister.allRegisters.get(i).userID.equals(myPost.usersPostId)){
-                if (myRegister.allRegisters.get(i).userType.equals("private")){
+        for (i = 0; i < myRegister.allRegisters.size(); i++) {
+            if (myRegister.allRegisters.get(i).userID.equals(myPost.usersPostId)) {
+                if (myRegister.allRegisters.get(i).userType.equals("private")) {
                     for (j = 0; j < myRegister.allRegisters.get(i).folowers.size(); j++) {
                         if (myRegister.allRegisters.get(i).folowers.get(j).userID.equals(myPost.usersPostId)) {
-                            flag=1 ;
+                            flag = 1;
                             break;
                         }
                     }
-                }
-                else{
-                    flag=1 ;
+                } else {
+                    flag = 1;
                 }
                 break;
             }
         }
-        if(flag==1){
+        if (flag == 1) {
             System.out.println("id: " + myPost.postID + "  " + myPost.script);
-            System.out.println("liked " + myPost.likedUsers.size() + "commented " + myPost.postComments.size());
+            System.out.println("liked " + myPost.likedUsers.size() + "  commented " + myPost.postComments.size());
             System.out.println("time: " + myPost.postDate.toString());
-            System.out.println("comments: "+myPost.postComments.get(myPost.postComments.size()-1).script);
-            System.out.println("          "+myPost.postComments.get(myPost.postComments.size()-2).script);
-
+            if(myPost.postComments.size()>=2) {
+                System.out.println("comments: " + myPost.postComments.get(myPost.postComments.size() - 1).script);
+                System.out.println("          " + myPost.postComments.get(myPost.postComments.size() - 2).script);
+            }
+            else if(myPost.postComments.size()==1){
+                System.out.println("comments: " + myPost.postComments.get(myPost.postComments.size() - 1).script);
+            }
         }
-        else{
+        else {
             System.out.println("account is private");
         }
     }
@@ -163,15 +163,22 @@ public class Show {
         }
     }
 
-    public static void show_postComments(Post myPost){
+    public static void show_postComments(Post myPost) {
         int i;
-        for(i=0 ; i<myPost.postComments.size() ; i++){
-            System.out.println("userId: "+myPost.postComments.get(i).usersPostId+"   -"+myPost.postComments.get(i).script+" time:"+myPost.postComments.get(i).postDate.toString());
+        for (i = 0; i < myPost.postComments.size(); i++) {
+            System.out.println("userId: " + myPost.postComments.get(i).usersPostId + "   -" + myPost.postComments.get(i).script + " time:" + myPost.postComments.get(i).postDate.toString());
         }
     }
 
-    public static void MainShow(Person myPerson){
-
+    public static void MainShow(Person myPerson) {
+        int i;
+        myPerson.makeMainPage();
+        for (i = 0; i < myPerson.mainPagePost.size(); i++) {
+            System.out.println("id: " + myPerson.mainPagePost.get(i).postID + "  " + myPerson.mainPagePost.get(i).script + "  " + myPerson.mainPagePost.get(i).edited);
+            System.out.println("liked " + myPerson.mainPagePost.get(i).likedUsers.size() + "commented " + myPerson.posts.get(i).postComments.size());
+            System.out.println("  time: " + myPerson.mainPagePost.get(i).postDate.toString());
+            System.out.println("--------");
+        }
     }
 
 

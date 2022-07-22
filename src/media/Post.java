@@ -25,7 +25,7 @@ public class Post {
         newPost.script = text;
         Date postDate = new Date();
         newPost.postDate = Calendar.getInstance().getTime();
-        newPost.postID = "@" + String.valueOf(myRegister.allRegisters.get(myRegister.logedInAccount).posts.size()) + "***";
+        newPost.postID = "@" + String.valueOf(myRegister.allRegisters.get(myRegister.logedInAccount).posts.size()) + "*****";
         newPost.usersPostId = myRegister.allRegisters.get(myRegister.logedInAccount).userID;
         myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.add(newPost);
     }
@@ -52,7 +52,7 @@ public class Post {
         newComment.postDate = Calendar.getInstance().getTime();
         newComment.postID = "@" + String.valueOf(myPerson.allComment.size()) + "***";
         newComment.usersPostId = myPerson.userID;
-        newComment.postOfTheComment = myPost ;
+        newComment.postOfTheComment = myPost;
 
         myPost.postComments.add(newComment);
         myPerson.allComment.add(newComment);

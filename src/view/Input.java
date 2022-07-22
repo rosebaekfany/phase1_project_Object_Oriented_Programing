@@ -14,7 +14,7 @@ public class Input {
 
     public int i, j;
     public int registerMenu = 0, accountMenu = 0;
-    public int registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0 , selectPostFlag=0  ;
+    public int registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0, selectPostFlag = 0;
     //public int ;
 
     public void backToDefault() {
@@ -170,7 +170,19 @@ public class Input {
                         "showFollowerList [userId]\n" +
                         "showFollowingList [userId]\n" +
                         "showMyRequests\n" +
-                        "confirmFollowRequest [request nmber]\n" +
+                        "confirmFollowRequest [request number]\n" +
+                        "creat post\n" +
+                        "add_text [text]\n" +
+                        "post\n" +
+                        "editPost [postId]\n" +
+                        "showPosts [userId]\n" +
+                        "selectPost [userId] [postId]\n" +
+                        "showLikes [userId] [postId]\n" +
+                        "showComments [userId] [postId]\n" +
+                        "like [userId] [postId]\n" +
+                        "comment [userId] [postId]\n" +
+                        "deselect\n" +
+                        "enterMainPage\n" +
                         ""
                 );
             }
@@ -292,16 +304,16 @@ public class Input {
 
             }
 
-            else if (split[0].equals("editPost")){
+            else if (split[0].equals("editPost")) {
                 int ff = 0;
-                for(i=0 ; i<myRegister.allRegisters.get(myRegister.logedInAccount).posts.size() ; i++){
-                    if(myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i).postID.equals(split[1])){
-                        Post.editPost( myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i), sample.substring(sample.indexOf('-')+1) );
-                        ff=1 ;
+                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).posts.size(); i++) {
+                    if (myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i).postID.equals(split[1])) {
+                        Post.editPost(myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i), sample.substring(sample.indexOf('-') + 1));
+                        ff = 1;
                         break;
                     }
                 }
-                if(ff==0){
+                if (ff == 0) {
                     System.out.println("you only can edit your own posts");
                 }
             }
@@ -310,7 +322,7 @@ public class Input {
                 int ff = 0;
                 for (i = 0; i < myRegister.allRegisters.size(); i++) {
                     if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
-                        Show.show_sbPosts(myRegister,myRegister.allRegisters.get(i));
+                        Show.show_sbPosts(myRegister, myRegister.allRegisters.get(i));
                         ff = 1;
                         break;
                     }
@@ -320,16 +332,16 @@ public class Input {
                 }
             }
 
-            else if(split[0].equals("selectPost")){
+            else if (split[0].equals("selectPost")) {
                 int ff = 0;
                 for (i = 0; i < myRegister.allRegisters.size(); i++) {
                     if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                         for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                             if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
-                                Show.show_selectedPost(myRegister,myRegister.allRegisters.get(i).posts.get(j));
+                                Show.show_selectedPost(myRegister, myRegister.allRegisters.get(i).posts.get(j));
                                 ff = 1;
-                                selectPostFlag=1 ;
-                                myRegister.allRegisters.get(i).selectedPostId = split[2] ;
+                                selectPostFlag = 1;
+                                myRegister.allRegisters.get(i).selectedPostId = split[2];
                                 break;
                             }
                         }
@@ -342,7 +354,7 @@ public class Input {
                 }
             }
 
-            else if(selectPostFlag==1) {
+            else if (selectPostFlag == 1) {
 
                 if (split[0].equals("showLikes")) {
                     int ff = 0, i, j;
@@ -384,18 +396,18 @@ public class Input {
                     }
                 }
 
-                else if(sample.equals("deselect")){
-                    selectPostFlag=0 ;
+                else if (sample.equals("deselect")) {
+                    selectPostFlag = 0;
 
                 }
 
-                else if(split[0].equals("like")){
+                else if (split[0].equals("like")) {
                     int ff = 0, i, j;
                     for (i = 0; i < myRegister.allRegisters.size(); i++) {
                         if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                             for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                                 if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
-                                    Post.likePost(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.allRegisters.get(i).posts.get(j) );
+                                    Post.likePost(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.allRegisters.get(i).posts.get(j));
                                     ff = 1;
                                     break;
                                 }
@@ -408,14 +420,14 @@ public class Input {
                     }
                 }
 
-                else if(split[0].equals("comment")){
+                else if (split[0].equals("comment")) {
 
                     int ff = 0, i, j;
                     for (i = 0; i < myRegister.allRegisters.size(); i++) {
                         if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                             for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                                 if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
-                                    Post.commentPost(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.allRegisters.get(i).posts.get(j) , split[3] );
+                                    Post.commentPost(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.allRegisters.get(i).posts.get(j), split[3]);
                                     ff = 1;
                                     break;
                                 }
@@ -431,11 +443,10 @@ public class Input {
 
             }
 
-            else if(sample.equals("enterMainPage")){
-                myRegister.allRegisters.get(myRegister.logedInAccount).makeMainPage() ;
+            else if (sample.equals("enterMainPage")) {
+                myRegister.allRegisters.get(myRegister.logedInAccount).makeMainPage();
                 Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
-
 
 
         }
