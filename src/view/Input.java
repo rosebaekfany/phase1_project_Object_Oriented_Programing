@@ -308,7 +308,7 @@ public class Input {
 
             else if (split[0].equals("showPosts")) {
                 int ff = 0;
-                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).posts.size(); i++) {
+                for (i = 0; i < myRegister.allRegisters.size(); i++) {
                     if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                         Show.show_sbPosts(myRegister,myRegister.allRegisters.get(i));
                         ff = 1;
@@ -322,14 +322,21 @@ public class Input {
 
             else if(split[0].equals("selectPost")){
                 int ff = 0;
-                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).posts.size(); i++) {
-                    if (myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i).postID.equals(split[1])) {
-                        Show.show_selectedPost(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i));
-                        ff = 1;
-                        selectPostFlag=1 ;
-                        break;
+                for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                    if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
+                        for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
+                            if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                Show.show_selectedPost(myRegister,myRegister.allRegisters.get(i).posts.get(j));
+                                ff = 1;
+                                selectPostFlag=1 ;
+                                myRegister.allRegisters.get(i).selectedPostId = split[2] ;
+                                break;
+                            }
+                        }
                     }
+                    break;
                 }
+
                 if (ff == 0) {
                     System.out.println("the postId is incorrect");
                 }
@@ -338,40 +345,97 @@ public class Input {
             else if(selectPostFlag==1) {
 
                 if (split[0].equals("showLikes")) {
-                        int ff = 0;
-                        for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).posts.size(); i++) {
-                            if (myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i).postID.equals(split[1])) {
-                                Show.show_postLikes(myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i));
-                                ff = 1;
-                                break;
+                    int ff = 0, i, j;
+                    for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                        if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
+                            for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
+                                if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                    Show.show_postLikes(myRegister.allRegisters.get(i).posts.get(j));
+                                    ff = 1;
+                                    break;
+                                }
                             }
                         }
-                        if (ff == 0) {
-                            System.out.println("the postId is incorrect");
-                        }
+                        break;
+                    }
+                    if (ff == 0) {
+                        System.out.println("the postId is incorrect");
+                    }
+
                 }
 
                 else if (split[0].equals("showComments")) {
-                        int ff = 0;
-                        for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).posts.size(); i++) {
-                            if (myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i).postID.equals(split[1])) {
-                                Show.show_postComments(myRegister.allRegisters.get(myRegister.logedInAccount).posts.get(i));
-                                ff = 1;
-                                break;
+
+                    int ff = 0, i, j;
+                    for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                        if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
+                            for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
+                                if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                    Show.show_postComments(myRegister.allRegisters.get(i).posts.get(j));
+                                    ff = 1;
+                                    break;
+                                }
                             }
                         }
+                        break;
                     }
+                    if (ff == 0) {
+                        System.out.println("the postId is incorrect");
+                    }
+                }
 
                 else if(sample.equals("deselect")){
                     selectPostFlag=0 ;
 
                 }
 
+                else if(split[0].equals("like")){
+                    int ff = 0, i, j;
+                    for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                        if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
+                            for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
+                                if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                    Post.likePost(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.allRegisters.get(i).posts.get(j) );
+                                    ff = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                    if (ff == 0) {
+                        System.out.println("the postId is incorrect");
+                    }
+                }
+
+                else if(split[0].equals("comment")){
+
+                    int ff = 0, i, j;
+                    for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                        if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
+                            for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
+                                if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                    Post.commentPost(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.allRegisters.get(i).posts.get(j) , split[3] );
+                                    ff = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                    if (ff == 0) {
+                        System.out.println("the postId is incorrect");
+                    }
+
+                }
+
             }
 
             else if(sample.equals("enterMainPage")){
-;
+                myRegister.allRegisters.get(myRegister.logedInAccount).makeMainPage() ;
+                Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
+
 
 
         }

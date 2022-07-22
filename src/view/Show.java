@@ -166,8 +166,12 @@ public class Show {
     public static void show_postComments(Post myPost){
         int i;
         for(i=0 ; i<myPost.postComments.size() ; i++){
-
+            System.out.println("userId: "+myPost.postComments.get(i).usersPostId+"   -"+myPost.postComments.get(i).script+" time:"+myPost.postComments.get(i).postDate.toString());
         }
+    }
+
+    public static void MainShow(Person myPerson){
+
     }
 
 
