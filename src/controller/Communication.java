@@ -3,6 +3,8 @@ package controller;
 import view.*;
 import media.*;
 
+import java.util.Calendar;
+
 public class Communication {
 
     public static void followSb(RegisterMenu myRegester, Person myPerson, String id) {
@@ -70,6 +72,76 @@ public class Communication {
     public static void blockSb(RegisterMenu myRegister, Person myPerson, String id) {
         ;
     }
+
+    public static void StartNewChat(RegisterMenu myRegister,Person myPerson1 , Person myPerson2){
+        Chat newChat = new Chat();
+        newChat.person1=myPerson1 ;
+        newChat.person2=myPerson2 ;
+        myPerson1.allPersonalChats.add(newChat) ;
+        myPerson2.allPersonalChats.add(newChat) ;
+        myRegister.chatOnBord=newChat ;
+
+    }
+
+    public static void countinueChatting(RegisterMenu myRegister,Chat myChat){
+        myRegister.chatOnBord=myChat ;
+    }
+
+    public static void DMing(Chat myChat , Person myPerson , String newText){
+
+        Post newDm = new Post() ;
+        newDm.postDate= Calendar.getInstance().getTime();
+        newDm.script=newText;
+        newDm.usersPostId=myPerson.userID ;
+        newDm.postID="@"+String.valueOf(myChat.allTexts.size())+"*-*" ;
+        myChat.allTexts.add(newDm) ;
+        if(myPerson.userID.equals(myChat.person1.userID)){
+            myChat.person1Texts.add(newDm);
+        }
+        else if(myPerson.userID.equals(myChat.person2.userID)){
+            myChat.person2Texts.add(newDm);
+        }
+
+    }
+
+    public static void editDmInChat(Chat myChat,Post myDm , String newText){
+        int num ,i , ff=0 ;
+        myDm.script=newText ;
+        myDm.edited="edited" ;
+        for (i=0 ; i<myChat.allTexts.size() ; i++){
+            if(myChat.allTexts.get(i).postID.equals(myDm.postID)){
+                myChat.allTexts.get(i).script=newText;
+                myChat.allTexts.get(i).edited="edited";
+                break;
+            }
+        }
+    }
+
+    public static void deleteDmChat(Chat myChat,Post myDm){
+        int i ;
+        for (i=0 ; i<myChat.allTexts.size() ; i++){
+            if(myChat.allTexts.get(i).postID.equals(myDm.postID)){
+                myChat.allTexts.remove(i) ;
+            }
+        }
+    }
+
+    public static void likeDm(Chat myChat , Post myDm , Person myPerson){
+        int i ;
+        myDm.likedUsers.add(myPerson) ;
+        for (i=0 ; i<myChat.allTexts.size() ; i++){
+            if(myChat.allTexts.get(i).postID.equals(myDm.postID)){
+                myChat.allTexts.get(i).likedUsers.add(myPerson) ;
+            }
+        }
+    }
+
+    public static void forwardDm(){}
+
+
+
+
+
 
 
 }

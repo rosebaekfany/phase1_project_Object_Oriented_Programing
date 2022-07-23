@@ -15,6 +15,7 @@ public class Post {
     public ArrayList<Comment> postComments = new ArrayList<>();
     public Date postDate = new Date();
     public String edited = new String("");
+    public String forwarded = new String("");
 
     void putMedia() {
 
