@@ -568,12 +568,11 @@ public class Input {
                             if (myRegister.chatOnBord.allTexts.get(i).postID.equals(split[1]) ) {
                                 for (j=0 ; j<myRegister.allRegisters.size() ; j++){
                                     if(myRegister.allRegisters.get(j).userID.equals(split[2]) && j!=myRegister.logedInAccount){
-                                        //
+                                        /
                                         ff = 1;
                                         break;
                                     }
                                 }
-
                                 break;
                             }
                         }
