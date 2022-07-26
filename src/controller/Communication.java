@@ -70,6 +70,7 @@ public class Communication {
         }
     }
 
+    //personal chat
     public static void StartNewChat(RegisterMenu myRegister, Person myPerson1, Person myPerson2) {
         Chat newChat = new Chat();
         newChat.person1 = myPerson1;

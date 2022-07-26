@@ -10,6 +10,7 @@ public class RegisterMenu {
     public ArrayList<Person> allRegisters = new ArrayList<>();
     public int logedInAccount = -1;
     public Chat chatOnBord;
+    public Group grouponBord;
 
 
 }

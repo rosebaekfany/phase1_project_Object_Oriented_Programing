@@ -226,7 +226,7 @@ public class Show {
                 System.out.println("________________");
                 System.out.println("userId: "+searchedPost.get(i).usersPostId);
                 System.out.println("postId: "+searchedPost.get(i).postID);
-                System.out.println("-"+searchedPost.get(i).script);
+                System.out.println(searchedPost.get(i).script);
             }
         }
     }
@@ -266,6 +266,15 @@ public class Show {
         }
         if(ff==0 && gg==0){
             System.out.println("incorrect postId");
+        }
+    }
+
+    public static void show_allGroup(Person myPerson){
+        int i ;
+        for(i=0 ; i<myPerson.allMyGroap.size() ; i++){
+            System.out.println(myPerson.allMyGroap.get(i).groupName+"   id:"+myPerson.allMyGroap.get(i).groupId);
+            System.out.println(String.valueOf(myPerson.allMyGroap.get(i).groupUsers.size())+"member");
+            System.out.println("---------------");
         }
     }
 

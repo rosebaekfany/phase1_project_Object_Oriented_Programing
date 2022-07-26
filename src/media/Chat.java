@@ -14,4 +14,5 @@ public class Chat {
     public Person person2 = new Person();
     public String blockState = new String("");
 
+
 }

@@ -15,7 +15,7 @@ public class Input {
     public int i, j;
     public int registerMenu = 0, accountMenu = 0;
     public int registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0, selectPostFlag = 0;
-    public int startChat = 0 ;
+    public int startChat = 0 , enterGroup=0 ;
 
     public void backToDefault() {
         accountMenu = 0;
@@ -27,6 +27,7 @@ public class Input {
         postflag = 0;
         selectPostFlag = 0;
         startChat = 0;
+        enterGroup=0;
     }
 
     public void register_menu() {
@@ -159,6 +160,7 @@ public class Input {
 
 
         if (accountMenu == 1) {
+
 
             if (sample.equals("help") && accountMenu == 1) {
                 System.out.println("exitApp \n" +
@@ -705,7 +707,7 @@ public class Input {
 
             }
 
-            else if(split[0].equals("showSelectedDm")){
+            else if (split[0].equals("showSelectedDm")){
                 Show.show_selectedDm(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
             }
 
@@ -729,6 +731,38 @@ public class Input {
                     System.out.println("you don't have chat with this person");
                 }
             }
+
+            else if (split[0].equals("creatGroup")){
+                Group.creatGroup(myRegister.allRegisters.get(myRegister.logedInAccount),sample.substring(1+sample.indexOf('-')));
+                System.out.println("group is created");
+            }
+
+            else if (split[0].equals("showAllGroups")){
+                Show.show_allGroup(myRegister.allRegisters.get(myRegister.logedInAccount));
+            }
+
+            else if (split[0].equals("enterGroup")){
+
+                int ff=0 ;
+                for(i=0 ; i<myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.size() ; i++){
+                    if(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).groupId.equals(split[1])){
+                        myRegister.grouponBord=myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i) ;
+                        enterGroup=1 ;
+                        System.out.println("you have entered the group");
+                        ff=1 ;
+                        break;
+                    }
+                }
+                if(ff==0){
+                    System.out.println("there is no such group");
+                }
+            }
+
+            else if (enterGroup==1){
+
+            }
+
+
 
 
 
