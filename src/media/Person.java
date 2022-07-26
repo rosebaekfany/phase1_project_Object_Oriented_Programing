@@ -24,7 +24,7 @@ public class Person {
     public ArrayList<Post> mainPagePost = new ArrayList<>();
     public ArrayList<Comment> allComment = new ArrayList<>();
 
-    public ArrayList<Chat> allPersonalChats = new ArrayList<>() ;
+    public ArrayList<Chat> allPersonalChats = new ArrayList<>();
 
 
     public void makeMainPage() {
@@ -46,10 +46,8 @@ public class Person {
         }
         //sort
 
-        Collections.sort(mainPagePost, new sortItems())  ;
+        Collections.sort(mainPagePost, new sortItems());
     }
-
-
 
 
 }
@@ -59,8 +57,7 @@ class sortItems implements Comparator<Post> {
 
     // Method of this class
     // To compare datetime objects
-    public int compare(Post a, Post b)
-    {
+    public int compare(Post a, Post b) {
 
         // Returning the value after comparing the objects
         // this will sort the data in Descending order

@@ -143,15 +143,13 @@ public class Show {
             System.out.println("id: " + myPost.postID + "  " + myPost.script);
             System.out.println("liked " + myPost.likedUsers.size() + "  commented " + myPost.postComments.size());
             System.out.println("time: " + myPost.postDate.toString());
-            if(myPost.postComments.size()>=2) {
+            if (myPost.postComments.size() >= 2) {
                 System.out.println("comments: " + myPost.postComments.get(myPost.postComments.size() - 1).script);
                 System.out.println("          " + myPost.postComments.get(myPost.postComments.size() - 2).script);
-            }
-            else if(myPost.postComments.size()==1){
+            } else if (myPost.postComments.size() == 1) {
                 System.out.println("comments: " + myPost.postComments.get(myPost.postComments.size() - 1).script);
             }
-        }
-        else {
+        } else {
             System.out.println("account is private");
         }
     }
@@ -181,7 +179,39 @@ public class Show {
         }
     }
 
+    public static void show_allDirect(Person myPerson) {
+        int i;
+        for (i = 0; i < myPerson.allPersonalChats.size(); i++) {
+            System.out.println(myPerson.allPersonalChats.get(i).person1.userID + " & " + myPerson.allPersonalChats.get(i).person2.userID);
+            if (myPerson.allPersonalChats.get(i).allTexts.size() > 0) {
+                System.out.println(myPerson.allPersonalChats.get(i).allTexts.get(myPerson.allPersonalChats.get(i).allTexts.size() - 1).script);
+                System.out.println(myPerson.allPersonalChats.get(i).allTexts.get(myPerson.allPersonalChats.get(i).allTexts.size() - 1).postDate.toString());
+            }
+            System.out.println("---------------");
 
+        }
+    }
+
+    public static void show_directWith(Chat myChat) {
+        int i, j;
+        for (i = 0; i < myChat.allTexts.size(); i++) {
+            System.out.println("________________");
+            System.out.println("userId: " + myChat.allTexts.get(i).usersPostId);
+            System.out.println("postId: " + myChat.allTexts.get(i).postID);
+            if (myChat.allTexts.get(i).getClass().toString().equals("Comment")) {
+                for (j = 0; j < myChat.allReply.size(); j++) {
+                    if (myChat.allReply.get(j).postID.equals(myChat.allTexts.get(i).postID)) {
+                        System.out.println("   -reply: " + myChat.allReply.get(j).postOfTheComment.script.substring(0, 4) + "...");
+                        break;
+                    }
+                }
+            }
+            System.out.println("-" + myChat.allTexts.get(i).script);
+            System.out.println(myChat.allTexts.get(i).postDate.toString());
+            System.out.println("liked: " + myChat.allTexts.get(i).likedUsers.size());
+            System.out.println(myChat.allTexts.get(i).edited + "    " + myChat.allTexts.get(i).forwarded);
+        }
+    }
 
 
 }

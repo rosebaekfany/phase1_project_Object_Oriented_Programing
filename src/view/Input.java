@@ -15,12 +15,18 @@ public class Input {
     public int i, j;
     public int registerMenu = 0, accountMenu = 0;
     public int registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0, selectPostFlag = 0;
-    public int startChat=0 ;
+    public int startChat = 0;
 
     public void backToDefault() {
-        registerMenu = 0; accountMenu = 0;
-        registerflag = 0; loginflag = 0; successfulLog = 0; deleteAccountflag = 0; successfulDeleteAccount=0 ; postflag = 0; selectPostFlag = 0;
-        startChat=0 ;
+        accountMenu = 0;
+        registerflag = 0;
+        loginflag = 0;
+        successfulLog = 0;
+        deleteAccountflag = 0;
+        successfulDeleteAccount = 0;
+        postflag = 0;
+        selectPostFlag = 0;
+        startChat = 0;
     }
 
     public void register_menu() {
@@ -185,6 +191,17 @@ public class Input {
                         "comment [userId] [postId] -[text]\n" +
                         "deselect\n" +
                         "enterMainPage\n" +
+                        "ChatWith [userId]\n" +
+                        "addDm -[text]\n" +
+                        "editDm [postId] -[text]\n" +
+                        "likeDm [postId]\n" +
+                        "replyDm [postId] -[text]\n" +
+                        "forward [postId] [sbUserId]\n" +
+                        "deleteDm [postId]\n" +
+                        "exit Chat\n" +
+                        "showAllPersonalDms\n" +
+                        "showChatWith [userId]\n" +
+                        "block [userId]\n" +
                         ""
                 );
             }
@@ -433,7 +450,7 @@ public class Input {
                         if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                             for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                                 if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
-                                    Post.commentPost(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.allRegisters.get(i).posts.get(j), sample.substring(sample.indexOf('-')+1) );
+                                    Post.commentPost(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.allRegisters.get(i).posts.get(j), sample.substring(sample.indexOf('-') + 1));
                                     ff = 1;
                                     System.out.println("comment is added");
                                     break;
@@ -455,188 +472,250 @@ public class Input {
                 Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
 
-            else if(split[0].equals("ChatWith")){
-                int ff=0  , fg=0 ;
-                for(i=0 ; i<myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size() ; i++){
-                    if(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person1.userID.equals(split[1])){
-                        Communication.countinueChatting(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
-                        startChat=1 ;
-                        System.out.println("you have entered the chat");
-                        ff=1 ;
+            else if (split[0].equals("ChatWith")) {
+                int ff = 0, fg = 0;
+                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size(); i++) {
+                    if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person1.userID.equals(split[1])) {
+                        if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState.equals("blocked")) {
+                            System.out.println("the chat is blocked");
+                        } else {
+                            Communication.countinueChatting(myRegister, myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
+                            startChat = 1;
+                            System.out.println("you have entered the chat");
+                        }
+                        ff = 1;
                         break;
-                    }
-                    else if(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])){
-                        Communication.countinueChatting(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
-                        startChat=1 ;
-                        System.out.println("you have entered the chat");
-                        ff=1 ;
+                    } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                        if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState.equals("blocked")) {
+                            System.out.println("the chat is blocked");
+                        } else {
+                            Communication.countinueChatting(myRegister, myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
+                            startChat = 1;
+                            System.out.println("you have entered the chat");
+                        }
+                        ff = 1;
                         break;
                     }
                 }
-                if(ff==0){
-                    for (i=0 ; i<myRegister.allRegisters.size() ; i++){
-                        if(myRegister.allRegisters.get(i).userID.equals(split[1]) && i!= myRegister.logedInAccount){
-                            Communication.StartNewChat(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.allRegisters.get(i));
-                            startChat=1 ;
+                if (ff == 0) {
+                    for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                        if (myRegister.allRegisters.get(i).userID.equals(split[1]) && i != myRegister.logedInAccount) {
+                            Communication.StartNewChat(myRegister, myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.allRegisters.get(i));
+                            startChat = 1;
                             System.out.println("you have started a new chat");
-                            fg=1 ;
+                            fg = 1;
                             break;
                         }
                     }
-                    if(fg==0){
+                    if (fg == 0) {
                         System.out.println("userId is incorrect");
                     }
                 }
             }
 
-            else if(startChat==1){
+            else if (startChat == 1) {
 
-                if(split[0].equals("addDm")){
-                    Communication.DMing(myRegister.chatOnBord,myRegister.allRegisters.get(myRegister.logedInAccount),sample.substring(1+sample.indexOf('-')));
+                if (split[0].equals("addDm")) {
+                    if (myRegister.chatOnBord.blockState.equals("blocked")) {
+                        System.out.println("the chat is blocked");
+                    } else {
+                        Communication.DMing(myRegister.chatOnBord, myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
+                        System.out.println("dm is added");
+                    }
                 }
 
                 else if (split[0].equals("editDm")) {
                     int ff = 0;
-                    if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
+                    if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
                         for (i = 0; i < myRegister.chatOnBord.person1Texts.size(); i++) {
                             if (myRegister.chatOnBord.person1Texts.get(i).postID.equals(split[1]) && i >= myRegister.chatOnBord.person1Texts.size() - 15) {
-                                if(myRegister.chatOnBord.person1Texts.get(i).forwarded.equals("")) {
-                                    Communication.editDmInChat(myRegister.chatOnBord,myRegister.chatOnBord.person1Texts.get(i),sample.substring(1+sample.indexOf('-')));
-                                }
-                                else{
+                                if (myRegister.chatOnBord.person1Texts.get(i).forwarded.equals("")) {
+                                    System.out.println("dm is edited");
+                                    Communication.editDmInChat(myRegister.chatOnBord, myRegister.chatOnBord.person1Texts.get(i), sample.substring(1 + sample.indexOf('-')));
+                                } else {
                                     System.out.println("you can't edit this DM");
                                 }
                                 ff = 1;
                                 break;
                             }
                         }
-                    }
-                    else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
-                        for(i=0 ; i<myRegister.chatOnBord.person2Texts.size() ; i++){
-                            if(myRegister.chatOnBord.person2Texts.get(i).postID.equals(split[1]) && i>=myRegister.chatOnBord.person2Texts.size()-15){
-                                if(myRegister.chatOnBord.person2Texts.get(i).forwarded.equals("")) {
-                                    Communication.editDmInChat(myRegister.chatOnBord,myRegister.chatOnBord.person2Texts.get(i),sample.substring(1+sample.indexOf('-')));
-                                }
-                                else{
-                                    System.out.println("you can't edit this DM");
-                                }
-                                ff=1 ;
-                                break;
-                            }
-                        }
-                    }
-                    else if(ff==0){
-                        System.out.println("you dont have the access");
-                    }
-                }
-
-                else if (split[0].equals("likeDm")){
-                    int ff = 0;
-                    if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
+                    } else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
                         for (i = 0; i < myRegister.chatOnBord.person2Texts.size(); i++) {
-                            if (myRegister.chatOnBord.person2Texts.get(i).postID.equals(split[1]) ) {
-                                Communication.likeDm(myRegister.chatOnBord,myRegister.chatOnBord.person2Texts.get(i),myRegister.chatOnBord.person1);
+                            if (myRegister.chatOnBord.person2Texts.get(i).postID.equals(split[1]) && i >= myRegister.chatOnBord.person2Texts.size() - 15) {
+                                if (myRegister.chatOnBord.person2Texts.get(i).forwarded.equals("")) {
+                                    Communication.editDmInChat(myRegister.chatOnBord, myRegister.chatOnBord.person2Texts.get(i), sample.substring(1 + sample.indexOf('-')));
+                                } else {
+                                    System.out.println("you can't edit this DM");
+                                }
+                                ff = 1;
+                                break;
+                            }
+                        }
+                    } else if (ff == 0) {
+                        System.out.println("you dont have the access");
+                    }
+                }
+
+                else if (split[0].equals("likeDm")) {
+                    int ff = 0;
+                    if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                        for (i = 0; i < myRegister.chatOnBord.person2Texts.size(); i++) {
+                            if (myRegister.chatOnBord.person2Texts.get(i).postID.equals(split[1])) {
+                                Communication.likeDm(myRegister.chatOnBord, myRegister.chatOnBord.person2Texts.get(i), myRegister.chatOnBord.person1);
                                 System.out.println("DM is liked");
                                 ff = 1;
                                 break;
                             }
                         }
-                    }
-                    else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
-                        for(i=0 ; i<myRegister.chatOnBord.person1Texts.size() ; i++){
-                            if(myRegister.chatOnBord.person1Texts.get(i).postID.equals(split[1]) ){
-                                Communication.likeDm(myRegister.chatOnBord,myRegister.chatOnBord.person1Texts.get(i),myRegister.chatOnBord.person2);
+                    } else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                        for (i = 0; i < myRegister.chatOnBord.person1Texts.size(); i++) {
+                            if (myRegister.chatOnBord.person1Texts.get(i).postID.equals(split[1])) {
+                                Communication.likeDm(myRegister.chatOnBord, myRegister.chatOnBord.person1Texts.get(i), myRegister.chatOnBord.person2);
                                 System.out.println("DM is liked");
-                                ff=1 ;
+                                ff = 1;
                                 break;
                             }
                         }
-                    }
-                    else if(ff==0){
+                    } else if (ff == 0) {
                         System.out.println("you dont have the access");
                     }
                 }
 
-                else if (split[0].equals("replyDm")){
-
-                }
-
-                else if(split[0].equals("forward")){
-                    int ff = 0 , j;
-                    if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
-                        for (i = 0; i < myRegister.chatOnBord.allTexts.size(); i++) {
-                            if (myRegister.chatOnBord.allTexts.get(i).postID.equals(split[1]) ) {
-                                for (j=0 ; j<myRegister.allRegisters.size() ; j++){
-                                    if(myRegister.allRegisters.get(j).userID.equals(split[2]) && j!=myRegister.logedInAccount){
-                                        /
-                                        ff = 1;
-                                        break;
-                                    }
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
-                        for(i=0 ; i<myRegister.chatOnBord.allTexts.size() ; i++){
-                            if(myRegister.chatOnBord.allTexts.get(i).postID.equals(split[1]) ){
-                                for (j=0 ; j<myRegister.allRegisters.size() ; j++){
-                                    if(myRegister.allRegisters.get(j).userID.equals(split[2]) && j!=myRegister.logedInAccount){
-
-                                        ff = 1;
-                                        break;
-                                    }
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    else if(ff==0){
-                        System.out.println("you dont have the access");
-                    }
-                }
-
-                else if(split[0].equals("deleteDm")){
+                else if (split[0].equals("replyDm")) {
                     int ff = 0;
-                    if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
+                    for (i = 0; i < myRegister.chatOnBord.allTexts.size(); i++) {
+                        if (myRegister.chatOnBord.allTexts.get(i).postID.equals(split[1])) {
+                            Communication.replyChat(myRegister.chatOnBord, myRegister.chatOnBord.allTexts.get(i), myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
+                            System.out.println("replied successfully");
+                            ff = 1;
+                            break;
+                        }
+                    }
+                    if (ff == 0) {
+                        System.out.println("incorrect postId");
+                    }
+                }
+
+                else if (split[0].equals("forward")) {
+
+                    int ff = 0, j;
+                    for (i = 0; i < myRegister.chatOnBord.allTexts.size(); i++) {
+                        if (myRegister.chatOnBord.allTexts.get(i).postID.equals(split[1])) {
+                            for (j = 0; j < myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size(); j++) {
+                                if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(j).person1.userID.equals(split[2])) {
+                                    Communication.forwardDm(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.chatOnBord.allTexts.get(i), myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(j));
+                                    ff = 1;
+                                    break;
+                                } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(j).person2.userID.equals(split[2])) {
+                                    Communication.forwardDm(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.chatOnBord.allTexts.get(i), myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(j));
+                                    ff = 1;
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+
+                    if (ff == 0) {
+                        System.out.println("you dont have the access");
+                    }
+                }
+
+                else if (split[0].equals("deleteDm")) {
+                    int ff = 0;
+                    if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
                         for (i = 0; i < myRegister.chatOnBord.person1Texts.size(); i++) {
                             if (myRegister.chatOnBord.person1Texts.get(i).postID.equals(split[1]) && i >= myRegister.chatOnBord.person1Texts.size() - 15) {
-                                Communication.deleteDmChat(myRegister.chatOnBord,myRegister.chatOnBord.person1Texts.get(i));
-                                myRegister.chatOnBord.person1Texts.remove(i) ;
+                                Communication.deleteDmChat(myRegister.chatOnBord, myRegister.chatOnBord.person1Texts.get(i));
+                                myRegister.chatOnBord.person1Texts.remove(i);
                                 System.out.println("DM is deleted");
                                 ff = 1;
                                 break;
                             }
                         }
-                    }
-                    else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
-                        for(i=0 ; i<myRegister.chatOnBord.person2Texts.size() ; i++){
-                            if(myRegister.chatOnBord.person2Texts.get(i).postID.equals(split[1]) && i>=myRegister.chatOnBord.person2Texts.size()-15){
-                                Communication.deleteDmChat(myRegister.chatOnBord,myRegister.chatOnBord.person2Texts.get(i));
-                                myRegister.chatOnBord.person2Texts.remove(i) ;
+                    } else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                        for (i = 0; i < myRegister.chatOnBord.person2Texts.size(); i++) {
+                            if (myRegister.chatOnBord.person2Texts.get(i).postID.equals(split[1]) && i >= myRegister.chatOnBord.person2Texts.size() - 15) {
+                                Communication.deleteDmChat(myRegister.chatOnBord, myRegister.chatOnBord.person2Texts.get(i));
+                                myRegister.chatOnBord.person2Texts.remove(i);
                                 System.out.println("DM is deleted");
-                                ff=1 ;
+                                ff = 1;
                                 break;
                             }
                         }
-                    }
-                    else if(ff==0){
+                    } else if (ff == 0) {
                         System.out.println("you dont have the access");
                     }
                 }
 
-
-                else if (sample.equals("exit Chat")){
-                    startChat=0 ;
+                else if (sample.equals("exit Chat")) {
+                    startChat = 0;
                     System.out.println("you have exited the chat");
                 }
+
+                else if (split[0].equals("showChatWith")) {
+                    int ff = 0;
+                    for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size(); i++) {
+                        if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person1.userID.equals(split[1])) {
+                            Show.show_directWith(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
+                            ff = 1;
+                            break;
+                        } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                            Show.show_directWith(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
+                            ff = 1;
+                            break;
+                        }
+                    }
+                    if (ff == 0) {
+                        System.out.println("you have no DM with this person");
+                    }
+                }
+
+
             }
 
-            else if(split[0].equals("block")){
-
+            else if (sample.equals("showAllPersonalDms")) {
+                Show.show_allDirect(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
 
+            else if (split[0].equals("showChatWith")) {
+                int ff = 0;
+                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size(); i++) {
+                    if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person1.userID.equals(split[1])) {
+                        Show.show_directWith(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
+                        ff = 1;
+                        break;
+                    } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                        Show.show_directWith(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
+                        ff = 1;
+                        break;
+                    }
+                }
+                if (ff == 0) {
+                    System.out.println("you have no DM with this person");
+                }
+            }
 
+            else if (split[0].equals("block")) {
+                int ff = 0;
+                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size(); i++) {
+                    if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person1.userID.equals(split[1])) {
+                        myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState = "blocked";
+                        System.out.println("you have blocked this person");
+                        ff = 1;
+                        break;
+                    }
+                    else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                        myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState = "blocked";
+                        System.out.println("you have blocked this person");
+                        ff = 1;
+                        break;
+                    }
+                }
+                if (ff == 0) {
+                    System.out.println("you don't have chat with this person");
+                }
+            }
 
 
         }
