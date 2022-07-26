@@ -15,7 +15,7 @@ public class Input {
     public int i, j;
     public int registerMenu = 0, accountMenu = 0;
     public int registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0, selectPostFlag = 0;
-    public int startChat = 0;
+    public int startChat = 0 ;
 
     public void backToDefault() {
         accountMenu = 0;
@@ -202,7 +202,8 @@ public class Input {
                         "showAllPersonalDms\n" +
                         "showChatWith [userId]\n" +
                         "block [userId]\n" +
-                        ""
+                        "search -[text]\n" +
+                        "showSelectedDm [postId]"
                 );
             }
 
@@ -621,6 +622,7 @@ public class Input {
                     }
                 }
 
+
                 else if (split[0].equals("deleteDm")) {
                     int ff = 0;
                     if (myRegister.chatOnBord.person1.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
@@ -696,6 +698,17 @@ public class Input {
                 }
             }
 
+            else if(split[0].equals("search")) {
+                ArrayList<Post> searchedPost = new ArrayList<>() ;
+                Communication.searchPost(myRegister.allRegisters.get(myRegister.logedInAccount),searchedPost,sample.substring(1+sample.indexOf('-')));
+                Show.show_searchResult(searchedPost);
+
+            }
+
+            else if(split[0].equals("showSelectedDm")){
+                Show.show_selectedDm(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            }
+
             else if (split[0].equals("block")) {
                 int ff = 0;
                 for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size(); i++) {
@@ -716,6 +729,10 @@ public class Input {
                     System.out.println("you don't have chat with this person");
                 }
             }
+
+
+
+
 
 
         }

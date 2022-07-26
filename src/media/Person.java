@@ -25,6 +25,7 @@ public class Person {
     public ArrayList<Comment> allComment = new ArrayList<>();
 
     public ArrayList<Chat> allPersonalChats = new ArrayList<>();
+    public ArrayList<Group> allMyGroap = new ArrayList<>();
 
 
     public void makeMainPage() {

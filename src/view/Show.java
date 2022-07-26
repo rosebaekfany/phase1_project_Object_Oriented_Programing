@@ -4,6 +4,8 @@ import media.*;
 import controller.*;
 import temporary.*;
 
+import java.util.ArrayList;
+
 public class Show {
 
     public static void show_account(Person myPerson) {
@@ -210,6 +212,60 @@ public class Show {
             System.out.println(myChat.allTexts.get(i).postDate.toString());
             System.out.println("liked: " + myChat.allTexts.get(i).likedUsers.size());
             System.out.println(myChat.allTexts.get(i).edited + "    " + myChat.allTexts.get(i).forwarded);
+        }
+    }
+
+    public static void show_searchResult(ArrayList<Post> searchedPost){
+        int i ;
+        if(searchedPost.size()==0){
+            System.out.println("no result");
+        }
+        else{
+            System.out.println("the result");
+            for(i=0 ; i<searchedPost.size() ; i++){
+                System.out.println("________________");
+                System.out.println("userId: "+searchedPost.get(i).usersPostId);
+                System.out.println("postId: "+searchedPost.get(i).postID);
+                System.out.println("-"+searchedPost.get(i).script);
+            }
+        }
+    }
+
+    public static void show_selectedDm(Person myPerson,String postIdString){
+        int i , j , ii , jj , ff=0 , gg=0;
+        for(i=0 ; i<myPerson.allPersonalChats.size() ; i++){
+            for (j=0 ; j<myPerson.allPersonalChats.get(i).allTexts.size() ; j++){
+                if(myPerson.allPersonalChats.get(i).allTexts.get(j).postID.equals(postIdString)){
+                    System.out.println("userId: "+myPerson.allPersonalChats.get(i).allTexts.get(j).usersPostId);
+                    System.out.println("postId: "+myPerson.allPersonalChats.get(i).allTexts.get(j).postID);
+                    System.out.println("-"+myPerson.allPersonalChats.get(i).allTexts.get(j).script);
+                    System.out.println(myPerson.allPersonalChats.get(i).allTexts.get(j).postDate.toString());
+                    System.out.println("liked: "+myPerson.allPersonalChats.get(i).allTexts.get(j).likedUsers.size());
+                    System.out.println(myPerson.allPersonalChats.get(i).allTexts.get(j).edited+"   "+myPerson.allPersonalChats.get(i).allTexts.get(j).forwarded);
+                    ff=1 ;
+                    break;
+                }
+            }
+            if(ff==1){
+                break;
+            }
+        }
+        if(ff==0) {
+            for (ii = 0; ii < myPerson.allMyGroap.size(); ii++) {
+                for (jj = 0; jj < myPerson.allMyGroap.get(ii).allTexts.size(); jj++) {
+                    if (myPerson.allMyGroap.get(ii).allTexts.get(jj).postID.equals(postIdString)) {
+
+                        gg=1 ;
+                        break;
+                    }
+                }
+                if(gg==1){
+                    break;
+                }
+            }
+        }
+        if(ff==0 && gg==0){
+            System.out.println("incorrect postId");
         }
     }
 

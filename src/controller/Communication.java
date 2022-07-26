@@ -3,6 +3,7 @@ package controller;
 import view.*;
 import media.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Communication {
@@ -67,10 +68,6 @@ public class Communication {
         if (flag == 0) {
             System.out.println("the userId is incorrect");
         }
-    }
-
-    public static void blockSb(RegisterMenu myRegister, Person myPerson, String id) {
-        ;
     }
 
     public static void StartNewChat(RegisterMenu myRegister, Person myPerson1, Person myPerson2) {
@@ -167,6 +164,24 @@ public class Communication {
             myChat.person2Texts.add(newPost);
         }
 
+    }
+
+    public static void searchPost(Person myPerson,ArrayList<Post> searchedPost , String text){
+         int i , j , ii , jj;
+         for(i=0 ; i<myPerson.allPersonalChats.size() ; i++){
+             for (j=0 ; j<myPerson.allPersonalChats.get(i).allTexts.size() ; j++){
+                 if(myPerson.allPersonalChats.get(i).allTexts.get(j).script.indexOf(text)!=-1){
+                     searchedPost.add(myPerson.allPersonalChats.get(i).allTexts.get(j)) ;
+                 }
+             }
+         }
+        for(ii=0 ; ii<myPerson.allMyGroap.size() ; ii++){
+            for (jj=0 ; jj<myPerson.allMyGroap.get(ii).allTexts.size() ; jj++){
+                if(myPerson.allMyGroap.get(ii).allTexts.get(jj).script.indexOf(text)!=-1){
+                    searchedPost.add(myPerson.allMyGroap.get(ii).allTexts.get(jj)) ;
+                }
+            }
+        }
     }
 
 

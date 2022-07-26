@@ -1,28 +1,25 @@
 package media;
 
-import java.util.ArrayList;
+import java.util.*;
+import controller.*;
+import temporary.* ;
+import view.* ;
 
 public class Group {
-    String groupName ;
-    ArrayList<Person> groupUsers = new ArrayList<>() ;
-    ArrayList<Post> posts = new ArrayList<>() ;
-    String[] adminID = new String[50] ;
-    Group(String groupName , String[] adminID){
-        getAdminID();
-        this.groupName = groupName ;
-    }
+    public String groupName = new String() ;
+    public Person admin = new Person() ;
+    public ArrayList<Person> groupUsers = new ArrayList<>() ;
+    public ArrayList<Person> bannedUsers = new ArrayList<>() ;
+    public ArrayList<Post> allTexts = new ArrayList<>() ;
+    //String[] adminID = new String[50] ;
+    public String groupId = new String() ;
 
-    void getAdminID (){
-        for (int i=0 ; i<50 ; i++){
-            this.adminID[i] = adminID[i] ;
-        }
-    }
 
-    void getPosts(){
+    public static void getPosts(){
 
     }
 
-    void addMemeber(){
+    public static void addMemeber(){
 
     }
 }
