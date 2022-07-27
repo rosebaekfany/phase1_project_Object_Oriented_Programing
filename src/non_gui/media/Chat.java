@@ -1,7 +1,4 @@
-package media;
-
-import controller.*;
-import view.*;
+package non_gui.media;
 
 import java.util.ArrayList;
 

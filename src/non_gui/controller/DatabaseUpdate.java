@@ -1,5 +1,5 @@
 /*
-package controller;
+package non_gui.controller;
 
 
 import java.sql.Connection;

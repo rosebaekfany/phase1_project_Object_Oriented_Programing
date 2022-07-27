@@ -1,7 +1,7 @@
-package view;
+package non_gui.view;
 
-import controller.*;
-import media.*;
+import non_gui.controller.*;
+import non_gui.media.*;
 
 import java.util.*;
 import java.util.regex.Matcher;

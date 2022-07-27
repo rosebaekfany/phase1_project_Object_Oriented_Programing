@@ -1,8 +1,6 @@
-package media;
+package non_gui.media;
 
-import controller.Edit;
-import temporary.CommercialGenres;
-import view.Input;
+import non_gui.temporary.CommercialGenres;
 
 import java.util.*;
 

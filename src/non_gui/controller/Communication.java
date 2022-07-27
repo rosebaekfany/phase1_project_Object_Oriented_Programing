@@ -1,7 +1,6 @@
-package controller;
+package non_gui.controller;
 
-import view.*;
-import media.*;
+import non_gui.media.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;

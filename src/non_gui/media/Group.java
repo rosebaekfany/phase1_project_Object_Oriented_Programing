@@ -1,9 +1,6 @@
-package media;
+package non_gui.media;
 
 import java.util.*;
-import controller.*;
-import temporary.* ;
-import view.* ;
 
 public class Group {
     public String groupName = new String() ;

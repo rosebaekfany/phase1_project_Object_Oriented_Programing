@@ -1,6 +1,6 @@
-package media;
+package non_gui.media;
 import java.util.ArrayList;
-import temporary.* ;
+import non_gui.temporary.* ;
 
 public class personalChat {
     String user1 ;

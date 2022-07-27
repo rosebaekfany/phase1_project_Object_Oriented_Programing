@@ -1,8 +1,4 @@
-package media;
-
-import view.*;
-import controller.* ;
-import java.util.* ;
+package non_gui.media;
 
 
 public class GeneralUser extends Person {

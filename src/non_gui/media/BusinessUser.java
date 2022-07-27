@@ -1,8 +1,6 @@
-package media;
+package non_gui.media;
 
 import java.util.* ;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class BusinessUser extends Person {
     public String userPhoneNumber;

@@ -1,4 +1,4 @@
-package temporary;
+package non_gui.temporary;
 
 public enum CommercialGenres {
 

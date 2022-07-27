@@ -1,9 +1,6 @@
-package media;
+package non_gui.media;
 
 import java.util.*;
-
-import view.*;
-import controller.*;
 
 public class RegisterMenu {
 

@@ -1,12 +1,11 @@
-package controller;
-import media.BusinessPost;
-import media.BusinessUser;
-import media.Person;
-import media.Post;
+package non_gui.controller;
+import non_gui.media.BusinessPost;
+import non_gui.media.BusinessUser;
+import non_gui.media.Person;
+import non_gui.media.Post;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Commercial {
 

@@ -1,6 +1,4 @@
-package media;
-
-import temporary.*;
+package non_gui.media;
 
 public class Comment extends Post {
 

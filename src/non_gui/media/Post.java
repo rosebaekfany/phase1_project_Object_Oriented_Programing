@@ -1,8 +1,8 @@
-package media;
+package non_gui.media;
 
 import java.util.*;
 
-import temporary.*;
+import non_gui.temporary.*;
 
 
 public class Post {

@@ -1,9 +1,8 @@
-package media;
+package non_gui.media;
 
-import temporary.CommercialGenres;
+import non_gui.temporary.CommercialGenres;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BusinessPost extends Post{
