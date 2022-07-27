@@ -206,7 +206,8 @@ public class Input {
                         "showChatWith [userId]\n" +
                         "block [userId]\n" +
                         "search -[text]\n" +
-                        "showSelectedDm [postId]"
+                        "showSelectedDm [postId]\n" +
+                        "show suggested person"
                 );
             }
 
@@ -1006,13 +1007,9 @@ public class Input {
 
             }
 
-
-
-
-
-
-
-
+            else if (sample.equals("show suggested person")) {
+                Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
+            } // ToDo : suggested posts;
 
 
         }

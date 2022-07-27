@@ -289,4 +289,23 @@ public class Show {
     }
 
 
+    public static void show_suggestedPerson(Person myPerson){ // ToDo : fix it
+        /*ArrayList<Person> suggestedPerson = Commercial.sortSuggestedPerson();
+        for (int i = 0; i < 5 && i<suggestedPerson.size(); i++) {
+            System.out.println("name : " + suggestedPerson.get(i).name + " - " +
+                                "userId : " + suggestedPerson.get(i).userID);
+        }*/
+    }
+
+    public static void show_mainPosts(Person person , ArrayList<BusinessUser> business){
+        ArrayList<Post> posts = person.mainPagePostFinal;
+        for (int i = 0; i < 10 && i<posts.size(); i++) {
+            System.out.println();
+        }
+    } // ToDo : seperate commercial and user post
+
+
+
 }
+
+

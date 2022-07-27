@@ -7,6 +7,7 @@ import media.Post;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Commercial {
 
@@ -48,6 +49,25 @@ public class Commercial {
         return similarFriends;
     }
 
+
+    public static ArrayList<Person> sortSuggestedPerson(Person myPerson){
+        HashMap<Person , Integer> suggestMap = recommendPerson(myPerson);
+        ArrayList<Person> sortedPeople = new ArrayList<>();
+
+        for (int k = 0; k < suggestMap.size(); k++) {
+            for (Map.Entry<Person, Integer> postIntegerEntry : suggestMap.entrySet()) {
+                int maxValue = Person.hashMapMax(suggestMap);
+                if (postIntegerEntry.getValue() == maxValue){
+                    //maxPostEntry = postIntegerEntry;
+                    sortedPeople.add(postIntegerEntry.getKey());
+                    suggestMap.remove(postIntegerEntry.getKey());
+                    break;
+                }
+            }
+        } // ToDo : check when it removes a value it does not break the loop
+
+        return sortedPeople;
+    }
 
     public static HashMap<Post, Integer> recommendedPosts(Person myPerson , ArrayList<BusinessUser> businesses){
         HashMap<Post , Integer> recommendation = new HashMap<>();
