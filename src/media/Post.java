@@ -12,6 +12,7 @@ public class Post {
     public String postID = new String();
     public String usersPostId = new String();
     public ArrayList<Person> likedUsers = new ArrayList<>();
+    private ArrayList<Person> viewedUsers = new ArrayList<>();
     public ArrayList<Comment> postComments = new ArrayList<>();
     public Date postDate = new Date();
     public String edited = new String("");
@@ -19,6 +20,16 @@ public class Post {
 
     void putMedia() {
 
+    }
+
+    public ArrayList<Person> getUnlikedUsers(){
+        ArrayList<Person> unlikedUsers = new ArrayList<>();
+        for (Person viewedUser : viewedUsers) {
+            if (!likedUsers.contains(viewedUser)){
+                unlikedUsers.add(viewedUser);
+            }
+        }
+        return unlikedUsers;
     }
 
     public static void writePost(RegisterMenu myRegister, String text) {

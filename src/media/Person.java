@@ -1,6 +1,7 @@
 package media;
 
 import controller.Edit;
+import temporary.CommercialGenres;
 import view.Input;
 
 import java.util.*;
@@ -18,6 +19,7 @@ public class Person {
     public ArrayList<Person> folowers = new ArrayList<>();
     public ArrayList<Person> folowings = new ArrayList<>();
     public ArrayList<Post> likedPhotoes = new ArrayList<>();
+    public ArrayList<Post> viewedPosts = new ArrayList<>();
     public ArrayList<Post> posts = new ArrayList<>();
     public ArrayList<String> massageRequests = new ArrayList<>();
     public ArrayList<Post> draftPosts = new ArrayList<>();
@@ -26,7 +28,25 @@ public class Person {
 
     public ArrayList<Chat> allPersonalChats = new ArrayList<>();
     public ArrayList<Group> allMyGroap = new ArrayList<>();
+    public CommercialGenres[] favoriteGenres = new CommercialGenres[6];
 
+    public boolean equals(Person person){
+        if (this.name.equals(person.name)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public ArrayList<Post> getUnLikedCommercialPosts(){
+        ArrayList<Post> non_liked_post = new ArrayList<>();
+        for (Post viewedPost : this.viewedPosts) {
+            if (!likedPhotoes.contains(viewedPost)) {
+                non_liked_post.add(viewedPost);
+            }
+        }
+        return non_liked_post;
+    }
 
     public void makeMainPage() {
         int i, j, h, flag = 0;
@@ -48,9 +68,9 @@ public class Person {
         //sort
 
         Collections.sort(mainPagePost, new sortItems());
+
+
     }
-
-
 }
 
 class sortItems implements Comparator<Post> {
@@ -66,4 +86,6 @@ class sortItems implements Comparator<Post> {
         return b.postDate.compareTo(a.postDate);
     }
 }
+
+
 

@@ -11,6 +11,7 @@ public class RegisterMenu {
     public int logedInAccount = -1;
     public Chat chatOnBord;
     public Group grouponBord;
+    public ArrayList<BusinessUser> businessUsers = new ArrayList<>();
 
 
 }
