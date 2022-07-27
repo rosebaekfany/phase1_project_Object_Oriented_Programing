@@ -170,13 +170,13 @@ public class Show {
         }
     }
 
-    public static void MainShow(Person myPerson) {
+    public static void MainShow(Person myPerson , ArrayList<BusinessUser> myBussinesUsers) {
         int i;
-        myPerson.makeMainPage();
-        for (i = 0; i < myPerson.mainPagePost.size(); i++) {
-            System.out.println("id: " + myPerson.mainPagePost.get(i).postID + "  " + myPerson.mainPagePost.get(i).script + "  " + myPerson.mainPagePost.get(i).edited);
-            System.out.println("liked " + myPerson.mainPagePost.get(i).likedUsers.size() + "commented " + myPerson.posts.get(i).postComments.size());
-            System.out.println("  time: " + myPerson.mainPagePost.get(i).postDate.toString());
+        myPerson.makeMainPage(myBussinesUsers);
+        for (i = 0; i < myPerson.mainPagePostFinal.size(); i++) {
+            System.out.println("id: " + myPerson.mainPagePostFinal.get(i).postID + "  " + myPerson.mainPagePostFinal.get(i).script + "  " + myPerson.mainPagePostFinal.get(i).edited);
+            System.out.println("liked " + myPerson.mainPagePostFinal.get(i).likedUsers.size() + "commented " + myPerson.mainPagePostFinal.get(i).postComments.size());
+            System.out.println("  time: " + myPerson.mainPagePostFinal.get(i).postDate.toString());
             System.out.println("--------");
         }
     }
@@ -269,13 +269,23 @@ public class Show {
         }
     }
 
-    public static void show_allGroup(Person myPerson){
+    public static void show_allGroup(Person myPerson) {
         int i ;
         for(i=0 ; i<myPerson.allMyGroap.size() ; i++){
             System.out.println(myPerson.allMyGroap.get(i).groupName+"   id:"+myPerson.allMyGroap.get(i).groupId);
             System.out.println(String.valueOf(myPerson.allMyGroap.get(i).groupUsers.size())+"member");
             System.out.println("---------------");
         }
+    }
+
+    public static void show_groupUsers(Group myGroup) {
+        int i ;
+        System.out.println(myGroup.groupName);
+        System.out.println("*****");
+         for(i=0 ; i<myGroup.groupUsers.size() ; i++){
+             System.out.println(myGroup.groupUsers.get(i).name+"  id:"+myGroup.groupUsers.get(i).userID);
+             System.out.println("---------------");
+         }
     }
 
 

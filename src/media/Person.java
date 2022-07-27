@@ -1,5 +1,6 @@
 package media;
 
+import controller.Commercial;
 import controller.Edit;
 import temporary.CommercialGenres;
 import view.Input;
@@ -49,7 +50,7 @@ public class Person {
         return non_liked_post;
     }
 
-    public void makeMainPage() {
+    public void makeMainPage(ArrayList<BusinessUser> myBussinessUsers ) {
         int i, j, h, flag = 0;
         for (i = 0; i < folowings.size(); i++) {
             for (j = 0; j < folowings.get(i).posts.size(); i++) {
@@ -70,7 +71,7 @@ public class Person {
 
         Collections.sort(mainPagePost, new sortItems());
 
-
+        //Commercial.recommendedPosts(this ,myBussinessUsers ).
 
     }
 

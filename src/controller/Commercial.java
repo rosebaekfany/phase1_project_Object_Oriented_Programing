@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Commercial {
 
-    private <T> double similarityPercentage(ArrayList<T> things1, ArrayList<T> things2) {
+    private static <T> double similarityPercentage(ArrayList<T> things1, ArrayList<T> things2) {
         double similarityPercentage = 0;
         int similarThings = 0;
         for (T t1 : things1) {
@@ -24,7 +24,7 @@ public class Commercial {
         return similarityPercentage;
     }
 
-    public HashMap<Person , Integer> recommendPerson(Person myPerson){
+    public static HashMap<Person , Integer> recommendPerson(Person myPerson){
         //make followings of myPerson's followings list
         ArrayList<Person> followingsOfFollowings = new ArrayList<>();
         for (Person folowing : myPerson.folowings) {
@@ -49,7 +49,7 @@ public class Commercial {
     }
 
 
-    public HashMap<Post, Integer> recommendedPosts(Person myPerson , ArrayList<BusinessUser> businesses){
+    public static HashMap<Post, Integer> recommendedPosts(Person myPerson , ArrayList<BusinessUser> businesses){
         HashMap<Post , Integer> recommendation = new HashMap<>();
 
         // setting non-viewed posts in the recommendation-map
