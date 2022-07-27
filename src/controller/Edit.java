@@ -71,21 +71,28 @@ public class Edit {
 
     }
 
-    public static void changeAccountType(Person myPerson, String newString) {
-        int i, flag = 0;
-        if (newString.equals("General_Account")) {
-            ;
-        } else if (newString.equals("Business_Account")) {
-            ;
-        } else {
-            System.out.println("choose between General_Account or Business_Account");
-            flag = 1;
-        }
+    public static BusinessUser changeAccountTypeToBusiness(Person person, String phoneNumber) {
+        BusinessUser businessUser = new BusinessUser(person,phoneNumber);
+        businessUser.userAccountType = "Business_Account";
+        return businessUser;
+    }
 
-        if (flag == 0) {
-            System.out.println("successfull change");
-            myPerson.userAccountType = newString;
-        }
+    public static void changeAccountTypeToGeneral(BusinessUser businessUser) {
+        /*Person myPerson = new Person();
+        myPerson.userAccountType = "General_Account";
+        myPerson.likedPhotoes = businessUser.likedPhotoes;
+        myPerson.bio = businessUser.bio;
+        myPerson.name = businessUser.name;
+        myPerson.folowings = businessUser.folowings;
+        myPerson.folowers = businessUser.folowers;
+        myPerson.userID = businessUser.userID;
+        myPerson.posts = businessUser.posts;
+        myPerson.userPasswords = businessUser.userPasswords;
+        myPerson.massageRequests = businessUser.massageRequests;
+        myPerson.securityQuestion = businessUser.securityQuestion;
+        return myPerson;*/
+        businessUser.userAccountType = "General_Account";
+        businessUser.userPhoneNumber = null;
     }
 
     public static void changeUserType(Person myPerson, String newString) {
@@ -126,6 +133,7 @@ public class Edit {
 
 
     }
+
 
 
     //and other functions for editing

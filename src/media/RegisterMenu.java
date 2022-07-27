@@ -1,9 +1,7 @@
 package media;
-
-import java.util.*;
-
+import java.util.* ;
 import view.*;
-import controller.*;
+import controller.* ;
 
 public class RegisterMenu {
 
@@ -11,6 +9,7 @@ public class RegisterMenu {
     public int logedInAccount = -1;
     public Chat chatOnBord;
     public Group grouponBord;
+    public ArrayList<BusinessUser> businessUsers = new ArrayList<>();
 
 
 }
