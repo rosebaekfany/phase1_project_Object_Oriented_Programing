@@ -24,6 +24,7 @@ public class Person {
     public ArrayList<String> massageRequests = new ArrayList<>();
     public ArrayList<Post> draftPosts = new ArrayList<>();
     public ArrayList<Post> mainPagePost = new ArrayList<>();
+    public ArrayList<Post> mainPagePostFinal = new ArrayList<>();
     public ArrayList<Comment> allComment = new ArrayList<>();
 
     public ArrayList<Chat> allPersonalChats = new ArrayList<>();
@@ -68,6 +69,9 @@ public class Person {
         //sort
 
         Collections.sort(mainPagePost, new sortItems());
+
+
+
     }
 
 
