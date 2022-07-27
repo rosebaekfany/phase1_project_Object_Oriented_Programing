@@ -1,5 +1,4 @@
 package controller;
-
 import media.BusinessPost;
 import media.BusinessUser;
 import media.Person;
@@ -8,6 +7,7 @@ import media.Post;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Commercial {
 
@@ -21,34 +21,53 @@ public class Commercial {
                 }
             }
         }
-        similarityPercentage = (double) similarThings / (double) things1.size();
+        similarityPercentage = (double)similarThings / (double) things1.size();
         return similarityPercentage;
     }
 
-    public static HashMap<Person, Integer> recommendPerson(Person myPerson) {
+    public static HashMap<Person , Integer> recommendPerson(Person myPerson){
         //make followings of myPerson's followings list
         ArrayList<Person> followingsOfFollowings = new ArrayList<>();
         for (Person folowing : myPerson.folowings) {
             followingsOfFollowings.addAll(folowing.folowings);
         }
         //determine how important is each friend
-        HashMap<Person, Integer> similarFriends = new HashMap<>();
+        HashMap<Person , Integer> similarFriends = new HashMap<>();
         Person p;
         for (int i = 0; i < followingsOfFollowings.size(); i++) {
             p = followingsOfFollowings.get(i);
             for (int j = 0; j < i; j++) {
-                if (p.equals(followingsOfFollowings.get(j))) {
+                if (p.equals(followingsOfFollowings.get(j))){
                     int recentValue = similarFriends.get(p);
                     recentValue++;
-                    similarFriends.replace(p, recentValue);
+                    similarFriends.replace(p,recentValue);
                 } else {
-                    similarFriends.put(p, 0);
+                    similarFriends.put(p , 0);
                 }
             }
         }
         return similarFriends;
     }
 
+
+    public static ArrayList<Person> sortSuggestedPerson(Person myPerson){
+        HashMap<Person , Integer> suggestMap = recommendPerson(myPerson);
+        ArrayList<Person> sortedPeople = new ArrayList<>();
+
+        for (int k = 0; k < suggestMap.size(); k++) {
+            for (Map.Entry<Person, Integer> postIntegerEntry : suggestMap.entrySet()) {
+                int maxValue = Person.hashMapMax(suggestMap);
+                if (postIntegerEntry.getValue() == maxValue){
+                    //maxPostEntry = postIntegerEntry;
+                    sortedPeople.add(postIntegerEntry.getKey());
+                    suggestMap.remove(postIntegerEntry.getKey());
+                    break;
+                }
+            }
+        } // ToDo : check when it removes a value it does not break the loop
+
+        return sortedPeople;
+    }
 
     public static HashMap<Post, Integer> recommendedPosts(Person myPerson, ArrayList<BusinessUser> businesses) {
         HashMap<Post, Integer> recommendation = new HashMap<>();
@@ -111,8 +130,8 @@ public class Commercial {
                 }
             }
             int preRate = recommendation.get(post);
-            int rate = coef * preRate;
-            recommendation.replace(post, rate);
+            int rate = coef*preRate;
+            recommendation.replace(post , rate);
         }
 
         return recommendation;
@@ -147,6 +166,7 @@ public class Commercial {
         }
         return similarFollowings;
     }*/
+
 
 
 }
