@@ -22,10 +22,10 @@ public class Post {
 
     }
 
-    public ArrayList<Person> getUnlikedUsers(){
+    public ArrayList<Person> getUnlikedUsers() {
         ArrayList<Person> unlikedUsers = new ArrayList<>();
         for (Person viewedUser : viewedUsers) {
-            if (!likedUsers.contains(viewedUser)){
+            if (!likedUsers.contains(viewedUser)) {
                 unlikedUsers.add(viewedUser);
             }
         }
@@ -37,7 +37,7 @@ public class Post {
         newPost.script = text;
         Date postDate = new Date();
         newPost.postDate = Calendar.getInstance().getTime();
-        newPost.postID = "@" + String.valueOf(myRegister.allRegisters.get(myRegister.logedInAccount).posts.size()) + "*****";
+        newPost.postID = "@" + String.valueOf(myRegister.allRegisters.get(myRegister.logedInAccount).posts.size()) + String.valueOf(Calendar.getInstance().getTime().getTime()) + "*****";
         newPost.usersPostId = myRegister.allRegisters.get(myRegister.logedInAccount).userID;
         myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.add(newPost);
     }
@@ -62,7 +62,7 @@ public class Post {
         newComment.script = newString;
         Date postDate = new Date();
         newComment.postDate = Calendar.getInstance().getTime();
-        newComment.postID = "@" + String.valueOf(myPerson.allComment.size()) + "***";
+        newComment.postID = "@" + String.valueOf(myPerson.allComment.size()) + String.valueOf(Calendar.getInstance().getTime().getTime()) + "***";
         newComment.usersPostId = myPerson.userID;
         newComment.postOfTheComment = myPost;
 

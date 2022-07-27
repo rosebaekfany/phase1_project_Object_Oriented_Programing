@@ -1,4 +1,5 @@
 package controller;
+
 import media.BusinessPost;
 import media.BusinessUser;
 import media.Person;
@@ -20,28 +21,28 @@ public class Commercial {
                 }
             }
         }
-        similarityPercentage = (double)similarThings / (double) things1.size();
+        similarityPercentage = (double) similarThings / (double) things1.size();
         return similarityPercentage;
     }
 
-    public static HashMap<Person , Integer> recommendPerson(Person myPerson){
+    public static HashMap<Person, Integer> recommendPerson(Person myPerson) {
         //make followings of myPerson's followings list
         ArrayList<Person> followingsOfFollowings = new ArrayList<>();
         for (Person folowing : myPerson.folowings) {
             followingsOfFollowings.addAll(folowing.folowings);
         }
         //determine how important is each friend
-        HashMap<Person , Integer> similarFriends = new HashMap<>();
+        HashMap<Person, Integer> similarFriends = new HashMap<>();
         Person p;
         for (int i = 0; i < followingsOfFollowings.size(); i++) {
             p = followingsOfFollowings.get(i);
             for (int j = 0; j < i; j++) {
-                if (p.equals(followingsOfFollowings.get(j))){
+                if (p.equals(followingsOfFollowings.get(j))) {
                     int recentValue = similarFriends.get(p);
                     recentValue++;
-                    similarFriends.replace(p,recentValue);
+                    similarFriends.replace(p, recentValue);
                 } else {
-                    similarFriends.put(p , 0);
+                    similarFriends.put(p, 0);
                 }
             }
         }
@@ -49,17 +50,17 @@ public class Commercial {
     }
 
 
-    public static HashMap<Post, Integer> recommendedPosts(Person myPerson , ArrayList<BusinessUser> businesses){
-        HashMap<Post , Integer> recommendation = new HashMap<>();
+    public static HashMap<Post, Integer> recommendedPosts(Person myPerson, ArrayList<BusinessUser> businesses) {
+        HashMap<Post, Integer> recommendation = new HashMap<>();
 
         // setting non-viewed posts in the recommendation-map
         for (BusinessUser business : businesses) {
             for (Post post : business.posts) {
                 for (Post viewedPost : myPerson.viewedPosts) {
-                    if (viewedPost.postID.equals(post.postID)){
+                    if (viewedPost.postID.equals(post.postID)) {
                         break;
                     } else {
-                        recommendation.put(post , 0);
+                        recommendation.put(post, 0);
                     }
                 }
             }
@@ -72,12 +73,12 @@ public class Commercial {
         for (Post likedPhotoe : myPerson.likedPhotoes) {
             for (Person likedUser : likedPhotoe.likedUsers) {
                 for (Post photoe : likedUser.likedPhotoes) {
-                    if (recommendation.containsKey(photoe)){
+                    if (recommendation.containsKey(photoe)) {
                         try {
                             int rate = recommendation.get(photoe);
                             rate++;
-                            recommendation.replace(photoe , rate);
-                        } catch(Exception e){
+                            recommendation.replace(photoe, rate);
+                        } catch (Exception e) {
                             break;
                         }
                     }
@@ -92,8 +93,8 @@ public class Commercial {
                     try {
                         int rate = recommendation.get(unLikedCommercialPost);
                         rate++;
-                        recommendation.replace(unLikedCommercialPost , rate);
-                    } catch (Exception e){
+                        recommendation.replace(unLikedCommercialPost, rate);
+                    } catch (Exception e) {
                         break;
                     }
                 }
@@ -102,16 +103,16 @@ public class Commercial {
 
         // setting recommendation-map based on favorite categories
         for (Post post : recommendation.keySet()) {
-            int coef = 1 ;
+            int coef = 1;
             for (int i = 0; i < 6; i++) {
-                if (((BusinessPost) post).postGenre.equals(myPerson.favoriteGenres[i])){
-                    coef = 6-i;
+                if (((BusinessPost) post).postGenre.equals(myPerson.favoriteGenres[i])) {
+                    coef = 6 - i;
                     break;
                 }
             }
             int preRate = recommendation.get(post);
-            int rate = coef*preRate;
-            recommendation.replace(post , rate);
+            int rate = coef * preRate;
+            recommendation.replace(post, rate);
         }
 
         return recommendation;
@@ -146,7 +147,6 @@ public class Commercial {
         }
         return similarFollowings;
     }*/
-
 
 
 }

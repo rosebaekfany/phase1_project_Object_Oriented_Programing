@@ -32,15 +32,15 @@ public class Person {
     public ArrayList<Group> allMyGroap = new ArrayList<>();
     public CommercialGenres[] favoriteGenres = new CommercialGenres[6];
 
-    public boolean equals(Person person){
-        if (this.name.equals(person.name)){
+    public boolean equals(Person person) {
+        if (this.name.equals(person.name)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public ArrayList<Post> getUnLikedCommercialPosts(){
+    public ArrayList<Post> getUnLikedCommercialPosts() {
         ArrayList<Post> non_liked_post = new ArrayList<>();
         for (Post viewedPost : this.viewedPosts) {
             if (!likedPhotoes.contains(viewedPost)) {
@@ -50,7 +50,7 @@ public class Person {
         return non_liked_post;
     }
 
-    public void makeMainPage(ArrayList<BusinessUser> myBussinessUsers ) {
+    public void makeMainPage(ArrayList<BusinessUser> myBussinessUsers) {
         int i, j, h, flag = 0;
         for (i = 0; i < folowings.size(); i++) {
             for (j = 0; j < folowings.get(i).posts.size(); i++) {

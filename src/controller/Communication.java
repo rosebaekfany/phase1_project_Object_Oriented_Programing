@@ -5,6 +5,7 @@ import media.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Communication {
 
@@ -87,11 +88,13 @@ public class Communication {
 
     public static void DMing(Chat myChat, Person myPerson, String newText) {
 
+        Date rand = new Date();
+
         Post newDm = new Post();
         newDm.postDate = Calendar.getInstance().getTime();
         newDm.script = newText;
         newDm.usersPostId = myPerson.userID;
-        newDm.postID = "@" + String.valueOf(myChat.allTexts.size()) + "*-*";
+        newDm.postID = "@" + String.valueOf(myChat.allTexts.size()) + String.valueOf(Calendar.getInstance().getTime().getTime()) + "*-*";
         myChat.allTexts.add(newDm);
         if (myPerson.userID.equals(myChat.person1.userID)) {
             myChat.person1Texts.add(newDm);
@@ -138,7 +141,7 @@ public class Communication {
         newReply.script = newText;
         newReply.postDate = Calendar.getInstance().getTime();
         newReply.postOfTheComment = myPost;
-        newReply.postID = "@" + String.valueOf(myPost.postComments.size()) + "**-**";
+        newReply.postID = "@" + String.valueOf(myPost.postComments.size()) + String.valueOf(Calendar.getInstance().getTime().getTime()) + "**-**";
         newReply.usersPostId = myPerson.userID;
         myChat.allTexts.add(newReply);
         myChat.allReply.add(newReply);
@@ -167,19 +170,19 @@ public class Communication {
 
     }
 
-    public static void searchPost(Person myPerson,ArrayList<Post> searchedPost , String text){
-         int i , j , ii , jj;
-         for(i=0 ; i<myPerson.allPersonalChats.size() ; i++){
-             for (j=0 ; j<myPerson.allPersonalChats.get(i).allTexts.size() ; j++){
-                 if(myPerson.allPersonalChats.get(i).allTexts.get(j).script.indexOf(text)!=-1){
-                     searchedPost.add(myPerson.allPersonalChats.get(i).allTexts.get(j)) ;
-                 }
-             }
-         }
-        for(ii=0 ; ii<myPerson.allMyGroap.size() ; ii++){
-            for (jj=0 ; jj<myPerson.allMyGroap.get(ii).allTexts.size() ; jj++){
-                if(myPerson.allMyGroap.get(ii).allTexts.get(jj).script.indexOf(text)!=-1){
-                    searchedPost.add(myPerson.allMyGroap.get(ii).allTexts.get(jj)) ;
+    public static void searchPost(Person myPerson, ArrayList<Post> searchedPost, String text) {
+        int i, j, ii, jj;
+        for (i = 0; i < myPerson.allPersonalChats.size(); i++) {
+            for (j = 0; j < myPerson.allPersonalChats.get(i).allTexts.size(); j++) {
+                if (myPerson.allPersonalChats.get(i).allTexts.get(j).script.indexOf(text) != -1) {
+                    searchedPost.add(myPerson.allPersonalChats.get(i).allTexts.get(j));
+                }
+            }
+        }
+        for (ii = 0; ii < myPerson.allMyGroap.size(); ii++) {
+            for (jj = 0; jj < myPerson.allMyGroap.get(ii).allTexts.size(); jj++) {
+                if (myPerson.allMyGroap.get(ii).allTexts.get(jj).script.indexOf(text) != -1) {
+                    searchedPost.add(myPerson.allMyGroap.get(ii).allTexts.get(jj));
                 }
             }
         }
