@@ -23,7 +23,14 @@ public class Group {
         myPerson.allMyGroap.add(newGroup) ;
     }
 
-    public static void getPosts(){
+    public static void DMing(Group myGroup, Person myPerson, String newText) {
+
+        Post newDm = new Post();
+        newDm.postDate = Calendar.getInstance().getTime();
+        newDm.script = newText;
+        newDm.usersPostId = myPerson.userID;
+        newDm.postID = "@" + String.valueOf(myGroup.allTexts.size()) + "**--**";
+        myGroup.allTexts.add(newDm);
 
     }
 
