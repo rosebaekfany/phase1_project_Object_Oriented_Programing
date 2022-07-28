@@ -1,18 +1,10 @@
-/*
+
 package controller;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.util.* ;
+import com.mysql.jdbc.*;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
 
 public class JavaInsertDemo {
     public static void main(String[] args) {
@@ -83,4 +75,4 @@ public class DatabaseUpdate {
 
 
 }
-*/
+

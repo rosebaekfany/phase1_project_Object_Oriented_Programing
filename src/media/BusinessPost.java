@@ -12,6 +12,4 @@ public class BusinessPost extends Post{
 
     public CommercialGenres postGenre;
 
-
-
 }

@@ -288,7 +288,27 @@ public class Show {
     }
 
     public static void show_currentGroup(Group myGroup) {
-
+        int i , j ;
+        System.out.println(myGroup.groupName);
+        System.out.println("groupId: "+myGroup.groupId);
+        System.out.println(myGroup.groupUsers.size()+" member");
+        System.out.println("********");
+        for (i=0 ; i<myGroup.allTexts.size() ; i++){
+            System.out.println("user: "+myGroup.allTexts.get(i).usersPostId);
+            System.out.println("postId: "+myGroup.allTexts.get(i).postID);
+            if (myGroup.allTexts.get(i).getClass().toString().equals("Comment")) {
+                for (j = 0; j < myGroup.allReply.size(); j++) {
+                    if (myGroup.allReply.get(j).postID.equals(myGroup.allTexts.get(i).postID)) {
+                        System.out.println("   -reply: " + myGroup.allReply.get(j).postOfTheComment.script.substring(0, 4) + "...");
+                        break;
+                    }
+                }
+            }
+            System.out.println("-" + myGroup.allTexts.get(i).script);
+            System.out.println(myGroup.allTexts.get(i).postDate.toString());
+            System.out.println("liked: " + myGroup.allTexts.get(i).likedUsers.size());
+            System.out.println(myGroup.allTexts.get(i).edited + "    " + myGroup.allTexts.get(i).forwarded);
+        }
     }
 
 
