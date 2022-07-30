@@ -312,9 +312,6 @@ public class Show {
         }
     }
 
-    }
-
-
     public static void show_suggestedPerson(Person myPerson){
         ArrayList<Person> suggestedPerson = Commercial.sortSuggestedPerson(myPerson);
         for (int i = 0; i < 5 && i<suggestedPerson.size(); i++) {

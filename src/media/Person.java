@@ -73,7 +73,7 @@ public class Person {
 
 
         ArrayList<Post> sortedCommercial = new ArrayList<>();
-        HashMap<Post , Integer> recommendedPosts = Commercial.recommendedPosts(this , business);
+        HashMap<Post , Integer> recommendedPosts = Commercial.recommendedPosts(this , myBussinessUsers);
         Map.Entry<Post , Integer> maxPostEntry = null;
         for (int k = 0; k < recommendedPosts.size(); k++) {
             for (Map.Entry<Post, Integer> postIntegerEntry : recommendedPosts.entrySet()) {

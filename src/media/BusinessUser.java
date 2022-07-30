@@ -37,13 +37,24 @@ public class BusinessUser extends Person {
     public BusinessUser(Person person , String userPhoneNumber , String commercialGenre){
         this(person);
         this.userPhoneNumber = userPhoneNumber;
-        switch (commercialGenre){
-            case "ARTS" -> postGenre = ARTS;
-            case "FASHION" -> postGenre = FASHION;
-            case "HEALTH_AND_CARE" -> postGenre = HEALTH_AND_CARE;
-            case "SCIENCE_AND_TECHNOLOGY" -> postGenre = SCIENCE_AND_TECHNOLOGY;
-            case "GAMING" -> postGenre = GAMING;
-            case "STOCK_MARKET" -> postGenre = STOCK_MARKET;
+
+        if(commercialGenre.equals("ARTS")){
+            postGenre = ARTS;
+        }
+        else if(commercialGenre.equals("FASHION")){
+            postGenre = FASHION;
+        }
+        else if(commercialGenre.equals("HEALTH_AND_CARE")){
+            postGenre = HEALTH_AND_CARE;
+        }
+        else if(commercialGenre.equals("SCIENCE_AND_TECHNOLOGY")){
+            postGenre = SCIENCE_AND_TECHNOLOGY;
+        }
+        else if(commercialGenre.equals("GAMING")){
+            postGenre = GAMING;
+        }
+        else if(commercialGenre.equals("STOCK_MARKET")){
+            postGenre = STOCK_MARKET;
         }
     }
 
