@@ -8,6 +8,7 @@ import view.*;
 
 import java.sql.*;
 import java.sql.DriverManager;
+
 import java.util.*;
 
 
@@ -23,8 +24,8 @@ public class DatabaseUpdate {
             catch (Exception e) {
                 System.out.println(e);
             }
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/myTwitter", "root", "400110009");
-            System.out.println("Connection is created successfully:");
+            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/myTwitter", "root", "manager");
+            //System.out.println("Connection is created successfully:");
             stmt = (Statement) conn.createStatement();
             String query1 = "INSERT INTO allregister " + "VALUES ()";
 
@@ -35,8 +36,6 @@ public class DatabaseUpdate {
 <data-source source="LOCAL" name="myTwitter@localhost" uuid="904a0b42-b94b-43ea-b7cf-febb8c99117d"><database-info product="MySQL" version="5.5.5-10.4.24-MariaDB" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MARIADB" exact-version="10.4.24" exact-driver-version="8.0"><extra-name-characters>#@</extra-name-characters><identifier-quote-string>`</identifier-quote-string></database-info><case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/><driver-ref>mysql.8</driver-ref><synchronize>true</synchronize><jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver><jdbc-url>jdbc:mysql://localhost:3306/myTwitter</jdbc-url><secret-storage>master_key</secret-storage><user-name>root</user-name><schema-mapping><introspection-scope><node kind="schema" qname="@"/></introspection-scope></schema-mapping><working-dir>$ProjectFileDir$</working-dir></data-source>
 #END#*/
                 stmt.executeUpdate(query1);
-
-            System.out.println("Record is inserted in the table successfully..................");
         }
         catch (SQLException excep) {
             excep.printStackTrace();

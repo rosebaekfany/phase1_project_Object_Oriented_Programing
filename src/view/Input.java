@@ -35,7 +35,7 @@ public class Input {
         System.out.println("Twitter");
         System.out.println("by yekta and rosa");
         registerMenu = 1;
-        //DatabaseUpdate.creatConnection() ;
+        DatabaseUpdate.creatConnection() ;
 
     }
 
