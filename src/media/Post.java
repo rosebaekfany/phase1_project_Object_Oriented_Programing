@@ -43,7 +43,10 @@ public class Post {
     }
 
     public static void post(RegisterMenu myRegister) {
+        int i ;
         myRegister.allRegisters.get(myRegister.logedInAccount).posts.add(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1));
+        myRegister.allPosts.add(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1)) ;
+        myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.remove(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1) ;
     }
 
     public static void editPost(Post myPost, String myString) {
