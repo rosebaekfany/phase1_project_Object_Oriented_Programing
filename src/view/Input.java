@@ -1060,11 +1060,10 @@ public class Input {
                     Show.show_currentGroup(myRegister.grouponBord);
                 }
 
-
-
-
             }
-
+            else if (sample.equals("show suggested person")) {
+                Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
+            }
 
         }
 
