@@ -27,20 +27,20 @@ public class Person {
     public ArrayList<Post> mainPagePost = new ArrayList<>();
     public ArrayList<Post> mainPagePostFinal = new ArrayList<>();
     public ArrayList<Comment> allComment = new ArrayList<>();
-
     public ArrayList<Chat> allPersonalChats = new ArrayList<>();
     public ArrayList<Group> allMyGroap = new ArrayList<>();
     public CommercialGenres[] favoriteGenres = new CommercialGenres[6];
+    public CommercialGenres commercialGenre;
 
-    public boolean equals(Person person){
-        if (this.name.equals(person.name)){
+    public boolean equals(Person person) {
+        if (this.name.equals(person.name)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public ArrayList<Post> getUnLikedCommercialPosts(){
+    public ArrayList<Post> getUnLikedCommercialPosts() {
         ArrayList<Post> non_liked_post = new ArrayList<>();
         for (Post viewedPost : this.viewedPosts) {
             if (!likedPhotoes.contains(viewedPost)) {
@@ -50,7 +50,9 @@ public class Person {
         return non_liked_post;
     }
 
+
     public void makeMainPage(ArrayList<BusinessUser> business ) {
+
         int i, j, h, flag = 0;
         for (i = 0; i < folowings.size(); i++) {
             for (j = 0; j < folowings.get(i).posts.size(); i++) {
@@ -87,6 +89,7 @@ public class Person {
             }
         } // ToDo : check when it removes a value it does not break the loop
 
+
         int userPostIndex = 0;
         int commercialIndex = 0;
         while(userPostIndex < mainPagePost.size() || commercialIndex < sortedCommercial.size()){
@@ -100,10 +103,6 @@ public class Person {
 
 
     }
-
-
-
-
 
     public static <T> int  hashMapMax (HashMap<T , Integer> map){
         int max = 0;
