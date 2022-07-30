@@ -1,15 +1,12 @@
 
 package controller;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
 import media.*;
 import controller.*;
 import view.*;
 
 import java.sql.*;
 import java.sql.DriverManager;
-
-import java.time.LocalDate;
 import java.util.*;
 import java.util.Date;
 
@@ -17,6 +14,7 @@ import static temporary.CommercialGenres.*;
 
 
 public class DatabaseUpdate {
+
     public static void creatConnection() {
         Connection conn = null;
         Statement stmt = null;
@@ -61,7 +59,7 @@ public class DatabaseUpdate {
 
 class UserRepository {
 
-    public void loadUsers(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void loadUsers(RegisterMenu allRegister, Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet =
                 statement
@@ -99,7 +97,7 @@ class UserRepository {
         statement.close();
     }
 
-    public void insertUsers(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void insertUsers(RegisterMenu allRegister, Connection connection) throws SQLException {
         int i, j;
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "DELETE FROM allregister");
@@ -163,7 +161,7 @@ class UserRepository {
 
 class PostRepository {
 
-    public void loadPosts(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void loadPosts(RegisterMenu allRegister, Connection connection) throws SQLException {
         int index;
         Statement statement = connection.createStatement();
         ResultSet resultSet =
@@ -192,7 +190,7 @@ class PostRepository {
         statement.close();
     }
 
-    public void insertPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void insertPost(RegisterMenu allRegister, Connection connection) throws SQLException {
         int i, j;
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "DELETE FROM post");
@@ -217,7 +215,7 @@ class PostRepository {
 
 class likedPostRepository {
 
-    public void loadLikedPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void loadLikedPost(RegisterMenu allRegister, Connection connection) throws SQLException {
         int index;
         Statement statement = connection.createStatement();
         ResultSet resultSet =
@@ -243,7 +241,7 @@ class likedPostRepository {
         statement.close();
     }
 
-    public void insertLikedPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void insertLikedPost(RegisterMenu allRegister, Connection connection) throws SQLException {
         int i, j;
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "DELETE FROM likephoto");
@@ -264,7 +262,7 @@ class likedPostRepository {
 
 class draftPostRepository {
 
-    public void loadDraftPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void loadDraftPost(RegisterMenu allRegister, Connection connection) throws SQLException {
         int index;
         Statement statement = connection.createStatement();
         ResultSet resultSet =
@@ -291,20 +289,20 @@ class draftPostRepository {
         statement.close();
     }
 
-    public void insertDraftPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void insertDraftPost(RegisterMenu allRegister, Connection connection) throws SQLException {
         int i, j;
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "DELETE FROM drafpost");
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO likephoto(usersId,postId,script,postDate) " +
+                    "INSERT INTO drafpost(usersId,postId,script,postDate) " +
                             "VALUES(?,?,?,?)");
             for (i = 0; i < allRegister.allRegisters.get(j).draftPosts.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
                 preparedStatementA.setString(2, allRegister.allRegisters.get(j).draftPosts.get(i).postID);
-                preparedStatementA.setString(2, allRegister.allRegisters.get(j).draftPosts.get(i).script);
-                preparedStatementA.setString(2, String.valueOf(allRegister.allRegisters.get(j).draftPosts.get(i).postDate.getTime()));
+                preparedStatementA.setString(3, allRegister.allRegisters.get(j).draftPosts.get(i).script);
+                preparedStatementA.setString(4, String.valueOf(allRegister.allRegisters.get(j).draftPosts.get(i).postDate.getTime()));
                 preparedStatementA.executeUpdate();
             }
         }
@@ -312,28 +310,26 @@ class draftPostRepository {
 
 }
 
-/*
 class viewPostRepository {
 
-    public void loadViewPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void loadViewPost(RegisterMenu allRegister, Connection connection) throws SQLException {
         int index;
         Statement statement = connection.createStatement();
         ResultSet resultSet =
                 statement
                         .executeQuery(
-                                "SELECT * FROM drafpost");
+                                "SELECT * FROM viewpost");
         while (resultSet.next()) {
             int i, j;
             for (i = 0; i < allRegister.allRegisters.size(); i++) {
                 if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("userId"))) {
-                    Post myDrafPost = new Post();
-                    myDrafPost.postID = resultSet.getString("postId");
-                    myDrafPost.script = resultSet.getString("script");
-                    Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
-                    myDrafPost.postDate = myDate;
-                    myDrafPost.edited = "";
-                    myDrafPost.forwarded = "";
-                    allRegister.allRegisters.get(i).draftPosts.add(myDrafPost);
+                    for (j = 0; j < allRegister.allPosts.size(); j++) {
+                        if (allRegister.allPosts.get(j).postID.equals(resultSet.getString("postId"))) {
+                            allRegister.allPosts.get(j).viewedUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).viewedPosts.add(allRegister.allPosts.get(j));
+                            break;
+                        }
+                    }
                     break;
                 }
             }
@@ -342,26 +338,238 @@ class viewPostRepository {
         statement.close();
     }
 
-    public void insertViewPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+    public static void insertViewPost(RegisterMenu allRegister, Connection connection) throws SQLException {
         int i, j;
         PreparedStatement preparedStatement = connection.prepareStatement(
-                "DELETE FROM drafpost");
+                "DELETE FROM viewpost");
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO likephoto(usersId,postId,script,postDate) " +
+                    "INSERT INTO viewpost(usersId,postId) " +
                             "VALUES(?,?,?,?)");
             for (i = 0; i < allRegister.allRegisters.get(j).draftPosts.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
-                preparedStatementA.setString(2, allRegister.allRegisters.get(j).draftPosts.get(i).postID);
-                preparedStatementA.setString(2, allRegister.allRegisters.get(j).draftPosts.get(i).script);
-                preparedStatementA.setString(2, String.valueOf(allRegister.allRegisters.get(j).draftPosts.get(i).postDate.getTime()));
+                preparedStatementA.setString(2, allRegister.allRegisters.get(j).viewedPosts.get(i).postID);
                 preparedStatementA.executeUpdate();
             }
         }
     }
 
-}*/
+}
+
+class followRepository {
+
+    public static void loadfollows(RegisterMenu allRegister, Connection connection) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM follower");
+        while (resultSet.next()) {
+            int i, j;
+            for (i = 0; i < allRegister.allRegisters.size(); i++) {
+                if (resultSet.getString("folloewerId").equals(allRegister.allRegisters.get(i))) {
+                    for (j = 0; j < allRegister.allRegisters.size(); j++) {
+                        if (resultSet.getString("followedId").equals(allRegister.allRegisters.get(j))) {
+                            allRegister.allRegisters.get(i).folowings.add(allRegister.allRegisters.get(j));
+                            allRegister.allRegisters.get(j).folowers.add(allRegister.allRegisters.get(i));
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        statement.close();
+    }
+
+    public static void insertfollows(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM follower");
+        preparedStatement.executeUpdate();
+        for (j = 0; j < allRegister.allRegisters.size(); j++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO follower(folloewerId, followedId) " +
+                            "VALUES(?, ?)");
+            for (i = 0; i < allRegister.allRegisters.get(j).folowings.size(); i++) {
+                preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
+                preparedStatementA.setString(2, allRegister.allRegisters.get(j).folowings.get(i).userID);
+                preparedStatementA.executeUpdate();
+            }
+        }
+    }
+
+}
+
+class CommentRepository {
+
+    public static void loadPosts(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int index;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM comment");
+        while (resultSet.next()) {
+            int i;
+            Comment myPost = new Comment();
+            myPost.postID = resultSet.getString("postId");
+            myPost.usersPostId = resultSet.getString("usersPostId");
+            myPost.forwarded = resultSet.getString("forwarded");
+            myPost.edited = resultSet.getString("edited");
+            myPost.script = resultSet.getString("script");
+            Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
+            myPost.postDate = myDate;
+
+            for (i = 0; i < allRegister.allPosts.size(); i++) {
+                if (allRegister.allPosts.get(i).postID.equals(resultSet.getString("postIdOfComment"))) {
+                    myPost.postOfTheComment = allRegister.allPosts.get(i);
+                    allRegister.allPosts.get(i).postComments.add(myPost);
+                    break;
+                }
+            }
+
+            for (index = 0; index < allRegister.allRegisters.size(); index++) {
+                if (allRegister.allRegisters.get(index).userID.equals(myPost.usersPostId)) {
+                    allRegister.allRegisters.get(index).allComment.add(myPost);
+                    allRegister.allRegisters.get(index).posts.add(myPost);
+                    break;
+                }
+            }
+
+        }
+        statement.close();
+    }
+
+    public static void insertPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM comment");
+        preparedStatement.executeUpdate();
+        for (j = 0; j < allRegister.allRegisters.size(); j++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO comment(postIdOfComment,postId,usersPostId,forwarded,edited,script,date) " +
+                            "VALUES(?,?,?,?,?,?,?)");
+            for (i = 0; i < allRegister.allRegisters.get(j).allComment.size(); i++) {
+                preparedStatementA.setString(1, allRegister.allRegisters.get(j).allComment.get(i).postOfTheComment.postID);
+                preparedStatementA.setString(2, allRegister.allRegisters.get(j).allComment.get(i).postID);
+                preparedStatementA.setString(3, allRegister.allRegisters.get(j).allComment.get(i).usersPostId);
+                preparedStatementA.setString(4, allRegister.allRegisters.get(j).allComment.get(i).forwarded);
+                preparedStatementA.setString(5, allRegister.allRegisters.get(j).allComment.get(i).edited);
+                preparedStatementA.setString(6, allRegister.allRegisters.get(j).allComment.get(i).script);
+                preparedStatementA.setString(7, String.valueOf(allRegister.allRegisters.get(j).allComment.get(i).postDate.getTime()));
+                preparedStatementA.executeUpdate();
+            }
+        }
+    }
+
+}
+
+class RequestMassageRepository {
+
+    public static void loadRequestMassage(RegisterMenu allRegister, Connection connection) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM massagerequests");
+        while (resultSet.next()) {
+            int i;
+            for (i = 0; i < allRegister.allRegisters.size(); i++) {
+                if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("userId"))) {
+                    if(resultSet.getString("1")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("1"));
+                    }
+                    else if(resultSet.getString("2")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("2"));
+                    }
+                    else if(resultSet.getString("3")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("3"));
+                    }
+                    else if(resultSet.getString("4")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("4"));
+                    }
+                    else if(resultSet.getString("5")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("5"));
+                    }
+                    else if(resultSet.getString("6")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("6"));
+                    }
+                    else if(resultSet.getString("7")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("7"));
+                    }
+                    else if(resultSet.getString("8")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("8"));
+                    }
+                    else if(resultSet.getString("9")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("9"));
+                    }
+                    else if(resultSet.getString("10")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("10"));
+                    }
+                    else if(resultSet.getString("11")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("11"));
+                    }
+                    else if(resultSet.getString("12")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("12"));
+                    }
+                    else if(resultSet.getString("13")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("13"));
+                    }
+                    else if(resultSet.getString("14")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("14"));
+                    }
+                    else if(resultSet.getString("15")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("15"));
+                    }
+                    else if(resultSet.getString("16")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("16"));
+                    }
+                    else if(resultSet.getString("17")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("17"));
+                    }
+                    else if(resultSet.getString("18")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("18"));
+                    }
+                    else if(resultSet.getString("19")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("19"));
+                    }
+                    else if(resultSet.getString("20")!=null) {
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("20"));
+                    }
+
+                    break;
+                }
+            }
+
+
+        }
+        statement.close();
+    }
+
+    public static void insertRequestMassage(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM massagerequests");
+        preparedStatement.executeUpdate();
+        for (j = 0; j < allRegister.allRegisters.size(); j++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO massagerequests(userId,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20) " +
+                            "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
+            for(i=0 ; i<allRegister.allRegisters.get(j).massageRequests.size() ; i++){
+                preparedStatementA.setString(22-allRegister.allRegisters.get(j).massageRequests.size()+i,allRegister.allRegisters.get(j).massageRequests.get(i));
+            }
+            preparedStatementA.executeUpdate();
+
+        }
+    }
+
+}
+
+
 
 
 
