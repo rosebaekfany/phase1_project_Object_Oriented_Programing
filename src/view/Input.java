@@ -975,6 +975,9 @@ public class Input {
                Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.businessUsers );
             }
 
+
+
+
             // ToDo : see where the show stat must be put (when does the user sees its own post)
             //        set views for all users and time for like and view for business users
             //        must see where each user views or likes another post.
