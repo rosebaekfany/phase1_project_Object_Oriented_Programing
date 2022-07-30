@@ -10,6 +10,7 @@ import java.sql.*;
 import java.sql.DriverManager;
 
 import java.util.*;
+import static temporary.CommercialGenres.*;
 
 
 public class DatabaseUpdate {
@@ -57,15 +58,16 @@ public class DatabaseUpdate {
     }
 }
 
-/*class UserRepository {
+class UserRepository {
 
-    public void loadUsers(Connection connection) throws SQLException {
+    public void loadUsers(RegisterMenu allRegister , Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet =
                 statement
                         .executeQuery(
-                                "SELECT * FROM user" );
+                                "SELECT * FROM allregister" );
         while (resultSet.next()) {
+            int i ;
             Person user = new Person();
             user.userID = (resultSet.getString("userId"));
             user.userType = (resultSet.getString("userType"));
@@ -74,31 +76,53 @@ public class DatabaseUpdate {
             user.userAccountType = (resultSet.getString("userAccountType"));
             user.bio = (resultSet.getString("bio"));
             user.userPasswords = (resultSet.getString("userPassword"));
-            //user.favoriteGenres = (resultSet.getString("securityQuestionsAnswers"));
+            for(i=0 ; i<6 ; i++){
+                if(resultSet.getInt("gene_HEALTH_AND_CARE")==i){
+                    user.favoriteGenres[i]=HEALTH_AND_CARE ;
+                }
+                else if(resultSet.getInt("gene_FASHION")==i){
+                    user.favoriteGenres[i]=FASHION ;
+                }
+                else if(resultSet.getInt("gene_SCIENCE_AND_TECHNOLOGY")==i){
+                    user.favoriteGenres[i]= SCIENCE_AND_TECHNOLOGY ;
+                }
+                else if(resultSet.getInt("gene_STOCK_MARKET")==i){
+                    user.favoriteGenres[i]=STOCK_MARKET ;
+                }
+                else if(resultSet.getInt("gene_ARTS")==i){
+                    user.favoriteGenres[i]=ARTS ;
+                }
+                else if(resultSet.getInt("gene_GAMING")==i){
+                    user.favoriteGenres[i]=GAMING ;
+                }
 
+            }
+            allRegister.allRegisters.add(user) ;
         }
 
         statement.close();
     }
 
-    public void insertUsers(Connection connection) throws SQLException {
+/*    public void insertUsers(Connection connection ) throws SQLException {
+        int i , j ;
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "DELETE FROM user");
         preparedStatement.executeUpdate();
-        for (User user : DataBase.getUsers()){
+        for(j=0 ; j<)
+        for ( i=0 ; i<8 ; i++){
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO user(userName, password, bio, name, lastName, birthday, email,"+
-                            " securityQuestionsAnswers, privacy, numberOfPosts, numberOfFollowers ,numberOfFollowings, userType,date ) " +
+                    "INSERT INTO user(userType, userPassword, bio, name, userAccountType"+
+                            " securityQuestion ,userId , ) " +
                             "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            preparedStatementA.setString(1, user.getUserName());
-            preparedStatementA.setString(2, user.getPassword());
-            preparedStatementA.setString(3, user.getBio());
-            preparedStatementA.setString(4, user.getName());
-            preparedStatementA.setString(5, user.getLastName());
-            preparedStatementA.setString(6, user.getBirthday());
-            preparedStatementA.setString(7, user.getEmail());
-            preparedStatementA.setString(8, user.getSecurityQuestionsAnswers());
+            preparedStatementA.setString( user.getUserName());
+            preparedStatementA.setString(user.getPassword());
+            preparedStatementA.setString( user.getBio());
+            preparedStatementA.setString( user.getName());
+            preparedStatementA.setString( user.getLastName());
+            preparedStatementA.setString( user.getBirthday());
+            preparedStatementA.setString( user.getEmail());
+            preparedStatementA.setString( user.getSecurityQuestionsAnswers());
             if(user.getPrivacy()) {
                 preparedStatementA.setInt(9, 1);
             } else {
@@ -115,7 +139,7 @@ public class DatabaseUpdate {
             preparedStatementA.setString(14,user.getDate());
             preparedStatementA.executeUpdate();
         }
-    }
-}*/
+    }*/
+}
 
 
