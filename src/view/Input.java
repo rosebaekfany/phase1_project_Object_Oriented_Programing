@@ -226,6 +226,7 @@ public class Input {
                         "show users\n" +
                         "showThisGroup\n" +
                         ""
+
                 );
             }
 
@@ -259,9 +260,7 @@ public class Input {
                 } else {
                     System.out.println("please login first!");
                 }
-            }
-
-            else if (split[0].equals("choose_accountType")) { // ToDo
+            } else if (split[0].equals("choose_accountType")) {
                 if (successfulLog == 1) {
                     if (split[1].equals("General_Account")) {
                         if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
@@ -276,14 +275,25 @@ public class Input {
                     } else if (split[1].equals("Business_Account")) {
                         System.out.println("Enter your business phoneNumber");
                         String phoneNumber = sc.nextLine();
-                        String regexStr = "^(\\d{4,17})$";
+                        System.out.println("choose your business genre between");
+                        System.out.println("    HEALTH_AND_CARE,\n" +
+                                "    FASHION,\n" +
+                                "    SCIENCE_AND_TECHNOLOGY,\n" +
+                                "    STOCK_MARKET,\n" +
+                                "    ARTS,\n" +
+                                "    GAMING;");
+                        String commercialGenre = sc.nextLine();
+                        String regexStr2 ="^(HEALTH_AND_CARE)$|^(FASHION)$|^(SCIENCE_AND_TECHNOLOGY)$|^(STOCK_MARKET)$|^(ARTS)$|^(GAMING)$";
+                        Pattern pattern2 = Pattern.compile(regexStr2);
+                        Matcher matcher2 = pattern2.matcher(commercialGenre);
+                         String regexStr = "^(\\d{4,17})$";
                         Pattern pattern = Pattern.compile(regexStr);
                         Matcher matcher = pattern.matcher(phoneNumber);
-                        if (matcher.matches()) {
+                        if (matcher.matches() && matcher2.matches()) {
                             if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
                                     .equals("General_Account")) {
                                 BusinessUser myBusinessUser = Edit.changeAccountTypeToBusiness
-                                        (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber);
+                                        (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber , commercialGenre);
                                 myRegister.businessUsers.add(myBusinessUser);
                                 for (BusinessUser businessUser : myRegister.businessUsers) {
                                     System.out.println(businessUser.name);
@@ -303,7 +313,12 @@ public class Input {
                                 System.out.println("your account is already Business_Account");
                             }
                         } else {
-                            System.out.println("Invalid phoneNumber format");
+                            if (!matcher.matches()){
+                                System.out.println("Invalid phoneNumber format");
+                            } else {
+                                System.out.println("invalid business genre");
+                            }
+
                         }
                     } else {
                         System.out.println("choose between General_Account or Business_Account");
@@ -1061,9 +1076,22 @@ public class Input {
                 }
 
             }
+
             else if (sample.equals("show suggested person")) {
                 Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
             }
+
+
+            else if (sample.equals("show recent posts")) {
+               Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.businessUsers );
+            }
+
+
+
+
+            // ToDo : see where the show stat must be put (when does the user sees its own post)
+            //        set views for all users and time for like and view for business users
+            //        must see where each user views or likes another post.
 
         }
 

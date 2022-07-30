@@ -7,6 +7,8 @@ import temporary.*;
 
 public class Post {
     public String script = new String();
+
+    public boolean commercialPost = false;
     public Emoji emoji = new Emoji();
     public Media media = new Media();
     public String postID = new String();

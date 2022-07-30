@@ -4,6 +4,7 @@ import media.*;
 import controller.*;
 import temporary.*;
 
+import java.net.Inet4Address;
 import java.util.ArrayList;
 
 public class Show {
@@ -311,23 +312,49 @@ public class Show {
         }
     }
 
+    }
 
-    public static void show_suggestedPerson(Person myPerson){ // ToDo : fix it
-        /*ArrayList<Person> suggestedPerson = Commercial.sortSuggestedPerson();
+
+    public static void show_suggestedPerson(Person myPerson){
+        ArrayList<Person> suggestedPerson = Commercial.sortSuggestedPerson(myPerson);
         for (int i = 0; i < 5 && i<suggestedPerson.size(); i++) {
             System.out.println("name : " + suggestedPerson.get(i).name + " - " +
                                 "userId : " + suggestedPerson.get(i).userID);
-        }*/
+        }
     }
 
     public static void show_mainPosts(Person person , ArrayList<BusinessUser> business){
-        ArrayList<Post> posts = person.mainPagePostFinal;
-        for (int i = 0; i < 10 && i<posts.size(); i++) {
-            System.out.println();
+
+        for (int i = 0; i < person.mainPagePostFinal.size() && i < 10; i++) {
+            System.out.println(person.mainPagePostFinal.get(i).usersPostId + " : " +
+                    person.mainPagePostFinal.get(i).script + "\t" +
+                    person.mainPagePostFinal.get(i).postDate);
         }
-    } // ToDo : seperate commercial and user post
 
+    }
 
+    public static void show_stat(BusinessPost myPost){
+        System.out.println("view in days:");
+        System.out.println("days passed\tviews");
+        ArrayList<Integer> views = myPost.eachDayView();
+        for (int i = 0; i < views.size(); i++) {
+            System.out.println(i + "\t" + views.get(i));
+        }
+        for (int i = 0; i < 20; i++) {
+            System.out.print("_");
+        }
+        System.out.println();
+        System.out.println("likes in days:");
+        System.out.println("days passed\tlikes");
+        ArrayList<Integer> likes = myPost.eachDayLike();
+        for (int i = 0; i < likes.size(); i++) {
+            System.out.println(i + "\t" + likes.get(i));
+        }
+        for (int i = 0; i < 20; i++) {
+            System.out.print("_");
+        }
+        System.out.println();
+    }
 
 }
 

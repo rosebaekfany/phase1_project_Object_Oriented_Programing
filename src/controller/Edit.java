@@ -71,8 +71,8 @@ public class Edit {
 
     }
 
-    public static BusinessUser changeAccountTypeToBusiness(Person person, String phoneNumber) {
-        BusinessUser businessUser = new BusinessUser(person,phoneNumber);
+    public static BusinessUser changeAccountTypeToBusiness(Person person, String phoneNumber , String commercialGenre) {
+        BusinessUser businessUser = new BusinessUser(person,phoneNumber , commercialGenre);
         businessUser.userAccountType = "Business_Account";
         return businessUser;
     }

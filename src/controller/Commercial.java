@@ -1,8 +1,10 @@
 package controller;
+
 import media.BusinessPost;
 import media.BusinessUser;
 import media.Person;
 import media.Post;
+import temporary.CommercialGenres;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,6 +52,7 @@ public class Commercial {
     }
 
 
+
     public static ArrayList<Person> sortSuggestedPerson(Person myPerson){
         HashMap<Person , Integer> suggestMap = recommendPerson(myPerson);
         ArrayList<Person> sortedPeople = new ArrayList<>();
@@ -69,7 +72,10 @@ public class Commercial {
         return sortedPeople;
     }
 
+
+
     public static HashMap<Post, Integer> recommendedPosts(Person myPerson, ArrayList<BusinessUser> businesses) {
+
         HashMap<Post, Integer> recommendation = new HashMap<>();
 
         // setting non-viewed posts in the recommendation-map
@@ -123,8 +129,9 @@ public class Commercial {
         // setting recommendation-map based on favorite categories
         for (Post post : recommendation.keySet()) {
             int coef = 1;
+            CommercialGenres postGenre1 = findUser(post.usersPostId, businesses).postGenre;
             for (int i = 0; i < 6; i++) {
-                if (((BusinessPost) post).postGenre.equals(myPerson.favoriteGenres[i])) {
+                if (postGenre1.equals(myPerson.favoriteGenres[i])) {
                     coef = 6 - i;
                     break;
                 }
@@ -135,6 +142,16 @@ public class Commercial {
         }
 
         return recommendation;
+    }
+
+
+    public static BusinessUser findUser(String id , ArrayList<BusinessUser> users){
+        for (BusinessUser user : users) {
+            if (user.userID.equals(id)){
+                return user;
+            }
+        }
+        return null;
     }
 
     /*public List<Person> recommendPerson(Person myPerson , Person otherPerson){
