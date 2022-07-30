@@ -426,6 +426,8 @@ public class Input {
                     if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                         for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                             if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                myRegister.allRegisters.get(i).posts.get(j).viewedUsers.add(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
+                                myRegister.allRegisters.get(myRegister.logedInAccount).viewedPosts.add(myRegister.allRegisters.get(i).posts.get(j)) ;
                                 Show.show_selectedPost(myRegister, myRegister.allRegisters.get(i).posts.get(j));
                                 ff = 1;
                                 selectPostFlag = 1;

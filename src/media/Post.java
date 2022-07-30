@@ -12,7 +12,7 @@ public class Post {
     public String postID = new String();
     public String usersPostId = new String();
     public ArrayList<Person> likedUsers = new ArrayList<>();
-    private ArrayList<Person> viewedUsers = new ArrayList<>();
+    public ArrayList<Person> viewedUsers = new ArrayList<>();
     public ArrayList<Comment> postComments = new ArrayList<>();
     public Date postDate = new Date();
     public String edited = new String("");
