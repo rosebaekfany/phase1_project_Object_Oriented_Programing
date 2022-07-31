@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="splitPane" dividerPositions="0.2704326923076923" prefWidth="833.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.controllers.MainPage">
+<SplitPane fx:id="splitPane" dividerPositions="0.2704326923076923" prefWidth="833.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.MainPage">
    <items>
       <GridPane fx:id="menuPane" prefHeight="598.0" prefWidth="225.0">
         <columnConstraints>
@@ -26,7 +26,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="homeButton" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-color: #fc7388; -fx-border-width: 3;" text="Home" textFill="#f9e7e0">
+            <Button fx:id="homeButton" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-color: #2499f8; -fx-border-width: 3;" text="Home" textFill="#d4d7e3">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -41,7 +41,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-color: #fc7388; -fx-border-width: 3;" text="Search" textFill="#f9e7e0" GridPane.rowIndex="1">
+            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-color: #2499f8; -fx-border-width: 3;" text="Search" textFill="#d4d7e3"
+                    GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -53,7 +54,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="settingButton" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-color: #fc7388; -fx-border-width: 3; -fx-border-radius: 0;" text="Setting" textFill="#f9e7e0" GridPane.rowIndex="4">
+            <Button fx:id="settingButton" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 3; -fx-border-radius: 0;" text="Setting" textFill="#d4d7e3"
+                    GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -65,7 +67,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="myPageButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-color: #fc7388; -fx-border-radius: 0; -fx-border-width: 3;" text="MyPage" textFill="#f9e7e0" GridPane.rowIndex="3">
+            <Button fx:id="myPageButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-radius: 0; -fx-border-width: 3;" text="MyPage" textFill="#d4d7e3"
+                    GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -77,7 +80,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="myChatsButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-width: 3; -fx-border-color: #fc7388;" text="My Chats" textFill="#f9e7e0" GridPane.rowIndex="2">
+            <Button fx:id="myChatsButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-width: 3; -fx-border-color: #2499f8;" text="My Chats" textFill="#d4d7e3"
+                    GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -93,7 +97,7 @@
       </GridPane>
       <ScrollPane fx:id="startPageScrollPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background: #535353; -fx-border-color: #535353;">
          <content>
-            <Label fx:id="startPageLabel" prefHeight="118.0" prefWidth="601.0" text="    select to explore in rosy" textFill="#f9e7e0">
+            <Label fx:id="startPageLabel" prefHeight="118.0" prefWidth="601.0" text="    select to explore in rosy" textFill="#d4d7e3">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>

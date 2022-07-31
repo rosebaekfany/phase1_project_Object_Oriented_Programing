@@ -10,6 +10,6 @@ module com.yrtwitter.project_phase2 {
 
     opens com.yrtwitter.project_phase2 to javafx.fxml;
     exports com.yrtwitter.project_phase2;
-    exports com.yrtwitter.project_phase2.controllers;
-    opens com.yrtwitter.project_phase2.controllers to javafx.fxml;
+    exports com.yrtwitter.project_phase2.gui;
+    opens com.yrtwitter.project_phase2.gui to javafx.fxml;
 }
