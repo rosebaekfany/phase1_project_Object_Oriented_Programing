@@ -3,6 +3,10 @@ package view;
 import controller.*;
 import media.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,11 +35,11 @@ public class Input {
         enterGroup = 0;
     }
 
-    public void register_menu() {
+    public void register_menu(Connection conn) throws SQLException {
         System.out.println("Twitter");
         System.out.println("by yekta and rosa");
         registerMenu = 1;
-        DatabaseUpdate.creatConnection() ;
+        DatabaseUpdate.loadAll(myRegister,conn) ;
 
     }
 
@@ -53,11 +57,13 @@ public class Input {
             } else if (Pattern.compile("[^A-z0-9_ ]").matcher(split[2]).find()) {
                 System.out.println("password format is invalid");
                 registerflag = 1;
-            } else {
+            }
+            else {
                 for (i = 0; i < myRegister.allRegisters.size(); i++) {
                     if (myRegister.allRegisters.get(i).name.equals(split[1])) {
                         System.out.println("a user exists with this username");
                         registerflag = 1;
+                        break;
                     }
                 }
                 if (registerflag == 0) {

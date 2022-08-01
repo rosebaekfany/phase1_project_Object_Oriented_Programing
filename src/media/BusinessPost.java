@@ -14,13 +14,13 @@ import static temporary.CommercialGenres.*;
 
 public class BusinessPost extends Post {
 
-    HashMap<Person, LocalDate> viewed = new HashMap<>();
-    HashMap<Person, LocalDate> liked = new HashMap<>();
+    public HashMap<Person, LocalDate> viewed = new HashMap<>();
+    public HashMap<Person, LocalDate> liked = new HashMap<>();
 
 
     //public CommercialGenres postGenre;
 
-    BusinessPost() {
+    public BusinessPost() {
         commercialPost = true;
 
     }

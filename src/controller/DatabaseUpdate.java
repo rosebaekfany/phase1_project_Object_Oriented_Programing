@@ -7,6 +7,8 @@ import view.*;
 
 import java.sql.*;
 import java.sql.DriverManager;
+import java.time.LocalDate;
+import java.time.*;
 import java.util.*;
 import java.util.Date;
 
@@ -14,46 +16,32 @@ import static temporary.CommercialGenres.*;
 
 
 public class DatabaseUpdate {
+    public static void loadAll(RegisterMenu allRegister , Connection conn) throws SQLException {
+        UserRepository.loadUsers(allRegister,conn);
+        PostRepository.loadPosts(allRegister,conn); ;
+        likedPostRepository.loadLikedPost(allRegister,conn);
+        draftPostRepository.loadDraftPost(allRegister,conn);
+        viewPostRepository.loadViewPost(allRegister,conn);
+        followRepository.loadfollows(allRegister,conn);
+        CommentRepository.loadPosts(allRegister,conn);
+        RequestMassageRepository.loadRequestMassage(allRegister,conn);
+        BussinessUserRepository.loadBussinessUsers(allRegister,conn);
+        likedBussinessPostRepository.loadLikedPost(allRegister,conn);
+        viewedBussinessPostRepository.loadviewPost(allRegister,conn);
 
-    public static void creatConnection() {
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-            try {
-                //Class.forName("com.mysql.jdbc.Driver");
-                Class.forName("com.mysql.cj.jdbc.Driver");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/myTwitter", "root", "manager");
-            //System.out.println("Connection is created successfully:");
-            stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO allregister " + "VALUES ()";
-
-
-/*            #DataSourceSettings#
-#LocalDataSource: myTwitter@localhost
-#BEGIN#
-<data-source source="LOCAL" name="myTwitter@localhost" uuid="904a0b42-b94b-43ea-b7cf-febb8c99117d"><database-info product="MySQL" version="5.5.5-10.4.24-MariaDB" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MARIADB" exact-version="10.4.24" exact-driver-version="8.0"><extra-name-characters>#@</extra-name-characters><identifier-quote-string>`</identifier-quote-string></database-info><case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/><driver-ref>mysql.8</driver-ref><synchronize>true</synchronize><jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver><jdbc-url>jdbc:mysql://localhost:3306/myTwitter</jdbc-url><secret-storage>master_key</secret-storage><user-name>root</user-name><schema-mapping><introspection-scope><node kind="schema" qname="@"/></introspection-scope></schema-mapping><working-dir>$ProjectFileDir$</working-dir></data-source>
-#END#*/
-            stmt.executeUpdate(query1);
-        } catch (SQLException excep) {
-            excep.printStackTrace();
-        } catch (Exception excep) {
-            excep.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    conn.close();
-            } catch (SQLException se) {
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
-        }
+    }
+    public static void insertAll(RegisterMenu allRegister , Connection conn) throws SQLException {
+        UserRepository.insertUsers(allRegister,conn);
+        PostRepository.insertPost(allRegister,conn); ;
+        likedPostRepository.insertLikedPost(allRegister,conn);
+        draftPostRepository.insertDraftPost(allRegister,conn);
+        viewPostRepository.insertViewPost(allRegister,conn);
+        followRepository.insertfollows(allRegister,conn);
+        CommentRepository.insertPost(allRegister,conn);
+        RequestMassageRepository.insertRequestMassage(allRegister,conn);
+        BussinessUserRepository.insertBussinessUsers(allRegister,conn);
+        likedBussinessPostRepository.insertLikedPost(allRegister,conn);
+        viewedBussinessPostRepository.insertviewPost(allRegister,conn);
     }
 }
 
@@ -178,12 +166,29 @@ class PostRepository {
             myPost.script = resultSet.getString("script");
             Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
             myPost.postDate = myDate;
+            if(resultSet.getInt("BorG")==0){
+                myPost.commercialPost=false ;
+            }
+            else if(resultSet.getInt("BorG")==1){
+                myPost.commercialPost=true ;
+            }
             for (index = 0; index < allRegister.allRegisters.size(); index++) {
                 if (allRegister.allRegisters.get(index).userID.equals(myPost.usersPostId)) {
                     allRegister.allRegisters.get(index).posts.add(myPost);
                     allRegister.allPosts.add(myPost);
                     break;
                 }
+            }
+            if(myPost.commercialPost){
+                BusinessPost myBussinessPost = new BusinessPost() ;
+                myBussinessPost.commercialPost=true ;
+                myBussinessPost.postID=myPost.postID;
+                myBussinessPost.usersPostId=myPost.usersPostId;
+                myBussinessPost.postDate=myPost.postDate;
+                myBussinessPost.script=myPost.postID;
+                myBussinessPost.edited=myPost.edited;
+                myBussinessPost.forwarded=myPost.forwarded;
+                allRegister.allbussinessPost.add(myBussinessPost);
             }
 
         }
@@ -197,8 +202,8 @@ class PostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO post(postId,usersPostId,forwarded,edited,script,postDate) " +
-                            "VALUES(?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO post(postId,usersPostId,forwarded,edited,script,postDate,BorG) " +
+                            "VALUES(?, ?, ?, ?, ?, ?,?)");
             for (i = 0; i < allRegister.allRegisters.get(j).posts.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).posts.get(i).postID);
                 preparedStatementA.setString(2, allRegister.allRegisters.get(j).posts.get(i).usersPostId);
@@ -206,6 +211,12 @@ class PostRepository {
                 preparedStatementA.setString(4, allRegister.allRegisters.get(j).posts.get(i).edited);
                 preparedStatementA.setString(5, allRegister.allRegisters.get(j).posts.get(i).script);
                 preparedStatementA.setString(6, String.valueOf(allRegister.allRegisters.get(j).posts.get(i).postDate.getTime()));
+                if(allRegister.allRegisters.get(j).posts.get(i).commercialPost){
+                    preparedStatementA.setInt(7,1);
+                }
+                else{
+                    preparedStatementA.setInt(7,0);
+                }
                 preparedStatementA.executeUpdate();
             }
         }
@@ -238,6 +249,8 @@ class likedPostRepository {
             }
 
         }
+
+
         statement.close();
     }
 
@@ -248,7 +261,7 @@ class likedPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO likephoto(postId,usersId) " +
+                    "INSERT INTO likephoto(usersId,postId) " +
                             "VALUES(?, ?)");
             for (i = 0; i < allRegister.allRegisters.get(j).likedPhotoes.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
@@ -286,6 +299,7 @@ class draftPostRepository {
             }
 
         }
+
         statement.close();
     }
 
@@ -335,6 +349,7 @@ class viewPostRepository {
             }
 
         }
+
         statement.close();
     }
 
@@ -440,6 +455,7 @@ class CommentRepository {
             }
 
         }
+
         statement.close();
     }
 
@@ -546,6 +562,8 @@ class RequestMassageRepository {
 
 
         }
+
+
         statement.close();
     }
 
@@ -568,6 +586,354 @@ class RequestMassageRepository {
     }
 
 }
+
+class BussinessUserRepository {
+
+    public static void loadBussinessUsers(RegisterMenu allRegister, Connection connection) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM bussinesuser");
+        while (resultSet.next()) {
+            int i;
+            Person user = new Person();
+            user.userID = (resultSet.getString("userId"));
+            user.userType = (resultSet.getString("userType"));
+            user.securityQuestion = (resultSet.getString("securityQuestion"));
+            user.name = (resultSet.getString("name"));
+            user.userAccountType = (resultSet.getString("userAccountType"));
+            user.bio = (resultSet.getString("bio"));
+            user.userPasswords = (resultSet.getString("userPassword"));
+            for (i = 0; i < 6; i++) {
+                if (resultSet.getInt("gene_HEALTH_AND_CARE") == i) {
+                    user.favoriteGenres[i] = HEALTH_AND_CARE;
+                } else if (resultSet.getInt("gene_FASHION") == i) {
+                    user.favoriteGenres[i] = FASHION;
+                } else if (resultSet.getInt("gene_SCIENCE_AND_TECHNOLOGY") == i) {
+                    user.favoriteGenres[i] = SCIENCE_AND_TECHNOLOGY;
+                } else if (resultSet.getInt("gene_STOCK_MARKET") == i) {
+                    user.favoriteGenres[i] = STOCK_MARKET;
+                } else if (resultSet.getInt("gene_ARTS") == i) {
+                    user.favoriteGenres[i] = ARTS;
+                } else if (resultSet.getInt("gene_GAMING") == i) {
+                    user.favoriteGenres[i] = GAMING;
+                }
+
+            }
+            BusinessUser myBussinesUser = new BusinessUser(user);
+            myBussinesUser.userPhoneNumber = resultSet.getString("userPhonNumber");
+            if(resultSet.getString("commercialGenre").equals("ARTS")){
+                myBussinesUser.commercialGenre = ARTS;
+            }
+            else if(resultSet.getString("commercialGenre").equals("FASHION")){
+                myBussinesUser.commercialGenre = FASHION;
+            }
+            else if(resultSet.getString("commercialGenre").equals("HEALTH_AND_CARE")){
+                myBussinesUser.commercialGenre = HEALTH_AND_CARE;
+            }
+            else if(resultSet.getString("commercialGenre").equals("SCIENCE_AND_TECHNOLOGY")){
+                myBussinesUser.commercialGenre = SCIENCE_AND_TECHNOLOGY;
+            }
+            else if(resultSet.getString("commercialGenre").equals("GAMING")){
+                myBussinesUser.commercialGenre = GAMING;
+            }
+            else if(resultSet.getString("commercialGenre").equals("STOCK_MARKET")){
+                myBussinesUser.commercialGenre = STOCK_MARKET;
+            }
+            allRegister.businessUsers.add(myBussinesUser) ;
+
+        }
+
+        statement.close();
+    }
+
+    public static void insertBussinessUsers(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM bussinesuser");
+        preparedStatement.executeUpdate();
+        for (j = 0; j < allRegister.businessUsers.size(); j++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO bussinesuser(userType, userPassword, bio, name, userAccountType" +
+                            " securityQuestion ,userId , gene_HEALTH_AND_CARE , gene_FASHION , gene_SCIENCE_AND_TECHNOLOGY , gene_STOCK_MARKET , gene_ARTS , gene_GAMING,userPhonNumber,commercialGenre) " +
+                            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            preparedStatementA.setString(1, allRegister.businessUsers.get(j).userType);
+            preparedStatementA.setString(2, allRegister.businessUsers.get(j).userPasswords);
+            preparedStatementA.setString(3, allRegister.businessUsers.get(j).bio);
+            preparedStatementA.setString(4, allRegister.businessUsers.get(j).name);
+            preparedStatementA.setString(5, allRegister.businessUsers.get(j).userAccountType);
+            preparedStatementA.setString(6, allRegister.businessUsers.get(j).securityQuestion);
+            preparedStatementA.setString(7, allRegister.businessUsers.get(j).userID);
+            for (i = 0; i < 6; i++) {
+                if (allRegister.businessUsers.get(j).favoriteGenres[i].equals(HEALTH_AND_CARE)) {
+                    preparedStatementA.setInt(8, i);
+                    break;
+                }
+            }
+            for (i = 0; i < 6; i++) {
+                if (allRegister.businessUsers.get(j).favoriteGenres[i].equals(FASHION)) {
+                    preparedStatementA.setInt(9, i);
+                    break;
+                }
+            }
+            for (i = 0; i < 6; i++) {
+                if (allRegister.businessUsers.get(j).favoriteGenres[i].equals(SCIENCE_AND_TECHNOLOGY)) {
+                    preparedStatementA.setInt(10, i);
+                    break;
+                }
+            }
+            for (i = 0; i < 6; i++) {
+                if (allRegister.businessUsers.get(j).favoriteGenres[i].equals(STOCK_MARKET)) {
+                    preparedStatementA.setInt(11, i);
+                    break;
+                }
+            }
+            for (i = 0; i < 6; i++) {
+                if (allRegister.businessUsers .get(j).favoriteGenres[i].equals(ARTS)) {
+                    preparedStatementA.setInt(12, i);
+                    break;
+                }
+            }
+            for (i = 0; i < 6; i++) {
+                if (allRegister.businessUsers.get(j).favoriteGenres[i].equals(GAMING)) {
+                    preparedStatementA.setInt(13, i);
+                    break;
+                }
+            }
+            preparedStatementA.setString(14,allRegister.businessUsers.get(j).userPhoneNumber);
+
+
+            if(allRegister.businessUsers.get(j).commercialGenre.equals("ARTS")){
+                preparedStatementA.setString(15,"ARTS");
+            }
+            else if(allRegister.businessUsers.get(j).commercialGenre.equals("FASHION")){
+                preparedStatementA.setString(15,"FASHION");
+            }
+            else if(allRegister.businessUsers.get(j).commercialGenre.equals("HEALTH_AND_CARE")){
+                preparedStatementA.setString(15,"HEALTH_AND_CARE");
+            }
+            else if(allRegister.businessUsers.get(j).commercialGenre.equals("SCIENCE_AND_TECHNOLOGY")){
+                preparedStatementA.setString(15,"SCIENCE_AND_TECHNOLOGY");
+            }
+            else if(allRegister.businessUsers.get(j).commercialGenre.equals("GAMING")){
+                preparedStatementA.setString(15,"GAMING");
+            }
+            else if(allRegister.businessUsers.get(j).commercialGenre.equals("STOCK_MARKET")){
+                preparedStatementA.setString(15,"STOCK_MARKET");
+            }
+
+            preparedStatementA.executeUpdate();
+
+        }
+    }
+
+}
+
+/*class BussinessPostRepository {
+
+    public static void loadBussinessPosts(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int index;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM bussinesspost");
+        while (resultSet.next()) {
+            int i;
+            BusinessPost myPost = new BusinessPost();
+            myPost.postID = resultSet.getString("postId");
+            myPost.usersPostId = resultSet.getString("usersPostId");
+            myPost.forwarded = resultSet.getString("forwarded");
+            myPost.edited = resultSet.getString("edited");
+            myPost.script = resultSet.getString("script");
+            Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
+            myPost.postDate = myDate;
+            myPost.commercialPost=true ;
+            for (index = 0; index < allRegister.allRegisters.size(); index++) {
+                if (allRegister.allRegisters.get(index).userID.equals(myPost.usersPostId)) {
+                    allRegister.allPosts.add(myPost);
+                    break;
+                }
+            }
+
+        }
+        statement.close();
+    }
+
+    public static void insertBussinessPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM post");
+        preparedStatement.executeUpdate();
+        for (j = 0; j < allRegister.allRegisters.size(); j++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO post(postId,usersPostId,forwarded,edited,script,postDate) " +
+                            "VALUES(?, ?, ?, ?, ?, ?)");
+            for (i = 0; i < allRegister.allRegisters.get(j).posts.size(); i++) {
+                preparedStatementA.setString(1, allRegister.allRegisters.get(j).posts.get(i).postID);
+                preparedStatementA.setString(2, allRegister.allRegisters.get(j).posts.get(i).usersPostId);
+                preparedStatementA.setString(3, allRegister.allRegisters.get(j).posts.get(i).forwarded);
+                preparedStatementA.setString(4, allRegister.allRegisters.get(j).posts.get(i).edited);
+                preparedStatementA.setString(5, allRegister.allRegisters.get(j).posts.get(i).script);
+                preparedStatementA.setString(6, String.valueOf(allRegister.allRegisters.get(j).posts.get(i).postDate.getTime()));
+                preparedStatementA.executeUpdate();
+            }
+        }
+    }
+
+}*/
+
+class likedBussinessPostRepository {
+
+    public static void loadLikedPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i , j;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM likebussinesspost");
+        while (resultSet.next()) {
+            for(i=0 ; i<allRegister.allbussinessPost.size() ; i++){
+                if(allRegister.allbussinessPost.get(i).postID.equals(resultSet.getString("postId"))){
+                    for (j=0 ; j<allRegister.allRegisters.size() ; i++){
+                        if(allRegister.allRegisters.get(j).userID.equals(resultSet.getString("userId"))){
+                            LocalDate myDate ;
+                            myDate = LocalDate.parse(resultSet.getString("likeDate")) ;
+                            allRegister.allbussinessPost.get(i).liked.put(allRegister.allRegisters.get(j),myDate);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+        }
+
+        statement.close();
+    }
+
+    public static void insertLikedPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM likebussinesspost");
+        preparedStatement.executeUpdate();
+        for (j = 0; j < allRegister.allbussinessPost.size(); j++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO likebussinesspost(usersId,postId,likeDate) " +
+                            "VALUES(?, ?, ?)");
+            for (Map.Entry<Person, LocalDate> personLocalDateEntry : allRegister.allbussinessPost.get(j).liked.entrySet()) {
+                preparedStatementA.setString(1,personLocalDateEntry.getKey().userID);
+                preparedStatementA.setString(2, allRegister.allbussinessPost.get(j).postID);
+                preparedStatementA.setString(3,personLocalDateEntry.getValue().toString());
+                preparedStatement.executeUpdate();
+            }
+
+
+        }
+    }
+
+}
+
+class viewedBussinessPostRepository {
+
+    public static void loadviewPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i , j;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM viewbussinesspost");
+        while (resultSet.next()) {
+            for(i=0 ; i<allRegister.allbussinessPost.size() ; i++){
+                if(allRegister.allbussinessPost.get(i).postID.equals(resultSet.getString("postId"))){
+                    for (j=0 ; j<allRegister.allRegisters.size() ; i++){
+                        if(allRegister.allRegisters.get(j).userID.equals(resultSet.getString("userId"))){
+                            LocalDate myDate ;
+                            myDate = LocalDate.parse(resultSet.getString("viewDate")) ;
+                            allRegister.allbussinessPost.get(i).viewed.put(allRegister.allRegisters.get(j),myDate);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+        }
+
+        statement.close();
+    }
+
+    public static void insertviewPost(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM viewbussinesspost");
+        preparedStatement.executeUpdate();
+        for (j = 0; j < allRegister.allbussinessPost.size(); j++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO viewbussinesspost(usersId,postId,viewDate) " +
+                            "VALUES(?, ?, ?)");
+            for (Map.Entry<Person, LocalDate> personLocalDateEntry : allRegister.allbussinessPost.get(j).viewed.entrySet()) {
+                preparedStatementA.setString(1,personLocalDateEntry.getKey().userID);
+                preparedStatementA.setString(2, allRegister.allbussinessPost.get(j).postID);
+                preparedStatementA.setString(3,personLocalDateEntry.getValue().toString());
+                preparedStatement.executeUpdate();
+            }
+
+
+        }
+    }
+
+}
+
+/*class chatRepository{
+
+    public static void loadChat(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i , j;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM chat");
+        while (resultSet.next()) {
+            Chat myChat = new Chat();
+            for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("person1"))){
+                    myChat.person1=allRegister.allRegisters.get(i);
+                    break;
+                }
+            }
+            for(j=0 ; j<allRegister.allRegisters.size() ; j++){
+                if(allRegister.allRegisters.get(j).userID.equals(resultSet.getString("person2"))){
+                    myChat.person2=allRegister.allRegisters.get(j);
+                    break;
+                }
+            }
+            myChat.blockState=resultSet.getString("blockState");
+            allRegister.allRegisters.get(i).allPersonalChats.add(myChat) ;
+            allRegister.allRegisters.get(j).allPersonalChats.add(myChat) ;
+
+        }
+        statement.close();
+    }
+
+    public static void insertChat(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM chat");
+        preparedStatement.executeUpdate();
+        PreparedStatement preparedStatementA = connection.prepareStatement(
+                "INSERT INTO chat(person1,person2,blockState) " +
+                        "VALUES(?, ?, ?)");
+        for(i=0 ; i<allRegister.allRegisters.size() ; i++)
+        preparedStatementA.setString(1,personLocalDateEntry.getKey().userID);
+        preparedStatementA.setString(2, allRegister.allbussinessPost.get(j).postID);
+        preparedStatementA.setString(3,personLocalDateEntry.getValue().toString());
+        preparedStatement.executeUpdate();
+    }
+
+}*/
 
 
 
