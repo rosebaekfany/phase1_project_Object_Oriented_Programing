@@ -15,11 +15,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login_scroll.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         SwitchScenes.window = stage;
         SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");
         SwitchScenes.window.setScene(scene);
+        SwitchScenes.window.setWidth(800.0);
+        SwitchScenes.window.setHeight(600.0);
         SwitchScenes.window.show();
     }
 

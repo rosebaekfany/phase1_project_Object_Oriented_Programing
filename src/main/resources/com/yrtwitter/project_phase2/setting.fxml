@@ -1,162 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="splitPane" dividerPositions="0.2704326923076923" prefWidth="833.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.Setting">
-    <items>
-        <GridPane fx:id="menuPane" prefHeight="598.0" prefWidth="225.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <Button fx:id="homeButton" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-color: #2499f8; -fx-border-width: 3;" text="Home" textFill="#d4d7e3">
-                    <font>
-                        <Font name="System Bold" size="25.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fx:id="home_icon" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                            <viewport>
-                                <Rectangle2D />
-                            </viewport>
-                            <image>
-                                <Image url="@../../../images/home_icon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-color: #2499f8; -fx-border-width: 3;" text="Search" textFill="#d4d7e3" GridPane.rowIndex="1">
-                    <font>
-                        <Font name="System Bold" size="20.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fx:id="search_icon" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/search_icon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="settingButton" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 3; -fx-border-radius: 0;" text="Setting" textFill="#d4d7e3" GridPane.rowIndex="4">
-                    <font>
-                        <Font name="System Bold" size="25.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fx:id="setting_icon" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/setting_icon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="myPageButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-radius: 0; -fx-border-width: 3;" text="MyPage" textFill="#d4d7e3" GridPane.rowIndex="3">
-                    <font>
-                        <Font name="System Bold" size="25.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fx:id="profile_icon" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/profile_icon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="myChatsButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #535353; -fx-border-radius: 0; -fx-border-width: 3; -fx-border-color: #2499f8;" text="My Chats" textFill="#d4d7e3" GridPane.rowIndex="2">
-                    <font>
-                        <Font name="System Bold" size="25.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fx:id="chat_icon" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true">
-                            <image>
-                                <Image url="@../../../images/chat_icon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </children>
-        </GridPane>
-        <ScrollPane fx:id="settingScrollPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background: #535353; -fx-border-color: #535353;">
-         <content>
-            <AnchorPane fx:id="settingPane" prefHeight="655.0" prefWidth="431.0">
-               <children>
-                  <ChoiceBox fx:id="themeCB" layoutX="167.0" layoutY="19.0" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #d4d7e3;" />
-                  <Label fx:id="themeLabel" layoutX="14.0" layoutY="17.0" prefHeight="35.0" prefWidth="67.0" text="Theme">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="AccountTypeLabel" layoutX="14.0" layoutY="116.0" text="Account Type">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox fx:id="public_privateCB" layoutX="167.0" layoutY="112.0" prefHeight="38.0" prefWidth="239.0" style="-fx-background-color: #d4d7e3;" />
-                  <ChoiceBox fx:id="general_businessCB" layoutX="167.0" layoutY="168.0" prefHeight="38.0" prefWidth="239.0" style="-fx-background-color: #d4d7e3;" />
-                  <Label layoutX="27.0" layoutY="214.0" />
-                  <DatePicker fx:id="birthDate" layoutX="167.0" layoutY="255.0" prefHeight="36.0" prefWidth="240.0" />
-                  <Label fx:id="birthDateLabel" layoutX="17.0" layoutY="259.0" text="BirthDate">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="userIdTF" alignment="CENTER" layoutX="167.0" layoutY="332.0" prefHeight="23.0" prefWidth="240.0" promptText="userID">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </TextField>
-                  <Label fx:id="userIdLabel" layoutX="17.0" layoutY="341.0" text="your userID">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bioLabel" layoutX="14.0" layoutY="417.0" text="biography">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="bioTF" alignment="CENTER" layoutX="167.0" layoutY="416.0" prefHeight="23.0" prefWidth="240.0" promptText="bio">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </TextField>
-                  <Separator layoutY="79.0" prefHeight="16.0" prefWidth="432.0" />
-                  <Separator layoutX="4.0" layoutY="227.0" prefHeight="16.0" prefWidth="432.0" />
-                  <Separator layoutY="308.0" prefHeight="16.0" prefWidth="432.0" />
-                  <Separator layoutX="5.0" layoutY="388.0" prefHeight="16.0" prefWidth="432.0" />
-                  <Separator layoutX="5.0" layoutY="468.0" prefHeight="16.0" prefWidth="432.0" />
-                  <Label layoutX="180.0" layoutY="599.0" text="HEALTH_AND_CARE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="176.0" layoutY="611.0" text="HEALTH_AND_CARE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </content></ScrollPane>
-    </items>
-</SplitPane>
+<ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.Setting">
+   <content>
+      <Pane fx:id="backPane" maxWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+         <children>
+            <Label fx:id="themeLabel" layoutX="20.0" layoutY="192.0" prefHeight="35.0" prefWidth="200.0" text="Theme" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userIdTextField" alignment="CENTER" layoutX="230.0" layoutY="16.0" prefHeight="23.0" prefWidth="250.0" promptText="userID">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label fx:id="userIdLabel" layoutX="20.0" layoutY="20.0" prefWidth="200.0" text="your userID" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="bioLabel" layoutX="20.0" layoutY="111.0" text="biography" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bioTextField" alignment="CENTER" layoutX="230.0" layoutY="105.0" prefHeight="23.0" prefWidth="250.0" promptText="bio">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="themeChoiceBox" layoutX="230.0" layoutY="190.0" prefHeight="40.0" prefWidth="250.0" />
+            <Label fx:id="favGenre" layoutX="20.0" layoutY="269.0" prefWidth="200.0" text="favorite genres" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="healthLabel" layoutX="77.0" layoutY="311.0" prefWidth="200.0" text="health and care" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="fashionLabel" layoutX="77.0" layoutY="520.0" prefWidth="200.0" text="fashion" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="techLabel" layoutX="79.0" layoutY="354.0" prefHeight="30.0" prefWidth="238.0" text="science and technology" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="healthSp" layoutX="20.0" layoutY="313.0" prefHeight="25.0" prefWidth="44.0" />
+            <Label fx:id="gamingLabel" layoutX="76.0" layoutY="479.0" prefWidth="200.0" text="gaming" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="marketLabel" layoutX="80.0" layoutY="398.0" prefHeight="30.0" prefWidth="238.0" text="stock market" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="artsLabel" layoutX="79.0" layoutY="439.0" prefHeight="30.0" prefWidth="238.0" text="arts" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="techSp" layoutX="20.0" layoutY="356.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="marketSp" layoutX="20.0" layoutY="400.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="artsSp" layoutX="20.0" layoutY="441.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="fashionSp" layoutX="20.0" layoutY="523.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="gamingSp" layoutX="20.0" layoutY="481.0" prefHeight="25.0" prefWidth="44.0" />
+         </children></Pane>
+   </content>
+</ScrollPane>

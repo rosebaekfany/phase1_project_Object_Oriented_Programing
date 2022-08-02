@@ -2,59 +2,58 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="signUpPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #535353;" type="GridPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.SignUp">
-  <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="80.0" valignment="CENTER" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="241.0" minHeight="10.0" prefHeight="78.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="231.0" minHeight="10.0" prefHeight="82.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="114.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="109.0" valignment="TOP" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Label fx:id="signUpLabel" alignment="CENTER" prefHeight="58.0" prefWidth="1000.0" text="sign up!" textFill="#d4d7e3">
-         <font>
-            <Font name="System Bold" size="40.0" />
-         </font>
-      </Label>
-      <TextField fx:id="favoriteFlowerTextField" alignment="CENTER" maxWidth="350.0" promptText="favorite flower" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;" GridPane.rowIndex="3">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="passwordTextField" alignment="CENTER" maxWidth="350.0" promptText="password" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;" GridPane.rowIndex="2">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="usernameTextField" alignment="CENTER" maxWidth="350.0" promptText="username" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;" GridPane.rowIndex="1">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </TextField>
-      <Button fx:id="signUpButton" maxWidth="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="726.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="sign up" textFill="#2499f8" GridPane.rowIndex="4">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="backButton" layoutX="235.0" layoutY="412.0" maxWidth="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="726.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="back" textFill="#2499f8" GridPane.rowIndex="1">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="cancelButton" layoutX="235.0" layoutY="412.0" maxWidth="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="726.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="cancel" textFill="#2499f8" GridPane.rowIndex="5">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Button>
-   </children>
-</fx:root>
+<ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.SignUp">
+   <content>
+      <Pane fx:id="backPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #535353;">
+      <children>
+         <Label fx:id="signUpLabel" alignment="CENTER" layoutX="218.0" layoutY="20.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="58.0" prefWidth="350.0" text="sign up!" textFill="#d4d7e3">
+            <font>
+               <Font name="System Bold" size="40.0" />
+            </font>
+         </Label>
+         <TextField fx:id="favoriteFlowerTextField" alignment="CENTER" layoutX="218.0" layoutY="312.0" minHeight="-Infinity" prefHeight="55.0" prefWidth="350.0" promptText="favorite flower" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;" GridPane.rowIndex="3">
+            <font>
+               <Font name="System Bold" size="25.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="218.0" layoutY="113.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="350.0" promptText="username" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;" GridPane.rowIndex="1">
+            <font>
+               <Font name="System Bold" size="25.0" />
+            </font>
+         </TextField>
+         <Button fx:id="signUpButton" layoutX="218.0" layoutY="403.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="350.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="sign up" textFill="#2499f8" GridPane.rowIndex="4">
+            <font>
+               <Font name="System Bold" size="25.0" />
+            </font>
+         </Button>
+         <Button fx:id="backButton" layoutX="218.0" layoutY="108.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="350.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="back" textFill="#2499f8" GridPane.rowIndex="1">
+            <font>
+               <Font name="System Bold" size="25.0" />
+            </font>
+         </Button>
+         <Button fx:id="cancelButton" layoutX="218.0" layoutY="478.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="350.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="cancel" textFill="#2499f8" GridPane.rowIndex="5">
+            <font>
+               <Font name="System Bold" size="25.0" />
+            </font>
+         </Button>
+            <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="218.0" layoutY="181.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="350.0" promptText="password" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="repeatPasswordField" alignment="CENTER" layoutX="218.0" layoutY="246.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="350.0" promptText="repeat password" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </PasswordField>
+      </children>
+      </Pane>
+   </content>
+</ScrollPane>
