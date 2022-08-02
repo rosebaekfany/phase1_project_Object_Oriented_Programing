@@ -16,14 +16,14 @@ public class Group {
     //String[] adminID = new String[50] ;
     public String groupId = new String();
 
-    public static void creatGroup(Person myPerson, String groupName) {
+    public static void creatGroup(RegisterMenu myRegister,Person myPerson, String groupName) {
         Group newGroup = new Group();
         newGroup.groupName = groupName;
         newGroup.groupId = "@" + String.valueOf(myPerson.allMyGroap.size()) + String.valueOf(Calendar.getInstance().getTime().getTime()) + "**__**";
-        newGroup.groupUsers.add(myPerson);
         newGroup.admin = myPerson;
         newGroup.groupUsers.add(myPerson);
         myPerson.allMyGroap.add(newGroup);
+        myRegister.allRegisterGroup.add(newGroup) ;
     }
 
     public static void DMing(Group myGroup, Person myPerson, String newText) {

@@ -78,6 +78,7 @@ public class Communication {
         newChat.person2 = myPerson2;
         myPerson1.allPersonalChats.add(newChat);
         myPerson2.allPersonalChats.add(newChat);
+        myRegister.allRegistersPersonalChats.add(newChat) ;
         myRegister.chatOnBord = newChat;
 
     }

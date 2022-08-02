@@ -50,7 +50,6 @@ public class Input {
         split = sample.split(" ");
 
         if (split[0].equals("register")) {
-
             if (Pattern.compile("[^A-z0-9_ ]").matcher(split[1]).find()) {
                 System.out.println("username format is invalid");
                 registerflag = 1;
@@ -169,7 +168,6 @@ public class Input {
 
         if (accountMenu == 1) {
 
-
             if (sample.equals("help") && accountMenu == 1) {
                 System.out.println("exitApp \n" +
                         "change_username [user_name]\n" +
@@ -266,7 +264,9 @@ public class Input {
                 } else {
                     System.out.println("please login first!");
                 }
-            } else if (split[0].equals("choose_accountType")) {
+            }
+
+            else if (split[0].equals("choose_accountType")) {
                 if (successfulLog == 1) {
                     if (split[1].equals("General_Account")) {
                         if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
@@ -575,7 +575,8 @@ public class Input {
                         }
                         ff = 1;
                         break;
-                    } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                    }
+                    else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
                         if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState.equals("blocked")) {
                             System.out.println("the chat is blocked");
                         } else {
@@ -819,7 +820,7 @@ public class Input {
             }
 
             else if (split[0].equals("creatGroup")) {
-                Group.creatGroup(myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
+                Group.creatGroup(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
                 System.out.println("group is created");
             }
 
@@ -1086,7 +1087,6 @@ public class Input {
             else if (sample.equals("show suggested person")) {
                 Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
             }
-
 
             else if (sample.equals("show recent posts")) {
                Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.businessUsers );

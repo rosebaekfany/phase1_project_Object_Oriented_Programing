@@ -7,6 +7,8 @@ import view.Input;
 
 import java.util.*;
 
+import static temporary.CommercialGenres.*;
+
 public class Person {
 
     public String userType = "public";
@@ -29,7 +31,7 @@ public class Person {
     public ArrayList<Comment> allComment = new ArrayList<>();
     public ArrayList<Chat> allPersonalChats = new ArrayList<>();
     public ArrayList<Group> allMyGroap = new ArrayList<>();
-    public CommercialGenres[] favoriteGenres = new CommercialGenres[6];
+    public CommercialGenres[] favoriteGenres = {HEALTH_AND_CARE, FASHION, SCIENCE_AND_TECHNOLOGY, STOCK_MARKET, ARTS, GAMING};
     public CommercialGenres commercialGenre;
 
     public boolean equals(Person person) {

@@ -28,6 +28,10 @@ public class DatabaseUpdate {
         BussinessUserRepository.loadBussinessUsers(allRegister,conn);
         likedBussinessPostRepository.loadLikedPost(allRegister,conn);
         viewedBussinessPostRepository.loadviewPost(allRegister,conn);
+        chatRepository.loadChat(allRegister,conn);
+        groupRepasitory.loadGroup(allRegister,conn);
+        chatMassageReasitory.loadMassageChat(allRegister,conn);
+        groupMassageReasitory.loadMassageGroup(allRegister,conn);
 
     }
     public static void insertAll(RegisterMenu allRegister , Connection conn) throws SQLException {
@@ -42,6 +46,10 @@ public class DatabaseUpdate {
         BussinessUserRepository.insertBussinessUsers(allRegister,conn);
         likedBussinessPostRepository.insertLikedPost(allRegister,conn);
         viewedBussinessPostRepository.insertviewPost(allRegister,conn);
+        chatRepository.insertChat(allRegister,conn);
+        groupRepasitory.insertGroup(allRegister,conn);
+        chatMassageReasitory.insertNassageChat(allRegister,conn);
+        groupMassageReasitory.insertMassageGroup(allRegister,conn);
     }
 }
 
@@ -53,33 +61,38 @@ class UserRepository {
                 statement
                         .executeQuery(
                                 "SELECT * FROM allregister");
-        while (resultSet.next()) {
-            int i;
-            Person user = new Person();
-            user.userID = (resultSet.getString("userId"));
-            user.userType = (resultSet.getString("userType"));
-            user.securityQuestion = (resultSet.getString("securityQuestion"));
-            user.name = (resultSet.getString("name"));
-            user.userAccountType = (resultSet.getString("userAccountType"));
-            user.bio = (resultSet.getString("bio"));
-            user.userPasswords = (resultSet.getString("userPassword"));
-            for (i = 0; i < 6; i++) {
-                if (resultSet.getInt("gene_HEALTH_AND_CARE") == i) {
-                    user.favoriteGenres[i] = HEALTH_AND_CARE;
-                } else if (resultSet.getInt("gene_FASHION") == i) {
-                    user.favoriteGenres[i] = FASHION;
-                } else if (resultSet.getInt("gene_SCIENCE_AND_TECHNOLOGY") == i) {
-                    user.favoriteGenres[i] = SCIENCE_AND_TECHNOLOGY;
-                } else if (resultSet.getInt("gene_STOCK_MARKET") == i) {
-                    user.favoriteGenres[i] = STOCK_MARKET;
-                } else if (resultSet.getInt("gene_ARTS") == i) {
-                    user.favoriteGenres[i] = ARTS;
-                } else if (resultSet.getInt("gene_GAMING") == i) {
-                    user.favoriteGenres[i] = GAMING;
-                }
 
+        while (resultSet.next()) {
+            if(resultSet.getString("userId").equals("1")){}
+            else{
+                int i;
+                Person user = new Person();
+                user.userID = (resultSet.getString("userId"));
+                user.userType = (resultSet.getString("userType"));
+                user.securityQuestion = (resultSet.getString("securityQuestion"));
+                user.name = (resultSet.getString("name"));
+                user.userAccountType = (resultSet.getString("userAccountType"));
+                user.bio = (resultSet.getString("bio"));
+                user.userPasswords = (resultSet.getString("userPassword"));
+                for (i = 0; i < 6; i++) {
+                    if (resultSet.getInt("gene_HEALTH_AND_CARE") == i) {
+                        user.favoriteGenres[i] = HEALTH_AND_CARE;
+                    } else if (resultSet.getInt("gene_FASHION") == i) {
+                        user.favoriteGenres[i] = FASHION;
+                    } else if (resultSet.getInt("gene_SCIENCE_AND_TECHNOLOGY") == i) {
+                        user.favoriteGenres[i] = SCIENCE_AND_TECHNOLOGY;
+                    } else if (resultSet.getInt("gene_STOCK_MARKET") == i) {
+                        user.favoriteGenres[i] = STOCK_MARKET;
+                    } else if (resultSet.getInt("gene_ARTS") == i) {
+                        user.favoriteGenres[i] = ARTS;
+                    } else if (resultSet.getInt("gene_GAMING") == i) {
+                        user.favoriteGenres[i] = GAMING;
+                    }
+
+                }
+                allRegister.allRegisters.add(user);
             }
-            allRegister.allRegisters.add(user);
+
         }
 
         statement.close();
@@ -92,9 +105,8 @@ class UserRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO allregister(userType, userPassword, bio, name, userAccountType" +
-                            " securityQuestion ,userId , gene_HEALTH_AND_CARE , gene_FASHION , gene_SCIENCE_AND_TECHNOLOGY , gene_STOCK_MARKET , gene_ARTS , gene_GAMING) " +
-                            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO allregister(userType, userPassword, bio, name, userAccountType , securityQuestion ,userId , gene_HEALTH_AND_CARE , gene_FASHION , gene_SCIENCE_AND_TECHNOLOGY , gene_STOCK_MARKET , gene_ARTS , gene_GAMING) " +
+                            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
             preparedStatementA.setString(1, allRegister.allRegisters.get(j).userType);
             preparedStatementA.setString(2, allRegister.allRegisters.get(j).userPasswords);
@@ -495,65 +507,85 @@ class RequestMassageRepository {
             int i;
             for (i = 0; i < allRegister.allRegisters.size(); i++) {
                 if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("userId"))) {
-                    if(resultSet.getString("1")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("1"));
+                    if(resultSet.getString("one").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("one"));
                     }
-                    else if(resultSet.getString("2")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("2"));
+                    if(resultSet.getString("two").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("two"));
                     }
-                    else if(resultSet.getString("3")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("3"));
+                    if(resultSet.getString("three").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("three"));
                     }
-                    else if(resultSet.getString("4")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("4"));
+                    if(resultSet.getString("four").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("four"));
                     }
-                    else if(resultSet.getString("5")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("5"));
+                    if(resultSet.getString("five").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("five"));
                     }
-                    else if(resultSet.getString("6")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("6"));
+                    if(resultSet.getString("six").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("six"));
                     }
-                    else if(resultSet.getString("7")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("7"));
+                    if(resultSet.getString("seven").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("seven"));
                     }
-                    else if(resultSet.getString("8")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("8"));
+                    if(resultSet.getString("eight").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("eight"));
                     }
-                    else if(resultSet.getString("9")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("9"));
+                    if(resultSet.getString("nine").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("nine"));
                     }
-                    else if(resultSet.getString("10")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("10"));
+                    if(resultSet.getString("ten").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("ten"));
                     }
-                    else if(resultSet.getString("11")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("11"));
+                    if(resultSet.getString("eleven").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("eleven"));
                     }
-                    else if(resultSet.getString("12")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("12"));
+                    if(resultSet.getString("twelve").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("twelve"));
                     }
-                    else if(resultSet.getString("13")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("13"));
+                    if(resultSet.getString("thirteen").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("thirteen"));
                     }
-                    else if(resultSet.getString("14")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("14"));
+                    if(resultSet.getString("fourteen").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("fourteen"));
                     }
-                    else if(resultSet.getString("15")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("15"));
+                    if(resultSet.getString("fifteen").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("fifteen"));
                     }
-                    else if(resultSet.getString("16")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("16"));
+                    if(resultSet.getString("sixteen").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("sixteen"));
                     }
-                    else if(resultSet.getString("17")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("17"));
+                    if(resultSet.getString("seventeen").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("seventeen"));
                     }
-                    else if(resultSet.getString("18")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("18"));
+                    if(resultSet.getString("eightteen").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("eightteen"));
                     }
-                    else if(resultSet.getString("19")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("19"));
+                    if(resultSet.getString("nineteen").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("nineteen"));
                     }
-                    else if(resultSet.getString("20")!=null) {
-                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("20"));
+                    if(resultSet.getString("twenty").equals(" ")) {}
+                    else{
+                        allRegister.allRegisters.get(i).massageRequests.add(resultSet.getString("twenty"));
                     }
 
                     break;
@@ -568,17 +600,42 @@ class RequestMassageRepository {
     }
 
     public static void insertRequestMassage(RegisterMenu allRegister, Connection connection) throws SQLException {
-        int i, j;
+        int i=0, j , h;
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "DELETE FROM massagerequests");
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO massagerequests(userId,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20) " +
+                    "INSERT INTO massagerequests(userId,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,eightteen,nineteen,twenty) " +
                             "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
             for(i=0 ; i<allRegister.allRegisters.get(j).massageRequests.size() ; i++){
                 preparedStatementA.setString(22-allRegister.allRegisters.get(j).massageRequests.size()+i,allRegister.allRegisters.get(j).massageRequests.get(i));
+            }
+            if(i<20){
+                for(h=2 ; h<22-i ; h++)
+                preparedStatementA.setString(h," ");
+                /*preparedStatementA.setString(3," ");
+                preparedStatementA.setString(4," ");
+                preparedStatementA.setString(5," ");
+                preparedStatementA.setString(6," ");
+                preparedStatementA.setString(7," ");
+                preparedStatementA.setString(8," ");
+                preparedStatementA.setString(9," ");
+                preparedStatementA.setString(10," ");
+                preparedStatementA.setString(11," ");
+                preparedStatementA.setString(12," ");
+                preparedStatementA.setString(13," ");
+                preparedStatementA.setString(14," ");
+                preparedStatementA.setString(15," ");
+                preparedStatementA.setString(16," ");
+                preparedStatementA.setString(17," ");
+                preparedStatementA.setString(18," ");
+                preparedStatementA.setString(19," ");
+                preparedStatementA.setString(20," ");
+                preparedStatementA.setString(21," ");*/
+
+
             }
             preparedStatementA.executeUpdate();
 
@@ -887,7 +944,7 @@ class viewedBussinessPostRepository {
 
 }
 
-/*class chatRepository{
+class chatRepository{
 
     public static void loadChat(RegisterMenu allRegister, Connection connection) throws SQLException {
         int i , j;
@@ -913,6 +970,7 @@ class viewedBussinessPostRepository {
             myChat.blockState=resultSet.getString("blockState");
             allRegister.allRegisters.get(i).allPersonalChats.add(myChat) ;
             allRegister.allRegisters.get(j).allPersonalChats.add(myChat) ;
+            allRegister.allRegistersPersonalChats.add(myChat) ;
 
         }
         statement.close();
@@ -923,18 +981,526 @@ class viewedBussinessPostRepository {
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "DELETE FROM chat");
         preparedStatement.executeUpdate();
-        PreparedStatement preparedStatementA = connection.prepareStatement(
-                "INSERT INTO chat(person1,person2,blockState) " +
-                        "VALUES(?, ?, ?)");
-        for(i=0 ; i<allRegister.allRegisters.size() ; i++)
-        preparedStatementA.setString(1,personLocalDateEntry.getKey().userID);
-        preparedStatementA.setString(2, allRegister.allbussinessPost.get(j).postID);
-        preparedStatementA.setString(3,personLocalDateEntry.getValue().toString());
-        preparedStatement.executeUpdate();
+        for(i=0 ; i<allRegister.allRegistersPersonalChats.size() ; i++){
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO chat(person1,person2,blockState) " +
+                            "VALUES(?, ?, ?)");
+            preparedStatementA.setString(1,allRegister.allRegistersPersonalChats.get(i).person1.userID);
+            preparedStatementA.setString(2,allRegister.allRegistersPersonalChats.get(i).person2.userID);
+            preparedStatementA.setString(3,allRegister.allRegistersPersonalChats.get(i).blockState);
+            preparedStatement.executeUpdate();
+        }
+
     }
 
-}*/
+}
 
+class groupRepasitory{
+
+    public static void loadGroup(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i , j;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM groupp");
+        while (resultSet.next()) {
+            Group myGroup = new Group();
+            myGroup.groupId=resultSet.getString("groupId") ;
+            myGroup.groupId=resultSet.getString("admin") ;
+            myGroup.groupName=resultSet.getString("groupName") ;
+            if(resultSet.getString("1").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("1"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("2").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("2"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("3").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("3"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("4").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("4"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("5").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("5"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("6").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("6"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("7").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("7"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("8").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("8"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("9").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("9"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("10").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("10"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("11").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("11"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("12").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("12"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("13").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("13"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("14").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("14"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("15").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("15"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("16").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("16"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("17").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("17"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("18").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("18"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("19").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("19"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("20").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("20"))){
+                        myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+
+            if(resultSet.getString("1b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("1b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("2b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("2b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("3b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("3b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("4b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("4b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("5b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("5b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("6b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("6b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("7b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("7b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("8b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("8b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("9b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("9b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+            if(resultSet.getString("10b").equals(" ")){}
+            else{
+                for(i=0 ; i<allRegister.allRegisters.size() ; i++){
+                    if(allRegister.allRegisters.get(i).userID.equals(resultSet.getString("10b"))){
+                        myGroup.bannedUsers.add(allRegister.allRegisters.get(i));
+                        break;
+                    }
+                }
+            }
+
+
+
+        }
+        statement.close();
+    }
+
+    public static void insertGroup(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j , h;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM groupp");
+        preparedStatement.executeUpdate();
+        for(i=0 ; i<allRegister.allRegisterGroup.size() ; i++) {
+            PreparedStatement preparedStatementA = connection.prepareStatement(
+                    "INSERT INTO groupp(groupName,admin,groupId,1u,2u,3u,4u,5u,6u,7u,8u,9u,10u,11u,12u,13u,14u,15u,16u,17u,18u,19u,20u,1b,2b,3b,4b,5b,6b,7b,8b,9b,10b) " +
+                            "VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            preparedStatementA.setString(1, allRegister.allRegisterGroup.get(i).groupName);
+            preparedStatementA.setString(2, allRegister.allRegisterGroup.get(i).admin.userID);
+            preparedStatementA.setString(3, allRegister.allRegisterGroup.get(i).groupId);
+            for(j=0 ; j<allRegister.allRegisterGroup.get(i).groupUsers.size() ; j++){
+                preparedStatement.setString(3+j,allRegister.allRegisterGroup.get(i).groupUsers.get(j).userID);
+            }
+            if(j<20){
+                for(h=j+4; h<24 ; h++) {
+                    preparedStatement.setString(h, " ");
+                }
+            }
+            for(j=0 ; j<allRegister.allRegisterGroup.get(i).bannedUsers.size() ; j++){
+                preparedStatement.setString(23+j,allRegister.allRegisterGroup.get(i).bannedUsers.get(j).userID);
+            }
+            if(j<10){
+                for(h=j+24; h<34 ; h++) {
+                    preparedStatement.setString(h, " ");
+                }
+            }
+            preparedStatement.executeUpdate();
+        }
+    }
+
+}
+
+class chatMassageReasitory{
+
+    public static void loadMassageChat(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i , j;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM allpersonalchat");
+        while (resultSet.next()) {
+
+            Comment myPost = new Comment();
+            myPost.postID = resultSet.getString("postId");
+            myPost.usersPostId = resultSet.getString("usersPostId");
+            myPost.forwarded = resultSet.getString("forwarded");
+            myPost.edited = resultSet.getString("edited");
+            myPost.script = resultSet.getString("script");
+            Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
+            myPost.postDate = myDate;
+            if(resultSet.getInt("BorG")==0){
+                myPost.commercialPost=false ;
+            }
+            else if(resultSet.getInt("BorG")==1){
+                myPost.commercialPost=true ;
+            }
+
+            for(i=0 ; i<allRegister.allRegistersPersonalChats.size() ; i++){
+                if(allRegister.allRegistersPersonalChats.get(i).person1.userID.equals(resultSet.getString("person1")) ){
+                    for(j=0 ; j<allRegister.allRegistersPersonalChats.get(i).allTexts.size() ; j++){
+                        if(allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postID.equals(resultSet.getString("postOfComment"))){
+                            myPost.postOfTheComment = allRegister.allRegistersPersonalChats.get(i).allTexts.get(j) ;
+
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            for(i=0 ; i<allRegister.allRegistersPersonalChats.size() ; i++){
+                if(allRegister.allRegistersPersonalChats.get(i).person1.userID.equals(resultSet.getString("person1"))  && allRegister.allRegistersPersonalChats.get(i).person2.userID.equals(resultSet.getString("person2")) ){
+                    allRegister.allRegistersPersonalChats.get(i).allTexts.add(myPost) ;
+                    if(myPost.usersPostId.equals(allRegister.allRegistersPersonalChats.get(i).person1.userID)){
+                        allRegister.allRegistersPersonalChats.get(i).person1Texts.add(myPost);
+                        break;
+                    }
+                    else if(myPost.usersPostId.equals(allRegister.allRegistersPersonalChats.get(i).person2.userID)){
+                        allRegister.allRegistersPersonalChats.get(i).person2Texts.add(myPost);
+                        break;
+                    }
+                    break;
+                }
+            }
+
+
+
+        }
+        statement.close();
+    }
+
+    public static void insertNassageChat(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j , h , ff=0 ;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM allpersonalchat");
+        preparedStatement.executeUpdate();
+        for(i=0 ; i<allRegister.allRegistersPersonalChats.size() ; i++) {
+            for(j=0 ; j<allRegister.allRegistersPersonalChats.get(i).allTexts.size() ; j++){
+                PreparedStatement preparedStatementA = connection.prepareStatement(
+                        "INSERT INTO allpersonalchat(person1,person2,postId,usersPostId,forwarded,edited,script,postOfComment,postDate) " +
+                                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                preparedStatementA.setString(1, allRegister.allRegistersPersonalChats.get(i).person1.userID);
+                preparedStatementA.setString(2, allRegister.allRegistersPersonalChats.get(i).person2.userID);
+                preparedStatementA.setString(3, allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postID);
+                preparedStatementA.setString(4, allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).usersPostId);
+                preparedStatementA.setString(5, allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).forwarded);
+                preparedStatementA.setString(6, allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).edited);
+                preparedStatementA.setString(7, allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).script);
+                for(h=0 ; h<allRegister.allRegistersPersonalChats.get(i).allReply.size() ; h++){
+                    if(allRegister.allRegistersPersonalChats.get(i).allReply.get(h).postID.equals(allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postID)){
+                        preparedStatementA.setString(8, allRegister.allRegistersPersonalChats.get(i).allReply.get(h).postOfTheComment.postID);
+                        ff=1 ;
+                        break;
+                    }
+                }
+                if(ff==0){
+                    preparedStatementA.setString(8, " ");
+                }
+                preparedStatementA.setString(9, String.valueOf( allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postDate.getTime()));
+                preparedStatement.executeUpdate();
+            }
+
+        }
+    }
+
+}
+
+class groupMassageReasitory{
+
+    public static void loadMassageGroup(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i , j;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet =
+                statement
+                        .executeQuery(
+                                "SELECT * FROM allgroups");
+        while (resultSet.next()) {
+
+            Comment myPost = new Comment();
+            myPost.postID = resultSet.getString("postId");
+            myPost.usersPostId = resultSet.getString("usersPostId");
+            myPost.forwarded = resultSet.getString("forwarded");
+            myPost.edited = resultSet.getString("edited");
+            myPost.script = resultSet.getString("script");
+            Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
+            myPost.postDate = myDate;
+            if(resultSet.getInt("BorG")==0){
+                myPost.commercialPost=false ;
+            }
+            else if(resultSet.getInt("BorG")==1){
+                myPost.commercialPost=true ;
+            }
+
+            for(i=0 ; i<allRegister.allRegisterGroup.size() ; i++){
+                if(allRegister.allRegisterGroup.get(i).groupId.equals(resultSet.getString("groupId"))){
+                    for(j=0 ; j<allRegister.allRegisterGroup.get(i).allTexts.size() ; j++){
+                        if(allRegister.allRegisterGroup.get(i).allTexts.get(j).postID.equals(resultSet.getString("postOfComment"))){
+                            myPost.postOfTheComment = allRegister.allRegisterGroup.get(i).allTexts.get(j) ;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            for(i=0 ; i<allRegister.allRegisterGroup.size() ; i++){
+                if(allRegister.allRegisterGroup.get(i).groupId.equals(resultSet.getString("groupId"))){
+                    allRegister.allRegisterGroup.get(i).allTexts.add(myPost) ;
+                    break;
+                }
+            }
+
+        }
+        statement.close();
+    }
+
+    public static void insertMassageGroup(RegisterMenu allRegister, Connection connection) throws SQLException {
+        int i, j , h , ff=0 ;
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM allgroups");
+        preparedStatement.executeUpdate();
+
+        for(i=0 ; i<allRegister.allRegisterGroup.size() ; i++) {
+            for(j=0 ; j<allRegister.allRegisterGroup.get(i).allTexts.size() ; j++){
+                PreparedStatement preparedStatementA = connection.prepareStatement(
+                        "INSERT INTO allgroups(groupId,postId,usersPostId,forwarded,edited,script,postOfComment,postDate) " +
+                                "VALUES( ?, ?, ?, ?, ?, ?, ?, ?)");
+                preparedStatementA.setString(1, allRegister.allRegisterGroup.get(i).groupId);
+                preparedStatementA.setString(2, allRegister.allRegisterGroup.get(i).allTexts.get(j).postID);
+                preparedStatementA.setString(3, allRegister.allRegisterGroup.get(i).allTexts.get(j).usersPostId);
+                preparedStatementA.setString(4, allRegister.allRegisterGroup.get(i).allTexts.get(j).forwarded);
+                preparedStatementA.setString(5, allRegister.allRegisterGroup.get(i).allTexts.get(j).edited);
+                preparedStatementA.setString(6, allRegister.allRegisterGroup.get(i).allTexts.get(j).script);
+                for(h=0 ; h<allRegister.allRegisterGroup.get(i).allReply.size() ; h++){
+                    if(allRegister.allRegisterGroup.get(i).allReply.get(h).postID.equals(allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postID)){
+                        preparedStatementA.setString(7, allRegister.allRegisterGroup.get(i).allReply.get(h).postOfTheComment.postID);
+                        ff=1 ;
+                        break;
+                    }
+                }
+                if(ff==0){
+                    preparedStatementA.setString(7, " ");
+                }
+                preparedStatementA.setString(8, String.valueOf( allRegister.allRegisterGroup.get(i).allTexts.get(j).postDate.getTime()));
+                preparedStatement.executeUpdate();
+            }
+
+        }
+    }
+
+}
 
 
 
