@@ -1,5 +1,6 @@
 package com.yrtwitter.project_phase2.gui;
 
+import com.yrtwitter.project_phase2.Main;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
 import com.yrtwitter.project_phase2.temporary.CommercialGenres;
 import javafx.fxml.FXML;
@@ -77,6 +78,17 @@ public class Setting extends MainPage implements Initializable {
 
         //theme
         themeChoiceBox.getItems().addAll(theme);
+        if (darkTheme){
+            themeChoiceBox.setValue("Dark");
+        } else {
+            themeChoiceBox.setValue("Light");
+        }
+
+        //userid
+        userIdTextField.setText(RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).userID);
+
+        //bio
+        bioTextField.setText(RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).bio);
 
         //spinners
         spinners[0] = healthSp;
@@ -85,55 +97,57 @@ public class Setting extends MainPage implements Initializable {
         spinners[3] = marketSp;
 
         //logoutButton
-        logoutButton = new Button("logout" , backPane);
-        logoutButton.setLayoutY(650.0);
-        logoutButton.setLayoutX(20.0);
-        logoutButton.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
-        Image logoutImage = new Image("images/logout_icon.png");
-        logout_icon = new ImageView(logoutImage);
-        logoutButton.setGraphic(logout_icon);
+//        logoutButton = new Button("logout" , backPane);
+//        logoutButton.setLayoutY(20.0);
+//        logoutButton.setLayoutX(20.0);
+//        logoutButton.setPrefWidth(50.0);
+//        logoutButton.setPrefHeight(50.0);
+//        logoutButton.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
+//        Image logoutImage = new Image(Main.class.getResource("images/logout_icon.png").toExternalForm());
+//        logout_icon = new ImageView(logoutImage);
+//        logoutButton.setGraphic(logout_icon);
         logoutButton.setOnAction(event -> logout());
-        logoutButton.setOnAction(event -> changePass());
-        logoutButton.setStyle("-fx-background-color: #535353FF");
-        logoutButton.setStyle("-fx-border-color: #2499F8FF");
-        logoutButton.setStyle("-fx-border-width: 6px");
-        logoutButton.setStyle("-fx-border-radius: 20px");
-        logoutButton.setTextFill(Color.rgb(36,153,248));
+//        logoutButton.setStyle("-fx-background-color: #535353FF");
+//        logoutButton.setStyle("-fx-border-color: #2499F8FF");
+//        logoutButton.setStyle("-fx-border-width: 6px");
+//        logoutButton.setStyle("-fx-border-radius: 20px");
+//        logoutButton.setTextFill(Color.rgb(36,153,248));
 
         //changePassword
-        changePassword = new Button("change password", backPane);
-        changePassword.setLayoutY(730.0);
-        changePassword.setLayoutX(20.0);
-        changePassword.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
-        Image changePassImage = new Image("images/password_icon.png");
-        changePass_icon = new ImageView(changePassImage);
-        logoutButton.setGraphic(changePass_icon);
+//        changePassword = new Button("change password", backPane);
+//        changePassword.setLayoutY(730.0);
+//        changePassword.setLayoutX(20.0);
+//        changePassword.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
+//        Image changePassImage = new Image(Main.class.getResource("images\\password_icon.png").toExternalForm());
+//        changePass_icon = new ImageView(changePassImage);
+//        logoutButton.setGraphic(changePass_icon);
         changePassword.setOnAction(event -> changePass());
-        changePassword.setStyle("-fx-background-color: #535353FF");
-        changePassword.setStyle("-fx-border-color: #2499F8FF");
-        changePassword.setStyle("-fx-border-width: 6px");
-        changePassword.setStyle("-fx-border-radius: 20px");
-        changePassword.setTextFill(Color.rgb(36,153,248));
+//        changePassword.setStyle("-fx-background-color: #535353FF");
+//        changePassword.setStyle("-fx-border-color: #2499F8FF");
+//        changePassword.setStyle("-fx-border-width: 6px");
+//        changePassword.setStyle("-fx-border-radius: 20px");
+//        changePassword.setTextFill(Color.rgb(36,153,248));
 
         //done
-        doneButton = new Button("DONE" , backPane);
-        doneButton.setLayoutY(810.0);
-        doneButton.setLayoutX(20.0);
-        doneButton.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
+//        doneButton = new Button("DONE" , backPane);
+//        doneButton.setLayoutY(810.0);
+//        doneButton.setLayoutX(20.0);
+//        doneButton.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
         doneButton.setOnAction(event -> done());
-        doneButton.setStyle("-fx-background-color: #535353FF");
-        doneButton.setStyle("-fx-border-color: #2499F8FF");
-        doneButton.setStyle("-fx-border-width: 6px");
-        doneButton.setStyle("-fx-border-radius: 20px");
-        doneButton.setTextFill(Color.rgb(36,153,248));
+//        doneButton.setStyle("-fx-background-color: #535353FF");
+//        doneButton.setStyle("-fx-border-color: #2499F8FF");
+//        doneButton.setStyle("-fx-border-width: 6px");
+//        doneButton.setStyle("-fx-border-radius: 20px");
+//        doneButton.setTextFill(Color.rgb(36,153,248));
 
         //guide
-        guide = new Label();
-        backPane.getChildren().add(guide);
-        guide.setLayoutY(880.0);
-        guide.setLayoutX(20.0);
-        guide.setTextFill(Color.RED);
-        guide.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
+        guide.setVisible(false);
+//        guide = new Label();
+//        backPane.getChildren().add(guide);
+//        guide.setLayoutY(880.0);
+//        guide.setLayoutX(20.0);
+//        guide.setTextFill(Color.RED);
+//        guide.setFont(Font.font("System" , FontWeight.BOLD , 20.0));
 
     }
 
@@ -173,6 +187,10 @@ public class Setting extends MainPage implements Initializable {
     private String setUserId(String newString){
         int i, flag = 0;
         String successful = "successful";
+        if (newString.equals("")){
+            successful = "enter your id";
+            return successful;
+        }
         if (newString.charAt(0) != '@') {
             successful = "@ should be at first";
             flag = 1;

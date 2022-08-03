@@ -21,7 +21,7 @@ public class Main extends Application {
         SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");
         SwitchScenes.window.setScene(scene);
         SwitchScenes.window.setWidth(800.0);
-        SwitchScenes.window.setHeight(600.0);
+        SwitchScenes.window.setHeight(640.0);
         SwitchScenes.window.show();
     }
 

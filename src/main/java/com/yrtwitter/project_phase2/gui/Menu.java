@@ -42,23 +42,28 @@ public class Menu extends SwitchScenes implements Initializable {
     }
 
     public void openHome(){
-        switchScenes("home.fxml");
+        onPage = OnPage.HOME;
+        switchScenes("main_page.fxml");
     }
 
     public void openMyPage(){
-        switchScenes("myPage.fxml");
+        onPage = OnPage.MY_PAGE;
+        switchScenes("main_page.fxml");
     }
 
     public void openMyChats(){
-        switchScenes("myContacts.fxml");
+        onPage = OnPage.CONTACTS;
+        switchScenes("main_page.fxml");
     }
 
     public void openSearch(){
-        switchScenes("search.fxml");
+        onPage = OnPage.SEARCH;
+        switchScenes("main_page.fxml");
     }
 
     public void openSetting(){
-        switchScenes("setting_.fxml");
+        onPage = OnPage.SETTING;
+        switchScenes("main_page.fxml");
     }
 
 

@@ -1,10 +1,15 @@
 package com.yrtwitter.project_phase2.gui;
 
+import com.yrtwitter.project_phase2.Main;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -130,6 +135,7 @@ public class Login extends SwitchScenes implements Initializable {
             if (RegisterMenu.allRegisters.get(i).name.equals(username)) {
                 if (RegisterMenu.allRegisters.get(i).userPasswords.equals(password)) {
                     RegisterMenu.logedInAccount = i;
+                    onPage = OnPage.START;
                     switchScenes("main_page.fxml");
                     return;
                 } else {

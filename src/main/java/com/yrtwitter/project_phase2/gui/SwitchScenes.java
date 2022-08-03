@@ -22,6 +22,13 @@ public class SwitchScenes {
     public static Stage window = new Stage();
     public boolean darkTheme = true;
 
+    public static OnPage onPage;
+
+
+    public void switchScenes (String[] fxmls){
+
+    }
+
 
     public void switchScenes (String fxml) {
         double preWidth = window.getWidth();
@@ -29,15 +36,13 @@ public class SwitchScenes {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
         try {
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-            Node node;
-            node.
             SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");
             SwitchScenes.window.setScene(scene);
             window.setHeight(preHeight);
             window.setWidth(preWidth);
             SwitchScenes.window.show();
         } catch (Exception e){
-            e.fillInStackTrace();
+            System.out.println(e.fillInStackTrace());
         }
 
 

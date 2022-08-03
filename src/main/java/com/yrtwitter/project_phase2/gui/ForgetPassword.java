@@ -186,6 +186,10 @@ public class ForgetPassword extends SwitchScenes implements Initializable {
 
         //favoriteFlowerTextField
         favoriteFlowerTextField.setText("");
-        switchScenes("login.fxml");
+        if (RegisterMenu.logedInAccount == -1){
+            switchScenes("login.fxml");
+        } else {
+            switchScenes("main_page.fxml");
+        }
     }
 }
