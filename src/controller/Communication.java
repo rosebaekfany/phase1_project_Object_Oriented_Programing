@@ -76,6 +76,7 @@ public class Communication {
         Chat newChat = new Chat();
         newChat.person1 = myPerson1;
         newChat.person2 = myPerson2;
+        newChat.chatId="@"+String.valueOf(Calendar.getInstance().getTime().getTime())+"*__*";
         myPerson1.allPersonalChats.add(newChat);
         myPerson2.allPersonalChats.add(newChat);
         myRegister.allRegistersPersonalChats.add(newChat) ;

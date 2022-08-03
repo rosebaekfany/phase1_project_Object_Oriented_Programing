@@ -12,6 +12,7 @@ public class Chat {
     public ArrayList<Post> person2Texts = new ArrayList<>();
     public Person person1 = new Person();
     public Person person2 = new Person();
+    public String chatId = new String() ;
     public String blockState = new String("");
 
 
