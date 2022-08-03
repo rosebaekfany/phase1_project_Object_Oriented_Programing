@@ -3,6 +3,10 @@ package view;
 import controller.*;
 import media.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,7 +20,7 @@ public class Input {
     public int i, j;
     public int registerMenu = 0, accountMenu = 0;
     public int registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0, selectPostFlag = 0;
-    public int startChat = 0 , enterGroup=0 ;
+    public int startChat = 0, enterGroup = 0;
 
     public void backToDefault() {
         accountMenu = 0;
@@ -28,13 +32,14 @@ public class Input {
         postflag = 0;
         selectPostFlag = 0;
         startChat = 0;
-        enterGroup=0;
+        enterGroup = 0;
     }
 
-    public void register_menu() {
+    public void register_menu(Connection conn) throws SQLException {
         System.out.println("Twitter");
         System.out.println("by yekta and rosa");
         registerMenu = 1;
+        DatabaseUpdate.loadAll(myRegister,conn) ;
 
     }
 
@@ -45,18 +50,19 @@ public class Input {
         split = sample.split(" ");
 
         if (split[0].equals("register")) {
-
             if (Pattern.compile("[^A-z0-9_ ]").matcher(split[1]).find()) {
                 System.out.println("username format is invalid");
                 registerflag = 1;
             } else if (Pattern.compile("[^A-z0-9_ ]").matcher(split[2]).find()) {
                 System.out.println("password format is invalid");
                 registerflag = 1;
-            } else {
+            }
+            else {
                 for (i = 0; i < myRegister.allRegisters.size(); i++) {
                     if (myRegister.allRegisters.get(i).name.equals(split[1])) {
                         System.out.println("a user exists with this username");
                         registerflag = 1;
+                        break;
                     }
                 }
                 if (registerflag == 0) {
@@ -162,7 +168,6 @@ public class Input {
 
         if (accountMenu == 1) {
 
-
             if (sample.equals("help") && accountMenu == 1) {
                 System.out.println("exitApp \n" +
                         "change_username [user_name]\n" +
@@ -206,7 +211,26 @@ public class Input {
                         "showChatWith [userId]\n" +
                         "block [userId]\n" +
                         "search -[text]\n" +
-                        "showSelectedDm [postId]"
+                        "showSelectedDm [postId]\n" +
+                        "creatGroup -[groupName]\n" +
+                        "showAllGroups\n" +
+                        "enterGroup [groupId]\n" +
+                        "addUserToGroup [uerId] [groupId]\n" +
+                        "addDm -[text]\n" +
+                        "editDm [postId] -[text]\n" +
+                        "likeDm [postId]\n" +
+                        "replyDm [postId] -[text]\n" +
+                        "forward [postId] [groupId]\n" +
+                        "deleteDm [postId]\n" +
+                        "exit Group\n" +
+                        "changeGroupName -[newName]\n" +
+                        "changeGroupId -[newId]\n" +
+                        "removeUser [userId]\n" +
+                        "bannUser [userId]\n" +
+                        "show users\n" +
+                        "showThisGroup\n" +
+                        ""
+
                 );
             }
 
@@ -242,11 +266,11 @@ public class Input {
                 }
             }
 
-            else if(split[0].equals("choose_accountType")){ // ToDo
+            else if (split[0].equals("choose_accountType")) {
                 if (successfulLog == 1) {
-                    if (split[1].equals("General_Account")){
+                    if (split[1].equals("General_Account")) {
                         if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
-                                .equals("Business_Account")){
+                                .equals("Business_Account")) {
                             Edit.changeAccountTypeToGeneral((BusinessUser)
                                     myRegister.allRegisters.get(myRegister.logedInAccount));
                             System.out.println("successful change");
@@ -257,14 +281,25 @@ public class Input {
                     } else if (split[1].equals("Business_Account")) {
                         System.out.println("Enter your business phoneNumber");
                         String phoneNumber = sc.nextLine();
-                        String regexStr = "^(\\d{4,17})$";
+                        System.out.println("choose your business genre between");
+                        System.out.println("    HEALTH_AND_CARE,\n" +
+                                "    FASHION,\n" +
+                                "    SCIENCE_AND_TECHNOLOGY,\n" +
+                                "    STOCK_MARKET,\n" +
+                                "    ARTS,\n" +
+                                "    GAMING;");
+                        String commercialGenre = sc.nextLine();
+                        String regexStr2 ="^(HEALTH_AND_CARE)$|^(FASHION)$|^(SCIENCE_AND_TECHNOLOGY)$|^(STOCK_MARKET)$|^(ARTS)$|^(GAMING)$";
+                        Pattern pattern2 = Pattern.compile(regexStr2);
+                        Matcher matcher2 = pattern2.matcher(commercialGenre);
+                         String regexStr = "^(\\d{4,17})$";
                         Pattern pattern = Pattern.compile(regexStr);
-                        Matcher matcher  = pattern.matcher(phoneNumber);
-                        if (matcher.matches()) {
+                        Matcher matcher = pattern.matcher(phoneNumber);
+                        if (matcher.matches() && matcher2.matches()) {
                             if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
                                     .equals("General_Account")) {
-                                BusinessUser myBusinessUser =Edit.changeAccountTypeToBusiness
-                                        (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber);
+                                BusinessUser myBusinessUser = Edit.changeAccountTypeToBusiness
+                                        (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber , commercialGenre);
                                 myRegister.businessUsers.add(myBusinessUser);
                                 for (BusinessUser businessUser : myRegister.businessUsers) {
                                     System.out.println(businessUser.name);
@@ -284,13 +319,17 @@ public class Input {
                                 System.out.println("your account is already Business_Account");
                             }
                         } else {
-                            System.out.println("Invalid phoneNumber format");
+                            if (!matcher.matches()){
+                                System.out.println("Invalid phoneNumber format");
+                            } else {
+                                System.out.println("invalid business genre");
+                            }
+
                         }
                     } else {
                         System.out.println("choose between General_Account or Business_Account");
                     }
-                }
-                else{
+                } else {
                     System.out.println("please login first!");
                 }
             }
@@ -408,6 +447,8 @@ public class Input {
                     if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                         for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                             if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                myRegister.allRegisters.get(i).posts.get(j).viewedUsers.add(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
+                                myRegister.allRegisters.get(myRegister.logedInAccount).viewedPosts.add(myRegister.allRegisters.get(i).posts.get(j)) ;
                                 Show.show_selectedPost(myRegister, myRegister.allRegisters.get(i).posts.get(j));
                                 ff = 1;
                                 selectPostFlag = 1;
@@ -518,7 +559,7 @@ public class Input {
 
             else if (sample.equals("enterMainPage")) {
                 myRegister.allRegisters.get(myRegister.logedInAccount).makeMainPage(myRegister.businessUsers);
-                Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount),myRegister.businessUsers);
+                Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
             }
 
             else if (split[0].equals("ChatWith")) {
@@ -534,7 +575,8 @@ public class Input {
                         }
                         ff = 1;
                         break;
-                    } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                    }
+                    else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
                         if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState.equals("blocked")) {
                             System.out.println("the chat is blocked");
                         } else {
@@ -661,7 +703,7 @@ public class Input {
                                     break;
                                 }
                             }
-                            if(ff==1) {
+                            if (ff == 1) {
                                 break;
                             }
                         }
@@ -671,7 +713,6 @@ public class Input {
                         System.out.println("you dont have the access");
                     }
                 }
-
 
                 else if (split[0].equals("deleteDm")) {
                     int ff = 0;
@@ -723,7 +764,6 @@ public class Input {
                     }
                 }
 
-
             }
 
             else if (sample.equals("showAllPersonalDms")) {
@@ -748,15 +788,15 @@ public class Input {
                 }
             }
 
-            else if(split[0].equals("search")) {
-                ArrayList<Post> searchedPost = new ArrayList<>() ;
-                Communication.searchPost(myRegister.allRegisters.get(myRegister.logedInAccount),searchedPost,sample.substring(1+sample.indexOf('-')));
+            else if (split[0].equals("search")) {
+                ArrayList<Post> searchedPost = new ArrayList<>();
+                Communication.searchPost(myRegister.allRegisters.get(myRegister.logedInAccount), searchedPost, sample.substring(1 + sample.indexOf('-')));
                 Show.show_searchResult(searchedPost);
 
             }
 
-            else if (split[0].equals("showSelectedDm")){
-                Show.show_selectedDm(myRegister.allRegisters.get(myRegister.logedInAccount),split[1]);
+            else if (split[0].equals("showSelectedDm")) {
+                Show.show_selectedDm(myRegister.allRegisters.get(myRegister.logedInAccount), split[1]);
             }
 
             else if (split[0].equals("block")) {
@@ -767,8 +807,7 @@ public class Input {
                         System.out.println("you have blocked this person");
                         ff = 1;
                         break;
-                    }
-                    else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                    } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
                         myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState = "blocked";
                         System.out.println("you have blocked this person");
                         ff = 1;
@@ -780,46 +819,46 @@ public class Input {
                 }
             }
 
-            else if (split[0].equals("creatGroup")){
-                Group.creatGroup(myRegister.allRegisters.get(myRegister.logedInAccount),sample.substring(1+sample.indexOf('-')));
+            else if (split[0].equals("creatGroup")) {
+                Group.creatGroup(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
                 System.out.println("group is created");
             }
 
-            else if (split[0].equals("showAllGroups")){
+            else if (split[0].equals("showAllGroups")) {
                 Show.show_allGroup(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
 
-            else if (split[0].equals("enterGroup")){
+            else if (split[0].equals("enterGroup")) {
 
-                int ff=0 ;
-                for(i=0 ; i<myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.size() ; i++){
-                    if(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).groupId.equals(split[1])){
-                        myRegister.grouponBord=myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i) ;
-                        enterGroup=1 ;
+                int ff = 0;
+                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.size(); i++) {
+                    if (myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).groupId.equals(split[1])) {
+                        myRegister.grouponBord = myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i);
+                        enterGroup = 1;
                         System.out.println("you have entered the group");
-                        ff=1 ;
+                        ff = 1;
                         break;
                     }
                 }
-                if(ff==0){
+                if (ff == 0) {
                     System.out.println("there is no such group");
                 }
             }
 
-            else if (split[0].equals("addUserToGroup")){
-                int j , h, ff=0 , gg=0 ;
-                for(i=0 ; i<myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.size() ; i++){
-                    if(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).groupId.equals(split[2])){
-                        for(j=0 ; j<myRegister.allRegisters.size() ; j++){
-                            if(myRegister.allRegisters.get(j).userID.equals(split[1])){
-                                for(h=0 ; h<myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.size() ; h++){
-                                    if(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.get(h).userID.equals(myRegister.allRegisters.get(j).userID)){
+            else if (split[0].equals("addUserToGroup")) {
+                int j, h, ff = 0, gg = 0;
+                for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.size(); i++) {
+                    if (myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).groupId.equals(split[2])) {
+                        for (j = 0; j < myRegister.allRegisters.size(); j++) {
+                            if (myRegister.allRegisters.get(j).userID.equals(split[1])) {
+                                for (h = 0; h < myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.size(); h++) {
+                                    if (myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.get(h).userID.equals(myRegister.allRegisters.get(j).userID)) {
                                         System.out.println("memeber is banned from this group");
-                                        gg=1 ;
+                                        gg = 1;
                                         break;
                                     }
                                 }
-                                if(gg==0) {
+                                if (gg == 0) {
                                     Group.addMemeber(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i), myRegister.allRegisters.get(j));
                                     System.out.println("member is added");
                                     ff = 1;
@@ -828,19 +867,18 @@ public class Input {
                             }
                         }
                     }
-                    if(ff==1){
+                    if (ff == 1) {
                         break;
-                    }
-                    else if(gg==1){
+                    } else if (gg == 1) {
                         break;
                     }
                 }
-                if(ff==0){
+                if (ff == 0) {
                     System.out.println("you don't have the access");
                 }
             }
 
-            else if (enterGroup==1){
+            else if (enterGroup == 1) {
 
                 if (split[0].equals("addDm")) {
                     Group.DMing(myRegister.grouponBord, myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
@@ -853,9 +891,8 @@ public class Input {
                         if (myRegister.grouponBord.allTexts.get(i).postID.equals(split[1]) && i >= myRegister.grouponBord.allTexts.size() - 15) {
                             if (myRegister.grouponBord.allTexts.get(i).forwarded.equals("")) {
                                 System.out.println("dm is edited");
-                                Group.editDmInGroup(myRegister.grouponBord,myRegister.grouponBord.allTexts.get(i),sample.substring(1 + sample.indexOf('-'))) ;
-                            }
-                            else {
+                                Group.editDmInGroup(myRegister.grouponBord, myRegister.grouponBord.allTexts.get(i), sample.substring(1 + sample.indexOf('-')));
+                            } else {
                                 System.out.println("you can't edit this DM");
                             }
                             ff = 1;
@@ -878,7 +915,7 @@ public class Input {
                             break;
                         }
                     }
-                    if(ff == 0) {
+                    if (ff == 0) {
                         System.out.println("you dont have the access");
                     }
                 }
@@ -910,7 +947,7 @@ public class Input {
                                     break;
                                 }
                             }
-                            if(ff==1){
+                            if (ff == 1) {
                                 break;
                             }
                         }
@@ -944,20 +981,20 @@ public class Input {
                     System.out.println("you have exited the Group");
                 }
 
-                else if (split[0].equals("addUserToGroup")){
-                    int j , h, ff=0 , gg=0 ;
-                    for(i=0 ; i<myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.size() ; i++){
-                        if(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).groupId.equals(split[2])){
-                            for(j=0 ; j<myRegister.allRegisters.size() ; j++){
-                                if(myRegister.allRegisters.get(j).userID.equals(split[1])){
-                                    for(h=0 ; h<myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.size() ; h++){
-                                        if(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.get(h).userID.equals(myRegister.allRegisters.get(j).userID)){
+                else if (split[0].equals("addUserToGroup")) {
+                    int j, h, ff = 0, gg = 0;
+                    for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.size(); i++) {
+                        if (myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).groupId.equals(split[2])) {
+                            for (j = 0; j < myRegister.allRegisters.size(); j++) {
+                                if (myRegister.allRegisters.get(j).userID.equals(split[1])) {
+                                    for (h = 0; h < myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.size(); h++) {
+                                        if (myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i).bannedUsers.get(h).userID.equals(myRegister.allRegisters.get(j).userID)) {
                                             System.out.println("memeber is banned from this group");
-                                            gg=1 ;
+                                            gg = 1;
                                             break;
                                         }
                                     }
-                                    if(gg==0) {
+                                    if (gg == 0) {
                                         Group.addMemeber(myRegister.allRegisters.get(myRegister.logedInAccount).allMyGroap.get(i), myRegister.allRegisters.get(j));
                                         System.out.println("member is added");
                                         ff = 1;
@@ -966,59 +1003,105 @@ public class Input {
                                 }
                             }
                         }
-                        if(ff==1){
+                        if (ff == 1) {
                             break;
-                        }
-                        else if(gg==1){
-                            break;
-                        }
-                    }
-                    if(ff==0){
-                        System.out.println("you don't have the access");
-                    }
-                }
-
-                else if (split[0].equals("bannUser")){
-
-                }
-
-                else if(sample.equals("show users")) {
-                    Show.show_groupUsers(myRegister.grouponBord);
-                }
-
-                /*else if (split[0].equals("showChatWith")) {
-                    int ff = 0;
-                    for (i = 0; i < myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.size(); i++) {
-                        if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person1.userID.equals(split[1])) {
-                            Show.show_directWith(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
-                            ff = 1;
-                            break;
-                        } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
-                            Show.show_directWith(myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i));
-                            ff = 1;
+                        } else if (gg == 1) {
                             break;
                         }
                     }
                     if (ff == 0) {
-                        System.out.println("you have no DM with this person");
+                        System.out.println("you don't have the access");
                     }
-                }*/
+                }
 
+                else if (split[0].equals("changeGroupName")) {
+                    int ff = 0;
+                    if (myRegister.grouponBord.admin.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                        Group.changeGroupName(myRegister.grouponBord, sample.substring(1 + sample.indexOf('-')));
+                    } else {
+                        System.out.println("only admin can do it");
+                    }
+                }
+
+                else if (split[0].equals("changeGroupId")) {
+                    int ff = 0;
+                    if (myRegister.grouponBord.admin.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                        if (sample.charAt(1 + sample.indexOf(sample.indexOf('-'))) == '@') {
+                            Group.changeGroupId(myRegister.grouponBord, sample.substring(1 + sample.indexOf('-')));
+                        } else {
+                            System.out.println("incorrect format");
+                        }
+                    } else {
+                        System.out.println("only admin can do it");
+                    }
+                }
+
+                else if (split[0].equals("removeUser")) {
+                    int ff = 0;
+                    if (myRegister.grouponBord.admin.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                        for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                            if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
+                                Group.removeUser(myRegister.grouponBord, myRegister.allRegisters.get(i));
+                                System.out.println("removed successfully");
+                                ff = 1;
+                                break;
+                            }
+                        }
+                        if (ff == 0) {
+                            System.out.println("the userId id incorrect");
+                        }
+                    } else {
+                        System.out.println("only admin can remove users");
+                    }
+                }
+
+                else if (split[0].equals("bannUser")) {
+                    int ff = 0;
+                    if (myRegister.grouponBord.admin.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                        for (i = 0; i < myRegister.allRegisters.size(); i++) {
+                            if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
+                                Group.bannUser(myRegister.grouponBord, myRegister.allRegisters.get(i));
+                                System.out.println("banned successfully");
+                                ff = 1;
+                                break;
+                            }
+                        }
+                        if (ff == 0) {
+                            System.out.println("the userId id incorrect");
+                        }
+                    } else {
+                        System.out.println("only admin can ban users");
+                    }
+                }
+
+                else if (sample.equals("show users")) {
+                    Show.show_groupUsers(myRegister.grouponBord);
+                }
+
+                else if (sample.equals("showThisGroup")) {
+                    Show.show_currentGroup(myRegister.grouponBord);
+                }
+
+            }
+
+            else if (sample.equals("show suggested person")) {
+                Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
+            }
+
+            else if (sample.equals("show recent posts")) {
+               Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.businessUsers );
             }
 
 
 
 
-
-
-
-
-
+            // ToDo : see where the show stat must be put (when does the user sees its own post)
+            //        set views for all users and time for like and view for business users
+            //        must see where each user views or likes another post.
 
         }
 
 
     }
-
 
 }

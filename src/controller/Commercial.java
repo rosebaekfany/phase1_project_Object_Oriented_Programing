@@ -1,12 +1,15 @@
 package controller;
+
 import media.BusinessPost;
 import media.BusinessUser;
 import media.Person;
 import media.Post;
+import temporary.CommercialGenres;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Commercial {
 
@@ -49,17 +52,40 @@ public class Commercial {
     }
 
 
-    public static HashMap<Post, Integer> recommendedPosts(Person myPerson , ArrayList<BusinessUser> businesses){
-        HashMap<Post , Integer> recommendation = new HashMap<>();
+
+    public static ArrayList<Person> sortSuggestedPerson(Person myPerson){
+        HashMap<Person , Integer> suggestMap = recommendPerson(myPerson);
+        ArrayList<Person> sortedPeople = new ArrayList<>();
+
+        for (int k = 0; k < suggestMap.size(); k++) {
+            for (Map.Entry<Person, Integer> postIntegerEntry : suggestMap.entrySet()) {
+                int maxValue = Person.hashMapMax(suggestMap);
+                if (postIntegerEntry.getValue() == maxValue){
+                    //maxPostEntry = postIntegerEntry;
+                    sortedPeople.add(postIntegerEntry.getKey());
+                    suggestMap.remove(postIntegerEntry.getKey());
+                    break;
+                }
+            }
+        } // ToDo : check when it removes a value it does not break the loop
+
+        return sortedPeople;
+    }
+
+
+
+    public static HashMap<Post, Integer> recommendedPosts(Person myPerson, ArrayList<BusinessUser> businesses) {
+
+        HashMap<Post, Integer> recommendation = new HashMap<>();
 
         // setting non-viewed posts in the recommendation-map
         for (BusinessUser business : businesses) {
             for (Post post : business.posts) {
                 for (Post viewedPost : myPerson.viewedPosts) {
-                    if (viewedPost.postID.equals(post.postID)){
+                    if (viewedPost.postID.equals(post.postID)) {
                         break;
                     } else {
-                        recommendation.put(post , 0);
+                        recommendation.put(post, 0);
                     }
                 }
             }
@@ -72,12 +98,12 @@ public class Commercial {
         for (Post likedPhotoe : myPerson.likedPhotoes) {
             for (Person likedUser : likedPhotoe.likedUsers) {
                 for (Post photoe : likedUser.likedPhotoes) {
-                    if (recommendation.containsKey(photoe)){
+                    if (recommendation.containsKey(photoe)) {
                         try {
                             int rate = recommendation.get(photoe);
                             rate++;
-                            recommendation.replace(photoe , rate);
-                        } catch(Exception e){
+                            recommendation.replace(photoe, rate);
+                        } catch (Exception e) {
                             break;
                         }
                     }
@@ -92,8 +118,8 @@ public class Commercial {
                     try {
                         int rate = recommendation.get(unLikedCommercialPost);
                         rate++;
-                        recommendation.replace(unLikedCommercialPost , rate);
-                    } catch (Exception e){
+                        recommendation.replace(unLikedCommercialPost, rate);
+                    } catch (Exception e) {
                         break;
                     }
                 }
@@ -102,10 +128,11 @@ public class Commercial {
 
         // setting recommendation-map based on favorite categories
         for (Post post : recommendation.keySet()) {
-            int coef = 1 ;
+            int coef = 1;
+            CommercialGenres postGenre1 = findUser(post.usersPostId, businesses).postGenre;
             for (int i = 0; i < 6; i++) {
-                if (((BusinessPost) post).postGenre.equals(myPerson.favoriteGenres[i])){
-                    coef = 6-i;
+                if (postGenre1.equals(myPerson.favoriteGenres[i])) {
+                    coef = 6 - i;
                     break;
                 }
             }
@@ -115,6 +142,16 @@ public class Commercial {
         }
 
         return recommendation;
+    }
+
+
+    public static BusinessUser findUser(String id , ArrayList<BusinessUser> users){
+        for (BusinessUser user : users) {
+            if (user.userID.equals(id)){
+                return user;
+            }
+        }
+        return null;
     }
 
     /*public List<Person> recommendPerson(Person myPerson , Person otherPerson){

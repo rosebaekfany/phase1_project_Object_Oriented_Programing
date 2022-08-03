@@ -10,6 +10,8 @@ public class RegisterMenu {
     public Chat chatOnBord;
     public Group grouponBord;
     public ArrayList<BusinessUser> businessUsers = new ArrayList<>();
-
-
+    public ArrayList<Post> allPosts = new ArrayList<>() ;
+    public ArrayList<BusinessPost> allbussinessPost = new ArrayList<>();
+    public ArrayList<Chat> allRegistersPersonalChats = new ArrayList<>();
+    public ArrayList<Group> allRegisterGroup = new ArrayList<>();
 }

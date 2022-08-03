@@ -7,6 +7,8 @@ import view.Input;
 
 import java.util.*;
 
+import static temporary.CommercialGenres.*;
+
 public class Person {
 
     public String userType = "public";
@@ -27,20 +29,20 @@ public class Person {
     public ArrayList<Post> mainPagePost = new ArrayList<>();
     public ArrayList<Post> mainPagePostFinal = new ArrayList<>();
     public ArrayList<Comment> allComment = new ArrayList<>();
-
     public ArrayList<Chat> allPersonalChats = new ArrayList<>();
     public ArrayList<Group> allMyGroap = new ArrayList<>();
-    public CommercialGenres[] favoriteGenres = new CommercialGenres[6];
+    public CommercialGenres[] favoriteGenres = {HEALTH_AND_CARE, FASHION, SCIENCE_AND_TECHNOLOGY, STOCK_MARKET, ARTS, GAMING};
+    public CommercialGenres commercialGenre;
 
-    public boolean equals(Person person){
-        if (this.name.equals(person.name)){
+    public boolean equals(Person person) {
+        if (this.name.equals(person.name)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public ArrayList<Post> getUnLikedCommercialPosts(){
+    public ArrayList<Post> getUnLikedCommercialPosts() {
         ArrayList<Post> non_liked_post = new ArrayList<>();
         for (Post viewedPost : this.viewedPosts) {
             if (!likedPhotoes.contains(viewedPost)) {
@@ -50,7 +52,7 @@ public class Person {
         return non_liked_post;
     }
 
-    public void makeMainPage(ArrayList<BusinessUser> myBussinessUsers ) {
+    public void makeMainPage(ArrayList<BusinessUser> myBussinessUsers) {
         int i, j, h, flag = 0;
         for (i = 0; i < folowings.size(); i++) {
             for (j = 0; j < folowings.get(i).posts.size(); i++) {
@@ -71,8 +73,45 @@ public class Person {
 
         Collections.sort(mainPagePost, new sortItems());
 
-        //Commercial.recommendedPosts(this ,myBussinessUsers ).
 
+        ArrayList<Post> sortedCommercial = new ArrayList<>();
+        HashMap<Post , Integer> recommendedPosts = Commercial.recommendedPosts(this , myBussinessUsers);
+        Map.Entry<Post , Integer> maxPostEntry = null;
+        for (int k = 0; k < recommendedPosts.size(); k++) {
+            for (Map.Entry<Post, Integer> postIntegerEntry : recommendedPosts.entrySet()) {
+                int maxValue = hashMapMax(recommendedPosts);
+                if (postIntegerEntry.getValue() == maxValue){
+                    //maxPostEntry = postIntegerEntry;
+                    sortedCommercial.add(postIntegerEntry.getKey());
+                    recommendedPosts.remove(maxPostEntry.getKey());
+                    break;
+                }
+            }
+        } // ToDo : check when it removes a value it does not break the loop
+
+
+        int userPostIndex = 0;
+        int commercialIndex = 0;
+        while(userPostIndex < mainPagePost.size() || commercialIndex < sortedCommercial.size()){
+            for (int k = 0; k < 3; k++) {
+                mainPagePostFinal.add(mainPagePost.get(userPostIndex));
+                userPostIndex++;
+            }
+            mainPagePostFinal.add(sortedCommercial.get(commercialIndex));
+            commercialIndex++;
+        }
+
+
+    }
+
+    public static <T> int  hashMapMax (HashMap<T , Integer> map){
+        int max = 0;
+        for (Integer value : map.values()) {
+            if (value >= max){
+                max = value;
+            }
+        }
+        return max;
     }
 
 
