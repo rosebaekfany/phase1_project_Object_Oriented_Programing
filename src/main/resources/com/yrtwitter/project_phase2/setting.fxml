@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.Setting">
+   <content>
+      <Pane fx:id="backPane" maxWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+         <children>
+            <Label fx:id="themeLabel" layoutX="20.0" layoutY="192.0" prefHeight="35.0" prefWidth="200.0" text="Theme" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userIdTextField" alignment="CENTER" layoutX="230.0" layoutY="16.0" prefHeight="23.0" prefWidth="250.0" promptText="userID">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <Label fx:id="userIdLabel" layoutX="20.0" layoutY="20.0" prefWidth="200.0" text="your userID" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="bioLabel" layoutX="20.0" layoutY="111.0" text="biography" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bioTextField" alignment="CENTER" layoutX="230.0" layoutY="105.0" prefHeight="23.0" prefWidth="250.0" promptText="bio">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="themeChoiceBox" layoutX="230.0" layoutY="190.0" prefHeight="40.0" prefWidth="250.0" />
+            <Label fx:id="favGenre" layoutX="20.0" layoutY="269.0" prefWidth="200.0" text="favorite genres" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="healthLabel" layoutX="77.0" layoutY="311.0" prefWidth="200.0" text="health and care" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="fashionLabel" layoutX="77.0" layoutY="520.0" prefWidth="200.0" text="fashion" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="techLabel" layoutX="79.0" layoutY="354.0" prefHeight="30.0" prefWidth="238.0" text="science and technology" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="healthSp" layoutX="20.0" layoutY="313.0" prefHeight="25.0" prefWidth="44.0" />
+            <Label fx:id="gamingLabel" layoutX="76.0" layoutY="479.0" prefWidth="200.0" text="gaming" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="marketLabel" layoutX="80.0" layoutY="398.0" prefHeight="30.0" prefWidth="238.0" text="stock market" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="artsLabel" layoutX="79.0" layoutY="439.0" prefHeight="30.0" prefWidth="238.0" text="arts" textFill="#d4d7e3">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="techSp" layoutX="20.0" layoutY="356.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="marketSp" layoutX="20.0" layoutY="400.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="artsSp" layoutX="20.0" layoutY="441.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="fashionSp" layoutX="20.0" layoutY="523.0" prefHeight="25.0" prefWidth="44.0" />
+            <Spinner fx:id="gamingSp" layoutX="20.0" layoutY="481.0" prefHeight="25.0" prefWidth="44.0" />
+         </children></Pane>
+   </content>
+</ScrollPane>

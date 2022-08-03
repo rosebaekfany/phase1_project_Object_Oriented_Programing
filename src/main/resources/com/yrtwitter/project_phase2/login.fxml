@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="800.0" minHeight="-Infinity" minWidth="800.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #535353;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.Login">
+   <content>
+      <Pane fx:id="backPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #535353;">
+         <children>
+            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="218.0" layoutY="139.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" prefWidth="350.0" promptText="username" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </TextField>
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="218.0" layoutY="14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="125.0" prefWidth="350.0" text="welcome" textFill="#259cf7">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+            <Button fx:id="loginButton" layoutX="218.0" layoutY="317.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="350.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="Login" textFill="#2499f8">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="forgotPasswordButton" layoutX="218.0" layoutY="383.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="350.0" style="-fx-background-color: #535353;" text="forgot password?" textFill="#2499f8" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="signUpButton" layoutX="218.0" layoutY="454.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="350.0" style="-fx-background-color: #535353; -fx-border-color: #2499f8; -fx-border-width: 6; -fx-border-radius: 20;" text="Sign up" textFill="#2499f8">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="218.0" layoutY="213.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" prefWidth="350.0" promptText="password" style="-fx-background-color: #d4d7e3; -fx-border-color: #2499f8; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </Pane>
+   </content>
+</ScrollPane>
