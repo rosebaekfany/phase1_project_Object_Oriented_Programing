@@ -7,6 +7,7 @@ module com.yrtwitter.project_phase2 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.yrtwitter.project_phase2 to javafx.fxml;
     exports com.yrtwitter.project_phase2;

@@ -56,8 +56,8 @@ public class MainPage extends SwitchScenes implements Initializable {
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("myChats.fxml"));
             }
             case SETTING -> {
-//                contentPane.getChildren().clear();
-//                menuPane.getChildren().clear();
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("setting.fxml"));
             }
             case GROUP_CHAT -> {
@@ -68,7 +68,7 @@ public class MainPage extends SwitchScenes implements Initializable {
             case PRIVATE_CHAT -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("private_chat.fxml"));
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat.fxml"));
             }
             default -> fxmlLoader2 =  new FXMLLoader(Main.class.getResource("startPage.fxml"));
         }
