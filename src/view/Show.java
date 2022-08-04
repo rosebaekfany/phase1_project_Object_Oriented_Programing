@@ -173,7 +173,7 @@ public class Show {
 
     public static void MainShow(Person myPerson, ArrayList<BusinessUser> myBussinesUsers) {
         int i;
-        myPerson.makeMainPage(myBussinesUsers);
+        Person.makeMainPage(myPerson,myBussinesUsers);
         for (i = 0; i < myPerson.mainPagePostFinal.size(); i++) {
             System.out.println("id: " + myPerson.mainPagePostFinal.get(i).postID + "  " + myPerson.mainPagePostFinal.get(i).script + "  " + myPerson.mainPagePostFinal.get(i).edited);
             System.out.println("liked " + myPerson.mainPagePostFinal.get(i).likedUsers.size() + "commented " + myPerson.mainPagePostFinal.get(i).postComments.size());

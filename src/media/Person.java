@@ -52,30 +52,30 @@ public class Person {
         return non_liked_post;
     }
 
-    public void makeMainPage(ArrayList<BusinessUser> myBussinessUsers) {
+    public static void makeMainPage(Person myPerson ,ArrayList<BusinessUser> myBussinessUsers) {
         int i, j, h, flag = 0;
-        for (i = 0; i < folowings.size(); i++) {
-            for (j = 0; j < folowings.get(i).posts.size(); i++) {
+        for (i = 0; i < myPerson.folowings.size(); i++) {
+            for (j = 0; j < myPerson.folowings.get(i).posts.size(); j++) {
                 flag = 0;
-                for (h = 0; h < mainPagePost.size(); h++) {
-                    if (folowings.get(i).posts.get(j).postID.equals(mainPagePost.get(h).postID)) {
+                for (h = 0; h < myPerson.mainPagePost.size(); h++) {
+                    if (myPerson.folowings.get(i).posts.get(j).postID.equals(myPerson.mainPagePost.get(h).postID)) {
                         flag = 1;
                         break;
                     }
                 }
                 if (flag == 0) {
-                    mainPagePost.add(folowings.get(i).posts.get(j));
+                    myPerson.mainPagePost.add(myPerson.folowings.get(i).posts.get(j));
                 }
 
             }
         }
         //sort
 
-        Collections.sort(mainPagePost, new sortItems());
+        Collections.sort(myPerson.mainPagePost, new sortItems());
 
 
         ArrayList<Post> sortedCommercial = new ArrayList<>();
-        HashMap<Post , Integer> recommendedPosts = Commercial.recommendedPosts(this , myBussinessUsers);
+        HashMap<Post , Integer> recommendedPosts = Commercial.recommendedPosts(myPerson , myBussinessUsers);
         Map.Entry<Post , Integer> maxPostEntry = null;
         for (int k = 0; k < recommendedPosts.size(); k++) {
             for (Map.Entry<Post, Integer> postIntegerEntry : recommendedPosts.entrySet()) {
@@ -92,13 +92,16 @@ public class Person {
 
         int userPostIndex = 0;
         int commercialIndex = 0;
-        while(userPostIndex < mainPagePost.size() || commercialIndex < sortedCommercial.size()){
-            for (int k = 0; k < 3; k++) {
-                mainPagePostFinal.add(mainPagePost.get(userPostIndex));
+        while(userPostIndex < myPerson.mainPagePost.size() || commercialIndex < sortedCommercial.size()){
+
+            for (int k = 0; k < 3 && k<myPerson.mainPagePost.size(); k++) {
+                myPerson.mainPagePostFinal.add(myPerson.mainPagePost.get(userPostIndex));
                 userPostIndex++;
             }
-            mainPagePostFinal.add(sortedCommercial.get(commercialIndex));
-            commercialIndex++;
+            if(sortedCommercial.size()!=0) {
+                myPerson.mainPagePostFinal.add(sortedCommercial.get(commercialIndex));
+                commercialIndex++;
+            }
         }
 
 

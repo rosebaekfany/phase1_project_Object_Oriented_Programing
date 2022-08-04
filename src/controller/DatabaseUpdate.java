@@ -777,17 +777,17 @@ class BussinessUserRepository {
             preparedStatementA.setString(14, allRegister.businessUsers.get(j).userPhoneNumber);
 
 
-            if (allRegister.businessUsers.get(j).commercialGenre.equals("ARTS")) {
+            if (allRegister.businessUsers.get(j).commercialGenre.equals(ARTS)) {
                 preparedStatementA.setString(15, "ARTS");
-            } else if (allRegister.businessUsers.get(j).commercialGenre.equals("FASHION")) {
+            } else if (allRegister.businessUsers.get(j).commercialGenre.equals(FASHION)) {
                 preparedStatementA.setString(15, "FASHION");
-            } else if (allRegister.businessUsers.get(j).commercialGenre.equals("HEALTH_AND_CARE")) {
+            } else if (allRegister.businessUsers.get(j).commercialGenre.equals(HEALTH_AND_CARE)) {
                 preparedStatementA.setString(15, "HEALTH_AND_CARE");
-            } else if (allRegister.businessUsers.get(j).commercialGenre.equals("SCIENCE_AND_TECHNOLOGY")) {
+            } else if (allRegister.businessUsers.get(j).commercialGenre.equals(SCIENCE_AND_TECHNOLOGY)) {
                 preparedStatementA.setString(15, "SCIENCE_AND_TECHNOLOGY");
-            } else if (allRegister.businessUsers.get(j).commercialGenre.equals("GAMING")) {
+            } else if (allRegister.businessUsers.get(j).commercialGenre.equals(GAMING)) {
                 preparedStatementA.setString(15, "GAMING");
-            } else if (allRegister.businessUsers.get(j).commercialGenre.equals("STOCK_MARKET")) {
+            } else if (allRegister.businessUsers.get(j).commercialGenre.equals(STOCK_MARKET)) {
                 preparedStatementA.setString(15, "STOCK_MARKET");
             }
 

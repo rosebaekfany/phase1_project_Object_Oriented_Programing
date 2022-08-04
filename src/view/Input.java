@@ -305,19 +305,19 @@ public class Input {
                                 BusinessUser myBusinessUser = Edit.changeAccountTypeToBusiness
                                         (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber , commercialGenre);
                                 myRegister.businessUsers.add(myBusinessUser);
-                                for (BusinessUser businessUser : myRegister.businessUsers) {
+                                /*for (BusinessUser businessUser : myRegister.businessUsers) {
                                     System.out.println(businessUser.name);
-                                }
+                                }*/
                                 myRegister.allRegisters.add(myBusinessUser);
-                                for (Person allRegister : myRegister.allRegisters) {
+                                /*for (Person allRegister : myRegister.allRegisters) {
                                     System.out.println(allRegister.name);
-                                }
+                                }*/
                                 myRegister.allRegisters.remove(myRegister.logedInAccount);
-                                for (Person allRegister : myRegister.allRegisters) {
+                                /*for (Person allRegister : myRegister.allRegisters) {
                                     System.out.println(allRegister.name);
-                                }
+                                }*/
                                 myRegister.logedInAccount = myRegister.allRegisters.size() - 1;
-                                System.out.println(myRegister.logedInAccount);
+                                /*System.out.println(myRegister.logedInAccount);*/
                                 System.out.println("successful change");
                             } else {
                                 System.out.println("your account is already Business_Account");
@@ -565,7 +565,7 @@ public class Input {
             }
 
             else if (sample.equals("enterMainPage")) {
-                myRegister.allRegisters.get(myRegister.logedInAccount).makeMainPage(myRegister.businessUsers);
+                Person.makeMainPage(myRegister.allRegisters.get(myRegister.logedInAccount),myRegister.businessUsers);
                 Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
             }
 
