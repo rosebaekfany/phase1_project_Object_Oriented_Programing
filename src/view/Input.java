@@ -233,7 +233,7 @@ public class Input {
                         "show suggested person\n" +
                         "show recent posts\n" +
                         "showStat [postId]\n" +
-                        ""
+                        "searchName [text]"
 
                 );
             }
