@@ -72,4 +72,33 @@ public class BusinessPost extends Post {
         return likes;
     }
 
+    public static void fillView(String postId , RegisterMenu myRegister , Person user , LocalDate date){
+        BusinessPost myPost = findPost(postId , myRegister);
+        if (myPost == null){
+            return;
+        } else {
+            myPost.viewed.put(user , date);
+        }
+    }
+
+    public static void fillLike(String postId , RegisterMenu myRegister , Person user , LocalDate date){
+        BusinessPost myPost = findPost(postId , myRegister);
+        if (myPost == null){
+            return;
+        } else {
+            myPost.liked.put(user , date);
+        }
+    }
+
+    public static BusinessPost findPost(String postId , RegisterMenu myRegister){
+        BusinessPost rePost = null;
+        for (BusinessPost businessPost : myRegister.allbussinessPost) {
+            if (businessPost.postID.equals(postId)){
+                rePost = businessPost;
+                break;
+            }
+        }
+        return rePost;
+    }
+
 }

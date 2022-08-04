@@ -48,7 +48,22 @@ public class Post {
         int i ;
         myRegister.allRegisters.get(myRegister.logedInAccount).posts.add(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1));
         myRegister.allPosts.add(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1)) ;
+        if(myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType.equals("Business_Account")){
+            BusinessPost myBussinessPost = new BusinessPost();
+            myBussinessPost.usersPostId=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).usersPostId;
+            myBussinessPost.postDate=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).postDate;
+            myBussinessPost.postID=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).postID;
+            myBussinessPost.postComments=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).postComments;
+            myBussinessPost.forwarded=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).forwarded;
+            myBussinessPost.edited=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).edited;
+            myBussinessPost.script=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).script;
+            myBussinessPost.commercialPost=true;
+            myBussinessPost.likedUsers=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).likedUsers;
+            myBussinessPost.viewedUsers=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).viewedUsers;
+            myRegister.allbussinessPost.add(myBussinessPost);
+        }
         myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.remove(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1) ;
+
     }
 
     public static void editPost(Post myPost, String myString) {

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -229,6 +230,9 @@ public class Input {
                         "bannUser [userId]\n" +
                         "show users\n" +
                         "showThisGroup\n" +
+                        "show suggested person\n" +
+                        "show recent posts\n" +
+                        "showStat [postId]\n" +
                         ""
 
                 );
@@ -395,6 +399,7 @@ public class Input {
 
             else if (sample.equals("creat post")) {
                 postflag = 1;
+                System.out.println("you have started");
             }
 
             else if (postflag == 1) {
@@ -449,6 +454,7 @@ public class Input {
                             if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
                                 myRegister.allRegisters.get(i).posts.get(j).viewedUsers.add(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
                                 myRegister.allRegisters.get(myRegister.logedInAccount).viewedPosts.add(myRegister.allRegisters.get(i).posts.get(j)) ;
+                                BusinessPost.fillView(myRegister.allRegisters.get(i).posts.get(j).postID , myRegister , myRegister.allRegisters.get(myRegister.logedInAccount) , LocalDate.now());
                                 Show.show_selectedPost(myRegister, myRegister.allRegisters.get(i).posts.get(j));
                                 ff = 1;
                                 selectPostFlag = 1;
@@ -519,6 +525,7 @@ public class Input {
                         if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                             for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                                 if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
+                                    BusinessPost.fillLike(myRegister.allRegisters.get(i).posts.get(j).postID , myRegister , myRegister.allRegisters.get(myRegister.logedInAccount) , LocalDate.now());
                                     Post.likePost(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.allRegisters.get(i).posts.get(j));
                                     System.out.println("post is liked");
                                     ff = 1;
@@ -658,7 +665,8 @@ public class Input {
                                 break;
                             }
                         }
-                    } else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                    }
+                    else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
                         for (i = 0; i < myRegister.chatOnBord.person1Texts.size(); i++) {
                             if (myRegister.chatOnBord.person1Texts.get(i).postID.equals(split[1])) {
                                 Communication.likeDm(myRegister.chatOnBord, myRegister.chatOnBord.person1Texts.get(i), myRegister.chatOnBord.person2);
@@ -1090,6 +1098,23 @@ public class Input {
 
             else if (sample.equals("show recent posts")) {
                Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.businessUsers );
+            }
+
+            else if (split[0].equals("showStat")){
+                int i , ff=0;
+                if(myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType.equals("Business_Account")){
+                    for(i=0 ; i<myRegister.allbussinessPost.size() ; i++){
+                        if(myRegister.allbussinessPost.get(i).postID.equals(split[1]) && myRegister.allbussinessPost.get(i).usersPostId.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
+                            Show.show_stat(myRegister.allbussinessPost.get(i));
+                            ff=1;
+                            break;
+                        }
+                    }
+                }
+                if(ff==0){
+                    System.out.println("you don't have the access");
+                }
+
             }
 
 
