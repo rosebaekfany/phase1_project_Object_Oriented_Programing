@@ -76,10 +76,10 @@ public class Communication {
         Chat newChat = new Chat();
         newChat.person1 = myPerson1;
         newChat.person2 = myPerson2;
-        newChat.chatId="@"+String.valueOf(Calendar.getInstance().getTime().getTime())+"*__*";
+        newChat.chatId = "@" + String.valueOf(Calendar.getInstance().getTime().getTime()) + "*__*";
         myPerson1.allPersonalChats.add(newChat);
         myPerson2.allPersonalChats.add(newChat);
-        myRegister.allRegistersPersonalChats.add(newChat) ;
+        myRegister.allRegistersPersonalChats.add(newChat);
         myRegister.chatOnBord = newChat;
 
     }
@@ -186,6 +186,15 @@ public class Communication {
                 if (myPerson.allMyGroap.get(ii).allTexts.get(jj).script.indexOf(text) != -1) {
                     searchedPost.add(myPerson.allMyGroap.get(ii).allTexts.get(jj));
                 }
+            }
+        }
+    }
+
+    public static void searchName(RegisterMenu myRegister, ArrayList<Person> searchedName, String text) {
+        int i;
+        for (i = 0; i < myRegister.allRegisters.size(); i++) {
+            if (myRegister.allRegisters.get(i).name.indexOf(text) != -1) {
+                searchedName.add(myRegister.allRegisters.get(i));
             }
         }
     }

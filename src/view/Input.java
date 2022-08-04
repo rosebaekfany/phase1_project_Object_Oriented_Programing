@@ -1117,6 +1117,13 @@ public class Input {
 
             }
 
+            else if(split[0].equals("searchName")){
+                ArrayList<Person> mysearchResult = new ArrayList<>();
+                Communication.searchName(myRegister,mysearchResult,sample.substring(11));
+                Show.show_searchName(mysearchResult);
+            }
+
+
 
 
 

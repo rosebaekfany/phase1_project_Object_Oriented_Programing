@@ -353,6 +353,16 @@ public class Show {
         System.out.println();
     }
 
+    public static void show_searchName(ArrayList<Person> myResult){
+        int i;
+        for(i=0 ; i<myResult.size() ; i++){
+            System.out.println(myResult.get(i).name+"  id: "+myResult.get(i).userID);
+            System.out.println(myResult.get(i).userAccountType);
+            System.out.println("---------------");
+        }
+    }
+
+
 }
 
 
