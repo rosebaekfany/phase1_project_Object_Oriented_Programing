@@ -278,7 +278,7 @@ class likedPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO likephoto(usersId,postId) " +
+                    "INSERT INTO likephoto(userId,postId) " +
                             "VALUES(?, ?)");
             for (i = 0; i < allRegister.allRegisters.get(j).likedPhotoes.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
