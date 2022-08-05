@@ -25,6 +25,8 @@ public class PostUnder extends SwitchScenes implements Initializable {
     Label likeNum;
     @FXML
     Label commentNum;
+    @FXML
+    Label edited;
 
     public void likePost(ActionEvent event) throws IOException {
         BusinessPost.fillLike(myShowPost.postID , myRegister , allRegisters.get(logedInAccount), LocalDate.now());
@@ -45,6 +47,6 @@ public class PostUnder extends SwitchScenes implements Initializable {
         text.setText(myShowPost.script);
         likeNum.setText(String.valueOf(myShowPost.likedUsers.size()));
         commentNum.setText(String.valueOf(myShowPost.postComments.size()));
-
+        edited.setText(myShowPost.edited);
     }
 }

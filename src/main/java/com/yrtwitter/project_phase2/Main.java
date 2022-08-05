@@ -80,6 +80,7 @@ public class Main extends Application {
         myShowPost.postID="@fgh";
         myShowPost.postDate= Calendar.getInstance().getTime();
         myShowPost.usersPostId="@yekta";
+        myShowPost.edited="   ";
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
@@ -98,14 +99,14 @@ public class Main extends Application {
 
         Connection conn = null;
         Statement stmt = null;
-       /* try {
+        try {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             }
             catch (Exception e) {
                 System.out.println(e);
             }
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/myTwitter", "root", "manager");
+            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
             stmt = (Statement) conn.createStatement();
             String query1 = "INSERT INTO allregister " + "VALUES ()";
 
@@ -120,26 +121,16 @@ public class Main extends Application {
 
         myInput.register_menu(conn);
 
+        launch();
+
         while (myInput.registerMenu == 1) {
             myInput.inputRegister();
         }
         if(myInput.registerMenu == 0){
             DatabaseUpdate.insertAll(myInput.myRegister,conn);
             conn.close();
-        }*/
+        }
 
-
-        launch();
-
-       /* view.Input myInput = new view.Input() ;
-        myInput.register_menu();
-        while (myInput.registerMenu==1){
-            myInput.inputRegister();
-        }*/
     }
 }
 
-// ToDO : css stylesheet ->
-//                          .selected { -fx-background-color : #color }
-//                          .mouse-moved: hover { -fx-background-color : #color }
-//      then add this to the buttons stylesheet in sceneBuilder

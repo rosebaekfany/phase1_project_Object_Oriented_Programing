@@ -25,6 +25,7 @@
                   <Label layoutX="553.0" layoutY="74.0" text="likes" textFill="WHITE" />
                   <Label fx:id="commentNum" layoutX="517.0" layoutY="89.0" text="num" textFill="WHITE" />
                   <Label layoutX="548.0" layoutY="89.0" text="comments" textFill="WHITE" />
+                  <Label fx:id="edited" layoutX="241.0" layoutY="81.0" text="   " textFill="WHITE" />
                </children>
             </Pane>
          </content>
