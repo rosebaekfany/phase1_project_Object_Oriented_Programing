@@ -12,8 +12,8 @@ public class SwitchScenes {
 
     public static Stage window = new Stage();
     public boolean darkTheme = true;
-
     public static OnPage onPage;
+
 
 
     public void switchScenes (String[] fxmls){
