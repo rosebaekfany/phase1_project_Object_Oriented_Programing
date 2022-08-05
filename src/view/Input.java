@@ -40,7 +40,7 @@ public class Input {
         System.out.println("Twitter");
         System.out.println("by yekta and rosa");
         registerMenu = 1;
-        DatabaseUpdate.loadAll(myRegister,conn) ;
+        DatabaseUpdate.loadAll(myRegister, conn);
 
     }
 
@@ -57,8 +57,7 @@ public class Input {
             } else if (Pattern.compile("[^A-z0-9_ ]").matcher(split[2]).find()) {
                 System.out.println("password format is invalid");
                 registerflag = 1;
-            }
-            else {
+            } else {
                 for (i = 0; i < myRegister.allRegisters.size(); i++) {
                     if (myRegister.allRegisters.get(i).name.equals(split[1])) {
                         System.out.println("a user exists with this username");
@@ -293,17 +292,17 @@ public class Input {
                                 "    ARTS,\n" +
                                 "    GAMING;");
                         String commercialGenre = sc.nextLine();
-                        String regexStr2 ="^(HEALTH_AND_CARE)$|^(FASHION)$|^(SCIENCE_AND_TECHNOLOGY)$|^(STOCK_MARKET)$|^(ARTS)$|^(GAMING)$";
+                        String regexStr2 = "^(HEALTH_AND_CARE)$|^(FASHION)$|^(SCIENCE_AND_TECHNOLOGY)$|^(STOCK_MARKET)$|^(ARTS)$|^(GAMING)$";
                         Pattern pattern2 = Pattern.compile(regexStr2);
                         Matcher matcher2 = pattern2.matcher(commercialGenre);
-                         String regexStr = "^(\\d{4,17})$";
+                        String regexStr = "^(\\d{4,17})$";
                         Pattern pattern = Pattern.compile(regexStr);
                         Matcher matcher = pattern.matcher(phoneNumber);
                         if (matcher.matches() && matcher2.matches()) {
                             if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType
                                     .equals("General_Account")) {
                                 BusinessUser myBusinessUser = Edit.changeAccountTypeToBusiness
-                                        (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber , commercialGenre);
+                                        (myRegister.allRegisters.get(myRegister.logedInAccount), phoneNumber, commercialGenre);
                                 myRegister.businessUsers.add(myBusinessUser);
                                 /*for (BusinessUser businessUser : myRegister.businessUsers) {
                                     System.out.println(businessUser.name);
@@ -323,7 +322,7 @@ public class Input {
                                 System.out.println("your account is already Business_Account");
                             }
                         } else {
-                            if (!matcher.matches()){
+                            if (!matcher.matches()) {
                                 System.out.println("Invalid phoneNumber format");
                             } else {
                                 System.out.println("invalid business genre");
@@ -452,9 +451,9 @@ public class Input {
                     if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                         for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                             if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
-                                myRegister.allRegisters.get(i).posts.get(j).viewedUsers.add(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
-                                myRegister.allRegisters.get(myRegister.logedInAccount).viewedPosts.add(myRegister.allRegisters.get(i).posts.get(j)) ;
-                                BusinessPost.fillView(myRegister.allRegisters.get(i).posts.get(j).postID , myRegister , myRegister.allRegisters.get(myRegister.logedInAccount) , LocalDate.now());
+                                myRegister.allRegisters.get(i).posts.get(j).viewedUsers.add(myRegister.allRegisters.get(myRegister.logedInAccount));
+                                myRegister.allRegisters.get(myRegister.logedInAccount).viewedPosts.add(myRegister.allRegisters.get(i).posts.get(j));
+                                BusinessPost.fillView(myRegister.allRegisters.get(i).posts.get(j).postID, myRegister, myRegister.allRegisters.get(myRegister.logedInAccount), LocalDate.now());
                                 Show.show_selectedPost(myRegister, myRegister.allRegisters.get(i).posts.get(j));
                                 ff = 1;
                                 selectPostFlag = 1;
@@ -462,8 +461,8 @@ public class Input {
                                 break;
                             }
                         }
+                        break;
                     }
-                    break;
                 }
 
                 if (ff == 0) {
@@ -525,15 +524,16 @@ public class Input {
                         if (myRegister.allRegisters.get(i).userID.equals(split[1])) {
                             for (j = 0; j < myRegister.allRegisters.get(i).posts.size(); j++) {
                                 if (myRegister.allRegisters.get(i).posts.get(j).postID.equals(split[2])) {
-                                    BusinessPost.fillLike(myRegister.allRegisters.get(i).posts.get(j).postID , myRegister , myRegister.allRegisters.get(myRegister.logedInAccount) , LocalDate.now());
+                                    BusinessPost.fillLike(myRegister.allRegisters.get(i).posts.get(j).postID, myRegister, myRegister.allRegisters.get(myRegister.logedInAccount), LocalDate.now());
                                     Post.likePost(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.allRegisters.get(i).posts.get(j));
                                     System.out.println("post is liked");
                                     ff = 1;
                                     break;
                                 }
                             }
+                            break;
                         }
-                        break;
+
                     }
                     if (ff == 0) {
                         System.out.println("the postId is incorrect");
@@ -553,8 +553,8 @@ public class Input {
                                     break;
                                 }
                             }
+                            break;
                         }
-                        break;
                     }
                     if (ff == 0) {
                         System.out.println("the postId is incorrect");
@@ -565,7 +565,7 @@ public class Input {
             }
 
             else if (sample.equals("enterMainPage")) {
-                Person.makeMainPage(myRegister.allRegisters.get(myRegister.logedInAccount),myRegister.businessUsers);
+                Person.makeMainPage(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
                 Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
             }
 
@@ -582,8 +582,7 @@ public class Input {
                         }
                         ff = 1;
                         break;
-                    }
-                    else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
+                    } else if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).person2.userID.equals(split[1])) {
                         if (myRegister.allRegisters.get(myRegister.logedInAccount).allPersonalChats.get(i).blockState.equals("blocked")) {
                             System.out.println("the chat is blocked");
                         } else {
@@ -665,8 +664,7 @@ public class Input {
                                 break;
                             }
                         }
-                    }
-                    else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
+                    } else if (myRegister.chatOnBord.person2.userID.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
                         for (i = 0; i < myRegister.chatOnBord.person1Texts.size(); i++) {
                             if (myRegister.chatOnBord.person1Texts.get(i).postID.equals(split[1])) {
                                 Communication.likeDm(myRegister.chatOnBord, myRegister.chatOnBord.person1Texts.get(i), myRegister.chatOnBord.person2);
@@ -772,9 +770,7 @@ public class Input {
                     }
                 }
 
-            }
-
-            else if (sample.equals("showAllPersonalDms")) {
+            } else if (sample.equals("showAllPersonalDms")) {
                 Show.show_allDirect(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
 
@@ -828,7 +824,7 @@ public class Input {
             }
 
             else if (split[0].equals("creatGroup")) {
-                Group.creatGroup(myRegister,myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
+                Group.creatGroup(myRegister, myRegister.allRegisters.get(myRegister.logedInAccount), sample.substring(1 + sample.indexOf('-')));
                 System.out.println("group is created");
             }
 
@@ -1093,38 +1089,35 @@ public class Input {
             }
 
             else if (sample.equals("show suggested person")) {
-                Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount)) ;
+                Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
 
             else if (sample.equals("show recent posts")) {
-               Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount) , myRegister.businessUsers );
+                Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
             }
 
-            else if (split[0].equals("showStat")){
-                int i , ff=0;
-                if(myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType.equals("Business_Account")){
-                    for(i=0 ; i<myRegister.allbussinessPost.size() ; i++){
-                        if(myRegister.allbussinessPost.get(i).postID.equals(split[1]) && myRegister.allbussinessPost.get(i).usersPostId.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)){
+            else if (split[0].equals("showStat")) {
+                int i, ff = 0;
+                if (myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType.equals("Business_Account")) {
+                    for (i = 0; i < myRegister.allbussinessPost.size(); i++) {
+                        if (myRegister.allbussinessPost.get(i).postID.equals(split[1]) && myRegister.allbussinessPost.get(i).usersPostId.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
                             Show.show_stat(myRegister.allbussinessPost.get(i));
-                            ff=1;
+                            ff = 1;
                             break;
                         }
                     }
                 }
-                if(ff==0){
+                if (ff == 0) {
                     System.out.println("you don't have the access");
                 }
 
             }
 
-            else if(split[0].equals("searchName")){
+            else if (split[0].equals("searchName")) {
                 ArrayList<Person> mysearchResult = new ArrayList<>();
-                Communication.searchName(myRegister,mysearchResult,sample.substring(11));
+                Communication.searchName(myRegister, mysearchResult, sample.substring(11));
                 Show.show_searchName(mysearchResult);
             }
-
-
-
 
 
             // ToDo : see where the show stat must be put (when does the user sees its own post)

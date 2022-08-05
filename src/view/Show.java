@@ -173,7 +173,7 @@ public class Show {
 
     public static void MainShow(Person myPerson, ArrayList<BusinessUser> myBussinesUsers) {
         int i;
-        Person.makeMainPage(myPerson,myBussinesUsers);
+        Person.makeMainPage(myPerson, myBussinesUsers);
         for (i = 0; i < myPerson.mainPagePostFinal.size(); i++) {
             System.out.println("id: " + myPerson.mainPagePostFinal.get(i).postID + "  " + myPerson.mainPagePostFinal.get(i).script + "  " + myPerson.mainPagePostFinal.get(i).edited);
             System.out.println("liked " + myPerson.mainPagePostFinal.get(i).likedUsers.size() + "commented " + myPerson.mainPagePostFinal.get(i).postComments.size());
@@ -289,14 +289,14 @@ public class Show {
     }
 
     public static void show_currentGroup(Group myGroup) {
-        int i , j ;
+        int i, j;
         System.out.println(myGroup.groupName);
-        System.out.println("groupId: "+myGroup.groupId);
-        System.out.println(myGroup.groupUsers.size()+" member");
+        System.out.println("groupId: " + myGroup.groupId);
+        System.out.println(myGroup.groupUsers.size() + " member");
         System.out.println("********");
-        for (i=0 ; i<myGroup.allTexts.size() ; i++){
-            System.out.println("user: "+myGroup.allTexts.get(i).usersPostId);
-            System.out.println("postId: "+myGroup.allTexts.get(i).postID);
+        for (i = 0; i < myGroup.allTexts.size(); i++) {
+            System.out.println("user: " + myGroup.allTexts.get(i).usersPostId);
+            System.out.println("postId: " + myGroup.allTexts.get(i).postID);
             if (myGroup.allTexts.get(i).getClass().toString().equals("Comment")) {
                 for (j = 0; j < myGroup.allReply.size(); j++) {
                     if (myGroup.allReply.get(j).postID.equals(myGroup.allTexts.get(i).postID)) {
@@ -312,17 +312,21 @@ public class Show {
         }
     }
 
-    public static void show_suggestedPerson(Person myPerson){
+    public static void show_suggestedPerson(Person myPerson) {
         ArrayList<Person> suggestedPerson = Commercial.sortSuggestedPerson(myPerson);
-        for (int i = 0; i < 5 && i<suggestedPerson.size(); i++) {
+        for (int i = 0; i < 5 && i < suggestedPerson.size(); i++) {
             System.out.println("name : " + suggestedPerson.get(i).name + " - " +
-                                "userId : " + suggestedPerson.get(i).userID);
+                    "userId : " + suggestedPerson.get(i).userID);
+            System.out.println("-------------");
         }
     }
 
-    public static void show_mainPosts(Person person , ArrayList<BusinessUser> business){
+    public static void show_mainPosts(Person person, ArrayList<BusinessUser> business) {
 
         for (int i = 0; i < person.mainPagePostFinal.size() && i < 10; i++) {
+            if (person.mainPagePostFinal.get(i).commercialPost) {
+                System.out.println("-ad");
+            }
             System.out.println(person.mainPagePostFinal.get(i).usersPostId + " : " +
                     person.mainPagePostFinal.get(i).script + "\t" +
                     person.mainPagePostFinal.get(i).postDate);
@@ -330,7 +334,7 @@ public class Show {
 
     }
 
-    public static void show_stat(BusinessPost myPost){
+    public static void show_stat(BusinessPost myPost) {
         System.out.println("view in days:");
         System.out.println("days passed\tviews");
         ArrayList<Integer> views = myPost.eachDayView();
@@ -353,10 +357,10 @@ public class Show {
         System.out.println();
     }
 
-    public static void show_searchName(ArrayList<Person> myResult){
+    public static void show_searchName(ArrayList<Person> myResult) {
         int i;
-        for(i=0 ; i<myResult.size() ; i++){
-            System.out.println(myResult.get(i).name+"  id: "+myResult.get(i).userID);
+        for (i = 0; i < myResult.size(); i++) {
+            System.out.println(myResult.get(i).name + "  id: " + myResult.get(i).userID);
             System.out.println(myResult.get(i).userAccountType);
             System.out.println("---------------");
         }

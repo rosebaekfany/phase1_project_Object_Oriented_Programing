@@ -52,7 +52,7 @@ public class Person {
         return non_liked_post;
     }
 
-    public static void makeMainPage(Person myPerson ,ArrayList<BusinessUser> myBussinessUsers) {
+    public static void makeMainPage(Person myPerson, ArrayList<BusinessUser> myBussinessUsers) {
         int i, j, h, flag = 0;
         for (i = 0; i < myPerson.folowings.size(); i++) {
             for (j = 0; j < myPerson.folowings.get(i).posts.size(); j++) {
@@ -75,12 +75,12 @@ public class Person {
 
 
         ArrayList<Post> sortedCommercial = new ArrayList<>();
-        HashMap<Post , Integer> recommendedPosts = Commercial.recommendedPosts(myPerson , myBussinessUsers);
-        Map.Entry<Post , Integer> maxPostEntry = null;
+        HashMap<Post, Integer> recommendedPosts = Commercial.recommendedPosts(myPerson, myBussinessUsers);
+        Map.Entry<Post, Integer> maxPostEntry = null;
         for (int k = 0; k < recommendedPosts.size(); k++) {
             for (Map.Entry<Post, Integer> postIntegerEntry : recommendedPosts.entrySet()) {
                 int maxValue = hashMapMax(recommendedPosts);
-                if (postIntegerEntry.getValue() == maxValue){
+                if (postIntegerEntry.getValue() == maxValue) {
                     //maxPostEntry = postIntegerEntry;
                     sortedCommercial.add(postIntegerEntry.getKey());
                     recommendedPosts.remove(maxPostEntry.getKey());
@@ -92,13 +92,13 @@ public class Person {
 
         int userPostIndex = 0;
         int commercialIndex = 0;
-        while(userPostIndex < myPerson.mainPagePost.size() || commercialIndex < sortedCommercial.size()){
+        while (userPostIndex < myPerson.mainPagePost.size() || commercialIndex < sortedCommercial.size()) {
 
-            for (int k = 0; k < 3 && k<myPerson.mainPagePost.size(); k++) {
+            for (int k = 0; k < 3 && k < myPerson.mainPagePost.size() % 3; k++) {
                 myPerson.mainPagePostFinal.add(myPerson.mainPagePost.get(userPostIndex));
                 userPostIndex++;
             }
-            if(sortedCommercial.size()!=0) {
+            if (sortedCommercial.size() != 0) {
                 myPerson.mainPagePostFinal.add(sortedCommercial.get(commercialIndex));
                 commercialIndex++;
             }
@@ -107,10 +107,10 @@ public class Person {
 
     }
 
-    public static <T> int  hashMapMax (HashMap<T , Integer> map){
+    public static <T> int hashMapMax(HashMap<T, Integer> map) {
         int max = 0;
         for (Integer value : map.values()) {
-            if (value >= max){
+            if (value >= max) {
                 max = value;
             }
         }

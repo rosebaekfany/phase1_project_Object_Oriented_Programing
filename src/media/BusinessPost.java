@@ -34,7 +34,7 @@ public class BusinessPost extends Post {
         int postYear = postLocalDate.getYear();
         int postDay = postLocalDate.getDayOfYear();
         int daysPassed = (nowYear - postYear) * 365 + (nowDay - postDay);
-        for (int i = 0; i < daysPassed; i++) {
+        for (int i = 0; i <= daysPassed; i++) {
             views.add(0);
         }
 
@@ -58,7 +58,7 @@ public class BusinessPost extends Post {
         int postYear = postLocalDate.getYear();
         int postDay = postLocalDate.getDayOfYear();
         int daysPassed = (nowYear - postYear) * 365 + (nowDay - postDay);
-        for (int i = 0; i < daysPassed; i++) {
+        for (int i = 0; i <= daysPassed; i++) {
             likes.add(0);
         }
 

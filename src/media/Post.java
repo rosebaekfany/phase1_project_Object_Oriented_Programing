@@ -47,8 +47,8 @@ public class Post {
     public static void post(RegisterMenu myRegister) {
         int i ;
         myRegister.allRegisters.get(myRegister.logedInAccount).posts.add(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1));
-        myRegister.allPosts.add(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1)) ;
         if(myRegister.allRegisters.get(myRegister.logedInAccount).userAccountType.equals("Business_Account")){
+            myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).commercialPost=true;
             BusinessPost myBussinessPost = new BusinessPost();
             myBussinessPost.usersPostId=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).usersPostId;
             myBussinessPost.postDate=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).postDate;
@@ -62,6 +62,7 @@ public class Post {
             myBussinessPost.viewedUsers=myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1).viewedUsers;
             myRegister.allbussinessPost.add(myBussinessPost);
         }
+        myRegister.allPosts.add(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.get(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1)) ;
         myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.remove(myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.size() - 1) ;
 
     }

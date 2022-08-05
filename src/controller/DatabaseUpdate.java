@@ -19,7 +19,6 @@ public class DatabaseUpdate {
     public static void loadAll(RegisterMenu allRegister, Connection conn) throws SQLException {
         UserRepository.loadUsers(allRegister, conn);
         PostRepository.loadPosts(allRegister, conn);
-        ;
         likedPostRepository.loadLikedPost(allRegister, conn);
         draftPostRepository.loadDraftPost(allRegister, conn);
         viewPostRepository.loadViewPost(allRegister, conn);
@@ -249,8 +248,8 @@ class likedPostRepository {
                         .executeQuery(
                                 "SELECT * FROM likephoto");
         while (resultSet.next()) {
-            if(resultSet.getString("userId").equals("1")){}
-            else {
+            if (resultSet.getString("userId").equals("1")) {
+            } else {
                 int i, j;
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
                     if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("userId"))) {
@@ -300,8 +299,8 @@ class draftPostRepository {
                         .executeQuery(
                                 "SELECT * FROM drafpost");
         while (resultSet.next()) {
-            if(resultSet.getString("postId").equals("1")){}
-            else {
+            if (resultSet.getString("postId").equals("1")) {
+            } else {
                 int i, j;
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
                     if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("userId"))) {
@@ -353,8 +352,8 @@ class viewPostRepository {
                         .executeQuery(
                                 "SELECT * FROM viewpost");
         while (resultSet.next()) {
-            if(resultSet.getString("postId").equals("1")){}
-            else {
+            if (resultSet.getString("userId").equals("1")) {
+            } else {
                 int i, j;
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
                     if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("userId"))) {
@@ -382,9 +381,9 @@ class viewPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO viewpost(usersId,postId) " +
-                            "VALUES(?,?,?,?)");
-            for (i = 0; i < allRegister.allRegisters.get(j).draftPosts.size(); i++) {
+                    "INSERT INTO viewpost(userId,postId) " +
+                            "VALUES(?,?)");
+            for (i = 0; i < allRegister.allRegisters.get(j).viewedPosts.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
                 preparedStatementA.setString(2, allRegister.allRegisters.get(j).viewedPosts.get(i).postID);
                 preparedStatementA.executeUpdate();
@@ -403,13 +402,13 @@ class followRepository {
                         .executeQuery(
                                 "SELECT * FROM follower");
         while (resultSet.next()) {
-            if(resultSet.getString("folloewerId").equals("1")){}
-            else {
+            if (resultSet.getString("id").equals("1")) {
+            } else {
                 int i, j;
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
-                    if (resultSet.getString("folloewerId").equals(allRegister.allRegisters.get(i))) {
+                    if (resultSet.getString("folloewerId").equals(allRegister.allRegisters.get(i).userID)) {
                         for (j = 0; j < allRegister.allRegisters.size(); j++) {
-                            if (resultSet.getString("followedId").equals(allRegister.allRegisters.get(j))) {
+                            if (resultSet.getString("followedId").equals(allRegister.allRegisters.get(j).userID)) {
                                 allRegister.allRegisters.get(i).folowings.add(allRegister.allRegisters.get(j));
                                 allRegister.allRegisters.get(j).folowers.add(allRegister.allRegisters.get(i));
                                 break;
@@ -431,11 +430,13 @@ class followRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO follower(folloewerId, followedId) " +
-                            "VALUES(?, ?)");
+                    "INSERT INTO follower(folloewerId, followedId,id) " +
+                            "VALUES(?, ?, ?)");
             for (i = 0; i < allRegister.allRegisters.get(j).folowings.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
                 preparedStatementA.setString(2, allRegister.allRegisters.get(j).folowings.get(i).userID);
+                preparedStatementA.setString(3, String.valueOf(Calendar.getInstance().getTime().getTime()));
+
                 preparedStatementA.executeUpdate();
             }
         }
@@ -453,8 +454,8 @@ class CommentRepository {
                         .executeQuery(
                                 "SELECT * FROM comment");
         while (resultSet.next()) {
-            if( resultSet.getString("postId").equals("1")){}
-            else {
+            if (resultSet.getString("postId").equals("1")) {
+            } else {
                 int i;
                 Comment myPost = new Comment();
                 myPost.postID = resultSet.getString("postId");
@@ -520,8 +521,8 @@ class RequestMassageRepository {
                         .executeQuery(
                                 "SELECT * FROM massagerequests");
         while (resultSet.next()) {
-            if(resultSet.getString("userId").equals("1")){}
-            else {
+            if (resultSet.getString("userId").equals("1")) {
+            } else {
                 int i;
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
                     if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("userId"))) {
@@ -671,18 +672,18 @@ class BussinessUserRepository {
                         .executeQuery(
                                 "SELECT * FROM bussinesuser");
         while (resultSet.next()) {
-            if(resultSet.getString("userId").equals("1")){}
-            else {
+            if (resultSet.getString("userId").equals("1")) {
+            } else {
                 int i;
                 Person user = new Person();
                 user.userID = (resultSet.getString("userId"));
                 user.userType = (resultSet.getString("userType"));
                 user.securityQuestion = (resultSet.getString("securityQuestion"));
                 user.name = (resultSet.getString("name"));
-                user.userAccountType = (resultSet.getString("userAccountType"));
+                user.userAccountType = "Business_Account";
                 user.bio = (resultSet.getString("bio"));
                 user.userPasswords = (resultSet.getString("userPassword"));
-                for (i = 0; i < 6; i++) {
+                /*for (i = 0; i < 6; i++) {
                     if (resultSet.getInt("gene_HEALTH_AND_CARE") == i) {
                         user.favoriteGenres[i] = HEALTH_AND_CARE;
                     } else if (resultSet.getInt("gene_FASHION") == i) {
@@ -697,7 +698,7 @@ class BussinessUserRepository {
                         user.favoriteGenres[i] = GAMING;
                     }
 
-                }
+                }*/
                 BusinessUser myBussinesUser = new BusinessUser(user);
                 myBussinesUser.userPhoneNumber = resultSet.getString("userPhonNumber");
                 if (resultSet.getString("commercialGenre").equals("ARTS")) {
@@ -727,9 +728,8 @@ class BussinessUserRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.businessUsers.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO bussinesuser(userType, userPassword, bio, name, userAccountType" +
-                            " securityQuestion ,userId , gene_HEALTH_AND_CARE , gene_FASHION , gene_SCIENCE_AND_TECHNOLOGY , gene_STOCK_MARKET , gene_ARTS , gene_GAMING,userPhonNumber,commercialGenre) " +
-                            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO bussinesuser(userType, userPassword, bio, name, userAccountType , securityQuestion ,userId , gene_HEALTH_AND_CARE , gene_FASHION , gene_SCIENCE_AND_TECHNOLOGY , gene_STOCK_MARKET , gene_ARTS , gene_GAMING,userPhonNumber,commercialGenre) " +
+                            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             preparedStatementA.setString(1, allRegister.businessUsers.get(j).userType);
             preparedStatementA.setString(2, allRegister.businessUsers.get(j).userPasswords);
@@ -862,11 +862,11 @@ class likedBussinessPostRepository {
                         .executeQuery(
                                 "SELECT * FROM likebussinesspost");
         while (resultSet.next()) {
-            if(resultSet.getString("postId").equals("1")){}
-            else {
+            if (resultSet.getString("userId").equals("1")) {
+            } else {
                 for (i = 0; i < allRegister.allbussinessPost.size(); i++) {
                     if (allRegister.allbussinessPost.get(i).postID.equals(resultSet.getString("postId"))) {
-                        for (j = 0; j < allRegister.allRegisters.size(); i++) {
+                        for (j = 0; j < allRegister.allRegisters.size(); j++) {
                             if (allRegister.allRegisters.get(j).userID.equals(resultSet.getString("userId"))) {
                                 LocalDate myDate;
                                 myDate = LocalDate.parse(resultSet.getString("likeDate"));
@@ -878,7 +878,6 @@ class likedBussinessPostRepository {
                     }
                 }
             }
-
         }
 
         statement.close();
@@ -891,7 +890,7 @@ class likedBussinessPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allbussinessPost.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO likebussinesspost(usersId,postId,likeDate) " +
+                    "INSERT INTO likebussinesspost(userId,postId,likeDate) " +
                             "VALUES(?, ?, ?)");
             for (Map.Entry<Person, LocalDate> personLocalDateEntry : allRegister.allbussinessPost.get(j).liked.entrySet()) {
                 preparedStatementA.setString(1, personLocalDateEntry.getKey().userID);
@@ -916,11 +915,11 @@ class viewedBussinessPostRepository {
                         .executeQuery(
                                 "SELECT * FROM viewbussinesspost");
         while (resultSet.next()) {
-            if(resultSet.getString("postId").equals("1")){}
-            else {
+            if (resultSet.getString("userId").equals("1")) {
+            } else {
                 for (i = 0; i < allRegister.allbussinessPost.size(); i++) {
                     if (allRegister.allbussinessPost.get(i).postID.equals(resultSet.getString("postId"))) {
-                        for (j = 0; j < allRegister.allRegisters.size(); i++) {
+                        for (j = 0; j < allRegister.allRegisters.size(); j++) {
                             if (allRegister.allRegisters.get(j).userID.equals(resultSet.getString("userId"))) {
                                 LocalDate myDate;
                                 myDate = LocalDate.parse(resultSet.getString("viewDate"));
@@ -945,7 +944,7 @@ class viewedBussinessPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allbussinessPost.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO viewbussinesspost(usersId,postId,viewDate) " +
+                    "INSERT INTO viewbussinesspost(userId,postId,viewDate) " +
                             "VALUES(?, ?, ?)");
             for (Map.Entry<Person, LocalDate> personLocalDateEntry : allRegister.allbussinessPost.get(j).viewed.entrySet()) {
                 preparedStatementA.setString(1, personLocalDateEntry.getKey().userID);
@@ -970,8 +969,8 @@ class chatRepository {
                         .executeQuery(
                                 "SELECT * FROM chat");
         while (resultSet.next()) {
-            if(resultSet.getString("chatId").equals("1")){}
-            else {
+            if (resultSet.getString("chatId").equals("1")) {
+            } else {
                 Chat myChat = new Chat();
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
                     if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("person1"))) {
@@ -1026,8 +1025,8 @@ class groupRepasitory {
                         .executeQuery(
                                 "SELECT * FROM groupp");
         while (resultSet.next()) {
-            if(resultSet.getString("groupId").equals("1")){}
-            else {
+            if (resultSet.getString("groupId").equals("1")) {
+            } else {
                 Group myGroup = new Group();
                 myGroup.groupId = resultSet.getString("groupId");
                 myGroup.groupId = resultSet.getString("admin");
@@ -1303,7 +1302,7 @@ class groupRepasitory {
                         }
                     }
                 }
-                allRegister.allRegisterGroup.add(myGroup) ;
+                allRegister.allRegisterGroup.add(myGroup);
             }
         }
         statement.close();
@@ -1353,8 +1352,8 @@ class chatMassageReasitory {
                         .executeQuery(
                                 "SELECT * FROM allpersonalchat");
         while (resultSet.next()) {
-            if(resultSet.getString("chatId").equals("1")){}
-            else {
+            if (resultSet.getString("chatId").equals("1")) {
+            } else {
                 Comment myPost = new Comment();
                 myPost.postID = resultSet.getString("postId");
                 myPost.usersPostId = resultSet.getString("usersPostId");
@@ -1449,8 +1448,8 @@ class groupMassageReasitory {
                         .executeQuery(
                                 "SELECT * FROM allgroups");
         while (resultSet.next()) {
-            if(resultSet.getString("groupId").equals("1")){}
-            else {
+            if (resultSet.getString("groupId").equals("1")) {
+            } else {
                 Comment myPost = new Comment();
                 myPost.postID = resultSet.getString("postId");
                 myPost.usersPostId = resultSet.getString("usersPostId");
