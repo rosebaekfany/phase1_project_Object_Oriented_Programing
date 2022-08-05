@@ -248,7 +248,7 @@ class likedPostRepository {
                         .executeQuery(
                                 "SELECT * FROM likephoto");
         while (resultSet.next()) {
-            if (resultSet.getString("userId").equals("1")) {
+            if (resultSet.getString("id").equals("1")) {
             } else {
                 int i, j;
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
@@ -277,11 +277,12 @@ class likedPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO likephoto(userId,postId) " +
-                            "VALUES(?, ?)");
+                    "INSERT INTO likephoto(userId,postId,id) " +
+                            "VALUES(?, ?, ?)");
             for (i = 0; i < allRegister.allRegisters.get(j).likedPhotoes.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
                 preparedStatementA.setString(2, allRegister.allRegisters.get(j).likedPhotoes.get(i).postID);
+                preparedStatementA.setString(3,String.valueOf(Calendar.getInstance().getTime().getTime()));
                 preparedStatementA.executeUpdate();
             }
         }
@@ -352,7 +353,7 @@ class viewPostRepository {
                         .executeQuery(
                                 "SELECT * FROM viewpost");
         while (resultSet.next()) {
-            if (resultSet.getString("userId").equals("1")) {
+            if (resultSet.getString("id").equals("1")) {
             } else {
                 int i, j;
                 for (i = 0; i < allRegister.allRegisters.size(); i++) {
@@ -381,11 +382,13 @@ class viewPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO viewpost(userId,postId) " +
-                            "VALUES(?,?)");
+                    "INSERT INTO viewpost(userId,postId,id) " +
+                            "VALUES(?,?,?)");
             for (i = 0; i < allRegister.allRegisters.get(j).viewedPosts.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).userID);
                 preparedStatementA.setString(2, allRegister.allRegisters.get(j).viewedPosts.get(i).postID);
+                preparedStatementA.setString(3,String.valueOf(Calendar.getInstance().getTime().getTime()));
+
                 preparedStatementA.executeUpdate();
             }
         }
@@ -862,7 +865,7 @@ class likedBussinessPostRepository {
                         .executeQuery(
                                 "SELECT * FROM likebussinesspost");
         while (resultSet.next()) {
-            if (resultSet.getString("userId").equals("1")) {
+            if (resultSet.getString("id").equals("1")) {
             } else {
                 for (i = 0; i < allRegister.allbussinessPost.size(); i++) {
                     if (allRegister.allbussinessPost.get(i).postID.equals(resultSet.getString("postId"))) {
@@ -890,12 +893,13 @@ class likedBussinessPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allbussinessPost.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO likebussinesspost(userId,postId,likeDate) " +
-                            "VALUES(?, ?, ?)");
+                    "INSERT INTO likebussinesspost(userId,postId,likeDate,id) " +
+                            "VALUES(?, ?, ?,?)");
             for (Map.Entry<Person, LocalDate> personLocalDateEntry : allRegister.allbussinessPost.get(j).liked.entrySet()) {
                 preparedStatementA.setString(1, personLocalDateEntry.getKey().userID);
                 preparedStatementA.setString(2, allRegister.allbussinessPost.get(j).postID);
                 preparedStatementA.setString(3, personLocalDateEntry.getValue().toString());
+                preparedStatementA.setString(4,String.valueOf(Calendar.getInstance().getTime().getTime()));
                 preparedStatementA.executeUpdate();
             }
 
@@ -915,7 +919,7 @@ class viewedBussinessPostRepository {
                         .executeQuery(
                                 "SELECT * FROM viewbussinesspost");
         while (resultSet.next()) {
-            if (resultSet.getString("userId").equals("1")) {
+            if (resultSet.getString("id").equals("1")) {
             } else {
                 for (i = 0; i < allRegister.allbussinessPost.size(); i++) {
                     if (allRegister.allbussinessPost.get(i).postID.equals(resultSet.getString("postId"))) {
@@ -944,12 +948,13 @@ class viewedBussinessPostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allbussinessPost.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO viewbussinesspost(userId,postId,viewDate) " +
-                            "VALUES(?, ?, ?)");
+                    "INSERT INTO viewbussinesspost(userId,postId,viewDate,id) " +
+                            "VALUES(?, ?, ?,?)");
             for (Map.Entry<Person, LocalDate> personLocalDateEntry : allRegister.allbussinessPost.get(j).viewed.entrySet()) {
                 preparedStatementA.setString(1, personLocalDateEntry.getKey().userID);
                 preparedStatementA.setString(2, allRegister.allbussinessPost.get(j).postID);
                 preparedStatementA.setString(3, personLocalDateEntry.getValue().toString());
+                preparedStatementA.setString(4,String.valueOf(Calendar.getInstance().getTime().getTime()));
                 preparedStatementA.executeUpdate();
             }
 

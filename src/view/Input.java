@@ -230,7 +230,6 @@ public class Input {
                         "show users\n" +
                         "showThisGroup\n" +
                         "show suggested person\n" +
-                        "show recent posts\n" +
                         "showStat [postId]\n" +
                         "searchName [text]"
 
@@ -565,8 +564,8 @@ public class Input {
             }
 
             else if (sample.equals("enterMainPage")) {
-                Person.makeMainPage(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
-                Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
+                Person.makeMainPage(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister);
+                Show.MainShow(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
 
             else if (split[0].equals("ChatWith")) {
@@ -1092,9 +1091,9 @@ public class Input {
                 Show.show_suggestedPerson(myRegister.allRegisters.get(myRegister.logedInAccount));
             }
 
-            else if (sample.equals("show recent posts")) {
+            /*else if (sample.equals("show recent posts")) {
                 Show.show_mainPosts(myRegister.allRegisters.get(myRegister.logedInAccount), myRegister.businessUsers);
-            }
+            }*/
 
             else if (split[0].equals("showStat")) {
                 int i, ff = 0;

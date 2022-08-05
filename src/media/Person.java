@@ -52,7 +52,7 @@ public class Person {
         return non_liked_post;
     }
 
-    public static void makeMainPage(Person myPerson, ArrayList<BusinessUser> myBussinessUsers) {
+    public static void makeMainPage(Person myPerson, RegisterMenu register) {
         int i, j, h, flag = 0;
         for (i = 0; i < myPerson.folowings.size(); i++) {
             for (j = 0; j < myPerson.folowings.get(i).posts.size(); j++) {
@@ -75,7 +75,7 @@ public class Person {
 
 
         ArrayList<Post> sortedCommercial = new ArrayList<>();
-        HashMap<Post, Integer> recommendedPosts = Commercial.recommendedPosts(myPerson, myBussinessUsers);
+        HashMap<Post, Integer> recommendedPosts = Commercial.recommendedPosts(myPerson,register);
         Map.Entry<Post, Integer> maxPostEntry = null;
         for (int k = 0; k < recommendedPosts.size(); k++) {
             for (Map.Entry<Post, Integer> postIntegerEntry : recommendedPosts.entrySet()) {
@@ -94,13 +94,20 @@ public class Person {
         int commercialIndex = 0;
         while (userPostIndex < myPerson.mainPagePost.size() || commercialIndex < sortedCommercial.size()) {
 
-            for (int k = 0; k < 3 && k < myPerson.mainPagePost.size() % 3; k++) {
-                myPerson.mainPagePostFinal.add(myPerson.mainPagePost.get(userPostIndex));
-                userPostIndex++;
+            for (int k = 0; k < 3; k++) {
+                if(userPostIndex<myPerson.mainPagePost.size()) {
+                    myPerson.mainPagePostFinal.add(myPerson.mainPagePost.get(userPostIndex));
+                    userPostIndex++;
+                }
+                else{
+                    break;
+                }
             }
             if (sortedCommercial.size() != 0) {
-                myPerson.mainPagePostFinal.add(sortedCommercial.get(commercialIndex));
-                commercialIndex++;
+                if(commercialIndex<sortedCommercial.size()) {
+                    myPerson.mainPagePostFinal.add(sortedCommercial.get(commercialIndex));
+                    commercialIndex++;
+                }
             }
         }
 

@@ -171,10 +171,12 @@ public class Show {
         }
     }
 
-    public static void MainShow(Person myPerson, ArrayList<BusinessUser> myBussinesUsers) {
+    public static void MainShow(Person myPerson) {
         int i;
-        Person.makeMainPage(myPerson, myBussinesUsers);
         for (i = 0; i < myPerson.mainPagePostFinal.size(); i++) {
+            if (myPerson.mainPagePostFinal.get(i).commercialPost) {
+                System.out.println("-ad");
+            }
             System.out.println("id: " + myPerson.mainPagePostFinal.get(i).postID + "  " + myPerson.mainPagePostFinal.get(i).script + "  " + myPerson.mainPagePostFinal.get(i).edited);
             System.out.println("liked " + myPerson.mainPagePostFinal.get(i).likedUsers.size() + "commented " + myPerson.mainPagePostFinal.get(i).postComments.size());
             System.out.println("  time: " + myPerson.mainPagePostFinal.get(i).postDate.toString());
@@ -321,7 +323,7 @@ public class Show {
         }
     }
 
-    public static void show_mainPosts(Person person, ArrayList<BusinessUser> business) {
+/*    public static void show_mainPosts(Person person, ArrayList<BusinessUser> business) {
 
         for (int i = 0; i < person.mainPagePostFinal.size() && i < 10; i++) {
             if (person.mainPagePostFinal.get(i).commercialPost) {
@@ -332,7 +334,7 @@ public class Show {
                     person.mainPagePostFinal.get(i).postDate);
         }
 
-    }
+    }*/
 
     public static void show_stat(BusinessPost myPost) {
         System.out.println("view in days:");

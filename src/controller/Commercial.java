@@ -1,9 +1,6 @@
 package controller;
 
-import media.BusinessPost;
-import media.BusinessUser;
-import media.Person;
-import media.Post;
+import media.*;
 import temporary.CommercialGenres;
 
 import java.util.ArrayList;
@@ -74,22 +71,21 @@ public class Commercial {
     }
 
 
-    public static HashMap<Post, Integer> recommendedPosts(Person myPerson, ArrayList<BusinessUser> businesses) {
+    public static HashMap<Post, Integer> recommendedPosts(Person myPerson, RegisterMenu register) {
 
         HashMap<Post, Integer> recommendation = new HashMap<>();
 
         // setting non-viewed posts in the recommendation-map
-        for (BusinessUser business : businesses) {
-            for (Post post : business.posts) {
-                for (Post viewedPost : myPerson.viewedPosts) {
-                    if (viewedPost.postID.equals(post.postID)) {
-                        break;
-                    } else {
-                        recommendation.put(post, 0);
-                    }
+        for (BusinessPost post : register.allbussinessPost) {
+            for (Post viewedPost : myPerson.viewedPosts) {
+                if (viewedPost.postID.equals(post.postID)) {
+                    break;
+                } else {
+                    recommendation.put(post, 0);
                 }
             }
         }
+
 
         // setting non-liked posts
         ArrayList<Post> non_liked_post = myPerson.getUnLikedCommercialPosts();
@@ -129,7 +125,7 @@ public class Commercial {
         // setting recommendation-map based on favorite categories
         for (Post post : recommendation.keySet()) {
             int coef = 1;
-            CommercialGenres postGenre1 = findUser(post.usersPostId, businesses).postGenre;
+            CommercialGenres postGenre1 = findUser(post.usersPostId, register.businessUsers).postGenre;
             for (int i = 0; i < 6; i++) {
                 if (postGenre1.equals(myPerson.favoriteGenres[i])) {
                     coef = 6 - i;
