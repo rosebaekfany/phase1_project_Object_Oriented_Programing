@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.MassageRequestBase">
+   <children>
+      <Pane layoutX="1.0" layoutY="1.0" prefHeight="598.0" prefWidth="308.0" style="-fx-background-color: #535353;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="60.0" layoutY="30.0" prefHeight="62.0" prefWidth="187.0" text="massages" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <ScrollPane layoutX="14.0" layoutY="93.0" prefHeight="494.0" prefWidth="282.0" style="-fx-background-color: #535353;">
+               <content>
+                  <VBox prefHeight="492.0" prefWidth="280.0" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;" />
+               </content>
+            </ScrollPane>
+            <Button minWidth="36.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="36.0" style="-fx-background-color: #535353; -fx-border-color: #535353; -fx-border-width: 1; -fx-border-radius: 10;" text="&lt;" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

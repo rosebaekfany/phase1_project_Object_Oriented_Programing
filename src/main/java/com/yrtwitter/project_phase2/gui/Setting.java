@@ -1,8 +1,12 @@
 package com.yrtwitter.project_phase2.gui;
 
+import com.yrtwitter.project_phase2.gui.*;
 import com.yrtwitter.project_phase2.gui.menu.MainPage;
-import com.yrtwitter.project_phase2.media.RegisterMenu;
-import com.yrtwitter.project_phase2.temporary.CommercialGenres;
+import com.yrtwitter.project_phase2.media.*;
+import com.yrtwitter.project_phase2.temporary.*;
+import com.yrtwitter.project_phase2.view.*;
+import com.yrtwitter.project_phase2.controller.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
