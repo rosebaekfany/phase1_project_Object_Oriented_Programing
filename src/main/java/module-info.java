@@ -13,4 +13,10 @@ module com.yrtwitter.project_phase2 {
     exports com.yrtwitter.project_phase2;
     exports com.yrtwitter.project_phase2.gui;
     opens com.yrtwitter.project_phase2.gui to javafx.fxml;
+    exports com.yrtwitter.project_phase2.gui.chat;
+    opens com.yrtwitter.project_phase2.gui.chat to javafx.fxml;
+    exports com.yrtwitter.project_phase2.gui.menu;
+    opens com.yrtwitter.project_phase2.gui.menu to javafx.fxml;
+    exports com.yrtwitter.project_phase2.gui.pages;
+    opens com.yrtwitter.project_phase2.gui.pages to javafx.fxml;
 }

@@ -1,21 +1,12 @@
 package com.yrtwitter.project_phase2.gui;
 
 import com.yrtwitter.project_phase2.Main;
-import com.yrtwitter.project_phase2.media.Person;
-import javafx.event.ActionEvent;
+import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class SwitchScenes {
 

@@ -1,7 +1,6 @@
 package com.yrtwitter.project_phase2;
 
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
-import com.yrtwitter.project_phase2.gui.Test;
 import com.yrtwitter.project_phase2.media.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

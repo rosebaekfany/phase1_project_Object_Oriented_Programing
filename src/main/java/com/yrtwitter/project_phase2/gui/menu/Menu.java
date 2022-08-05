@@ -1,5 +1,6 @@
-package com.yrtwitter.project_phase2.gui;
+package com.yrtwitter.project_phase2.gui.menu;
 
+import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

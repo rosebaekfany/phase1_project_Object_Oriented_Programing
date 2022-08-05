@@ -1,4 +1,4 @@
-package com.yrtwitter.project_phase2.gui;
+package com.yrtwitter.project_phase2.gui.chat;
 
 import com.yrtwitter.project_phase2.Main;
 import com.yrtwitter.project_phase2.media.Post;

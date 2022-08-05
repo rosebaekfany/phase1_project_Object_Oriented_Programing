@@ -1,22 +1,16 @@
 package com.yrtwitter.project_phase2.gui;
 
-import com.yrtwitter.project_phase2.Main;
+import com.yrtwitter.project_phase2.gui.menu.MainPage;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
 import com.yrtwitter.project_phase2.temporary.CommercialGenres;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.chrono.Chronology;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
