@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.MassageRequestBase">
+<AnchorPane prefHeight="600.0" prefWidth="310.0" style="-fx-background-color: #535353 ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.MassageRequestBase">
    <children>
       <Pane layoutX="1.0" layoutY="1.0" prefHeight="598.0" prefWidth="308.0" style="-fx-background-color: #535353;">
          <children>
@@ -19,7 +19,7 @@
             </Label>
             <ScrollPane layoutX="14.0" layoutY="93.0" prefHeight="494.0" prefWidth="282.0" style="-fx-background-color: #535353;">
                <content>
-                  <VBox prefHeight="492.0" prefWidth="280.0" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;" />
+                  <VBox fx:id="requestBox" prefHeight="492.0" prefWidth="280.0" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;" />
                </content>
             </ScrollPane>
             <Button minWidth="36.0" mnemonicParsing="false" onAction="#backToPage" prefHeight="30.0" prefWidth="36.0" style="-fx-background-color: #535353; -fx-border-color: #535353; -fx-border-width: 1; -fx-border-radius: 10;" text="&lt;" textFill="WHITE" />

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="30.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.CreatepostIcon">
+<AnchorPane prefHeight="30.0" prefWidth="620.0" style="-fx-background-color: #535353 ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.CreatepostIcon">
    <children>
       <ScrollPane prefHeight="36.0" prefWidth="620.0" />
       <Pane prefHeight="36.0" prefWidth="620.0" style="-fx-background-color: #535353;">
