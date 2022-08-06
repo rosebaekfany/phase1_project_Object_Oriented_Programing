@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.ChatSeperator">
+   <tabs>
+      <Tab fx:id="personalTab" text="personal chats">
+         <content>
+            <VBox fx:id="personal" prefHeight="200.0" prefWidth="100.0" />
+         </content>
+      </Tab>
+      <Tab fx:id="groupTab" text="groups">
+         <content>
+            <VBox fx:id="group" prefHeight="200.0" prefWidth="100.0" />
+         </content></Tab>
+   </tabs>
+</TabPane>

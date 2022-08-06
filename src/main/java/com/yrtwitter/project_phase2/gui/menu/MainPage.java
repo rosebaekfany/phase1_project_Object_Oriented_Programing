@@ -54,7 +54,7 @@ public class MainPage extends SwitchScenes implements Initializable {
             case CONTACTS -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("myChats.fxml"));
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat_seperator.fxml"));
             }
             case SETTING -> {
                 contentPane.getChildren().clear();

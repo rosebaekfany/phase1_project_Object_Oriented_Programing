@@ -29,6 +29,9 @@ public class EachContact extends MyChats implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        back.setOnMouseClicked(mouseEvent -> enterChat());
+
         if (chatNum != -1){
             Chat thisChat = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allPersonalChats.get(chatNum);
             // name
@@ -45,14 +48,7 @@ public class EachContact extends MyChats implements Initializable {
             //text
             text.setText(thisChat.allTexts.get(thisChat.allTexts.size()-1).script);
         }
-        if (groupNum != -1){
-            Group thisGroup = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allMyGroap.get(groupNum);
-            // name
-            name.setText(thisGroup.groupName);
 
-            //text
-            text.setText(thisGroup.allTexts.get(thisGroup.allTexts.size()-1).script);
-        }
 
     }
 
@@ -63,6 +59,7 @@ public class EachContact extends MyChats implements Initializable {
         switchScenes("main_page.fxml");
 
     }
+
 
     private Chat findChat (String name){
         for (Chat personalChat : Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allPersonalChats) {

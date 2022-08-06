@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="540.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.ChatBottom">
    <children>
-      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="480.0" prefWidth="620.0">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="480.0" prefWidth="620.0" vvalue="1.0">
          <content>
             <VBox fx:id="chatContent" alignment="BOTTOM_LEFT" prefHeight="480.0" prefWidth="620.0" style="-fx-background-color: #535353;" />
          </content>

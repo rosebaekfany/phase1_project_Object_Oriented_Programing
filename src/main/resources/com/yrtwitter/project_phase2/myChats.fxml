@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.MyChats">
-   <tabs>
-      <Tab fx:id="personalTab" text="personal chats">
-         <content>
-            <ScrollPane fx:id="personal_scrollPane" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="620.0">
-               <content>
-                  <VBox fx:id="personal_back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" />
-               </content>
-            </ScrollPane>
-         </content>
-      </Tab>
-      <Tab fx:id="groupTab" text="groups">
-         <content>
-            <ScrollPane fx:id="group_scrollPane" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="620.0">
-               <content>
-                  <VBox fx:id="group_back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" />
-               </content>
-            </ScrollPane>
-         </content>
-      </Tab>
-   </tabs>
-</TabPane>
+<ScrollPane fx:id="personal_scrollPane" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.MyChats">
+   <content>
+      <VBox fx:id="personal_back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" />
+   </content>
+</ScrollPane>

@@ -11,22 +11,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Message extends SwitchScenes implements Initializable {
+public class MessageGroup extends SwitchScenes implements Initializable {
     @FXML
     VBox messagePane;
     @FXML
-    Label replyLabel ,  forwardLabel , nameLabel , textLabel , dateLabel;
+    Label  forwardLabel , nameLabel , textLabel , dateLabel;
     @FXML
     Button replyButton , forwardButton , likeButton , editButton , deleteButton;
     @FXML
     TextField forwardTextField , editTextField , replyTextField;
 
-    Chat myChat = Input.myRegister.chatOnBord;
+    Group myGroup = Input.myRegister.grouponBord;
     Person me = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount);
 
     public static Post recentPost;
@@ -61,19 +62,19 @@ public class Message extends SwitchScenes implements Initializable {
         if (replyText.equals("")){
             return;
         }
-        Communication.replyChat(myChat , recentPost , me , replyText);
-        onPage = OnPage.PRIVATE_CHAT;
+        Group.replyChat(myGroup , recentPost , me , replyText);
+        onPage = OnPage.GROUP_CHAT;
         switchScenes("main_page.fxml");
     }
 
     private void like(){
-        Communication.likeDm(myChat , recentPost , me);
+        Group.likeDm(myGroup , recentPost , me);
         likeButton.setText("liked");
     }
 
     private void delete(){
-        Communication.deleteDmChat(myChat , recentPost);
-        onPage = OnPage.PRIVATE_CHAT;
+        Group.deleteDmChat(myGroup , recentPost);
+        onPage = OnPage.GROUP_CHAT;
         switchScenes("main_page.fxml");
     }
 
@@ -83,12 +84,12 @@ public class Message extends SwitchScenes implements Initializable {
             return;
         }
         textLabel.setText(newText);
-        Communication.editDmInChat(myChat , recentPost , newText);
+        Group.editDmInGroup(myGroup , recentPost , newText);
     }
 
 
 
     private void forward(){
-       //ToDo Communication.forwardDm(me , com.yrtwitter.project_phase2.gui.chat.Chat.recentPost ,);
+        // ToDo Communication.forwardDm(me , com.yrtwitter.project_phase2.gui.chat.Chat.recentPost ,);
     }
 }

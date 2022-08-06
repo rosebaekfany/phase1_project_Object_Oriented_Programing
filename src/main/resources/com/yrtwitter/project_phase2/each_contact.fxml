@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="back" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#enterChat" prefHeight="69.0" prefWidth="620.0" style="-fx-background-color: #535353; -fx-border-color: #2499F8FF; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.EachContact">
+<HBox fx:id="back" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="69.0" prefWidth="620.0" style="-fx-background-color: #535353; -fx-border-color: #2499F8FF; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.EachContact">
    <children>
       <ImageView fx:id="profile" fitHeight="63.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,10 +28,5 @@
             </Label>
          </children>
       </VBox>
-      <Label fx:id="unreadNum" alignment="CENTER" prefHeight="38.0" prefWidth="42.0" style="-fx-border-color: #2499F8FF; -fx-border-width: 3; -fx-border-radius: 500;" text="3" textFill="#2499f8">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
    </children>
 </HBox>
