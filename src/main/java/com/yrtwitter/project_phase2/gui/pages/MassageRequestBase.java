@@ -36,7 +36,7 @@ public class MassageRequestBase extends SwitchScenes implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(requestBox!=null) {
-            for (requestIndex=SearchIdSingle.myPersonPage.massageRequests.size()-1 ; requestIndex>=0; requestIndex++) {
+            for (requestIndex=SearchIdSingle.myPersonPage.massageRequests.size()-1 ; requestIndex>=0; requestIndex--) {
                 FXMLLoader requestt = new FXMLLoader(Main.class.getResource("massageRequestSingle.fxml"));
                 try {
                     requestBox.getChildren().add(requestt.load());

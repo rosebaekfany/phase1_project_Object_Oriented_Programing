@@ -11,17 +11,22 @@
       <ScrollPane prefHeight="36.0" prefWidth="620.0" />
       <Pane prefHeight="36.0" prefWidth="620.0" style="-fx-background-color: #535353;">
          <children>
-            <Button layoutX="248.0" layoutY="-1.0" mnemonicParsing="false" onAction="#creatPost" style="-fx-background-color: #535353;" text="+create post" textFill="#2499f8">
+            <Button layoutX="295.0" layoutY="-1.0" mnemonicParsing="false" onAction="#creatPost" style="-fx-background-color: #535353;" text="+create post" textFill="#2499f8">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="404.0" layoutY="-1.0" mnemonicParsing="false" onAction="#massage" style="-fx-background-color: #535353;" text="massage requests" textFill="WHITE">
+            <Button layoutX="440.0" layoutY="-1.0" mnemonicParsing="false" onAction="#massage" style="-fx-background-color: #535353;" text="massage requests" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="90.0" layoutY="-1.0" mnemonicParsing="false" onAction="#con" style="-fx-background-color: #535353;" text="controller" textFill="RED">
+            <Button layoutX="147.0" layoutY="-1.0" mnemonicParsing="false" onAction="#con" style="-fx-background-color: #535353;" text="controller" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="49.0" layoutY="-1.0" mnemonicParsing="false" onAction="#exit" style="-fx-background-color: #535353;" text="exit" textFill="RED">
                <font>
                   <Font size="18.0" />
                </font>

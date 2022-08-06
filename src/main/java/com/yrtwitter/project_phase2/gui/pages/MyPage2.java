@@ -66,7 +66,7 @@ public class MyPage2 extends SwitchScenes implements Initializable {
             }
         }
         if (flag == 1) {
-            for(i=0 ; i<SearchIdSingle.myPersonPage.posts.size() ; i++){
+            for(i=SearchIdSingle.myPersonPage.posts.size()-1 ; i>=0 ; i--){
                 BasePost.myShowPost=SearchIdSingle.myPersonPage.posts.get(i);
                 FXMLLoader bodyLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
                 try {

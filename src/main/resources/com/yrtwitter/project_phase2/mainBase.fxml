@@ -16,11 +16,11 @@
             <VBox fx:id="mainPageContent" prefHeight="552.0" prefWidth="618.0" style="-fx-background-color: #535353;" />
          </content>
       </ScrollPane>
-      <Pane layoutY="552.0" prefHeight="50.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+      <Pane layoutY="551.0" prefHeight="50.0" prefWidth="620.0" style="-fx-background-color: #535353;">
          <children>
             <Button fx:id="addGroupButton" layoutX="549.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: #535353;" text="+group" textFill="WHITE" />
             <TextField fx:id="groupNameTextField" layoutX="393.0" layoutY="13.0" prefHeight="25.0" prefWidth="155.0" promptText="group name" />
-            <Label fx:id="label" layoutX="301.0" layoutY="18.0" prefHeight="20.0" prefWidth="103.0" text="group created" textFill="#f5f5f5">
+            <Label fx:id="label" layoutX="281.0" layoutY="16.0" prefHeight="20.0" prefWidth="103.0" text="group created" textFill="#f5f5f5">
                <font>
                   <Font size="14.0" />
                </font>

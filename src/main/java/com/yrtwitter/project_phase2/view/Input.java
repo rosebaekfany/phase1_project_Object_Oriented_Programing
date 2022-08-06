@@ -22,8 +22,8 @@ public class Input {
 
 
     public int i, j;
-    public int registerMenu = 0, accountMenu = 0;
-    public int registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0, selectPostFlag = 0;
+    public static int registerMenu = 0 ;
+    public int accountMenu = 0 , registerflag = 0, loginflag = 0, successfulLog = 0, deleteAccountflag = 0, successfulDeleteAccount, postflag = 0, selectPostFlag = 0;
     public int startChat = 0, enterGroup = 0;
 
     public void backToDefault() {

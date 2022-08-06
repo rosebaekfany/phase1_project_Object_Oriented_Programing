@@ -121,41 +121,41 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
 
-        Input myInput = new Input();
+       Input myInput = new Input();
+       Connection conn = null;
+       Statement stmt = null;
+       try {
+           try {
+               Class.forName("com.mysql.cj.jdbc.Driver");
+           }
+           catch (Exception e) {
+               System.out.println(e);
+           }
+           conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
+           stmt = (Statement) conn.createStatement();
+           String query1 = "INSERT INTO allregister " + "VALUES ()";
 
-//        Connection conn = null;
-//        Statement stmt = null;
-//        try {
-//            try {
-//                Class.forName("com.mysql.cj.jdbc.Driver");
-//            }
-//            catch (Exception e) {
-//                System.out.println(e);
-//            }
-//            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
-//            stmt = (Statement) conn.createStatement();
-//            String query1 = "INSERT INTO allregister " + "VALUES ()";
-//
-//            stmt.executeUpdate(query1);
-//        }
-//        catch (SQLException excep) {
-//            excep.printStackTrace();
-//        }
-//        catch (Exception excep) {
-//            excep.printStackTrace();
-//        }
-//
-//        myInput.register_menu(conn);
-        Input.myRegister.logedInAccount = /*Input.myRegister.allRegisters.size()-1*/ 0;
+           stmt.executeUpdate(query1);
+       }
+       catch (SQLException excep) {
+           excep.printStackTrace();
+       }
+       catch (Exception excep) {
+           excep.printStackTrace();
+       }
+
+       myInput.register_menu(conn);
+
         launch();
-//
-//        while (myInput.registerMenu == 1) {
-//            myInput.inputRegister();
-//        }
-//        if(myInput.registerMenu == 0){
-//            DatabaseUpdate.insertAll(myInput.myRegister,conn);
-//            conn.close();
-//        }
+
+        while (Input.registerMenu == 1) {
+            myInput.inputRegister();
+        }
+        if(Input.registerMenu == 0){
+            DatabaseUpdate.insertAll(myInput.myRegister,conn);
+            conn.close();
+            System.out.println("finished");
+        }
 
     }
 }
