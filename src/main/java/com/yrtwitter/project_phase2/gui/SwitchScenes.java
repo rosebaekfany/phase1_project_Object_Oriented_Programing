@@ -15,7 +15,6 @@ public class SwitchScenes {
     public static OnPage onPage;
 
 
-
     public void switchScenes (String[] fxmls){
 
     }
@@ -26,7 +25,7 @@ public class SwitchScenes {
         double preHeight = window.getHeight();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
         try {
-            Scene scene = new Scene(fxmlLoader.load(), 800, 700);
+            Scene scene = new Scene(fxmlLoader.load() );
             SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");
             SwitchScenes.window.setScene(scene);
             window.setHeight(preHeight);

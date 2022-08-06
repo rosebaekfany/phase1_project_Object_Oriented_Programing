@@ -406,7 +406,7 @@ public class Input {
             else if (postflag == 1) {
 
                 if (split[0].equals("add_text")) {
-                    Post.writePost(myRegister, sample.substring(9));
+                    //Post.writePost(myRegister, sample.substring(9));
                     System.out.println("the newPost is now in your drafts");
                 }
 

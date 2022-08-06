@@ -6,17 +6,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="60.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.SearchIdTop">
+<AnchorPane prefHeight="60.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.SearchIdTop">
    <children>
       <Pane prefHeight="60.0" prefWidth="620.0" style="-fx-background-color: #535353;">
          <children>
-            <TextField layoutX="55.0" layoutY="12.0" prefHeight="36.0" prefWidth="486.0" promptText="search name" style="-fx-background-color: #ffffff;">
+            <TextField fx:id="searchId" layoutX="55.0" layoutY="12.0" prefHeight="36.0" prefWidth="486.0" promptText="search name" style="-fx-background-color: #ffffff;">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Button layoutX="560.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" style="-fx-background-color: #535353; -fx-border-color: #ffffff; -fx-border-width: 3; -fx-border-radius: 10;" text="search" textFill="WHITE">
+            <Button layoutX="560.0" layoutY="10.0" mnemonicParsing="false" onAction="#search" prefHeight="36.0" prefWidth="46.0" style="-fx-background-color: #535353; -fx-border-color: #ffffff; -fx-border-width: 3; -fx-border-radius: 10;" text="search" textFill="WHITE">
                <font>
                   <Font size="9.0" />
                </font>

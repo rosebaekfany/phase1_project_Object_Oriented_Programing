@@ -42,7 +42,7 @@ public class Post {
 
     public static void writePost(RegisterMenu myRegister, String text,String imageName) {
         Post newPost = new Post();
-        Image postImage = new Image("/images/"+imageName);
+        Image postImage= new Image(Post.class.getResourceAsStream("/images/"+imageName));
         newPost.postImage=postImage;
         newPost.script = text;
         Date postDate = new Date();

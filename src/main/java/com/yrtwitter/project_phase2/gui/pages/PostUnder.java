@@ -1,8 +1,11 @@
 package com.yrtwitter.project_phase2.gui.pages;
 
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
+import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.media.BusinessPost;
 import com.yrtwitter.project_phase2.media.Post;
+import com.yrtwitter.project_phase2.media.RegisterMenu;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,24 +32,32 @@ public class PostUnder extends SwitchScenes implements Initializable {
     Label edited;
 
     public void likePost(ActionEvent event) throws IOException {
-        BusinessPost.fillLike(myShowPost.postID , myRegister , allRegisters.get(logedInAccount), LocalDate.now());
-        Post.likePost(allRegisters.get(logedInAccount), myShowPost);
+        BusinessPost.fillLike(BasePost.myShowPost.postID , Input.myRegister ,Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount), LocalDate.now());
+        Post.likePost(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount), BasePost.myShowPost);
+        if(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userID.equals(BasePost.myShowPost.usersPostId)){
+            onPage = OnPage.MY_PAGE;
+        }else {
+            onPage = OnPage.SBS_PAGE;
+        }
+        switchScenes("main_page.fxml");
     }
 
     public void show_likes(ActionEvent event) throws IOException {
-        switchScenes("showPostLikes.fxml");
+        onPage = OnPage.LIKE_POST;
+        switchScenes("main_page.fxml");
     }
 
     public void commenting(ActionEvent event) throws IOException {
-        switchScenes("postComment.fxml");
+        onPage = OnPage.COMMENT_POST;
+        switchScenes("main_page.fxml");
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        text.setText(myShowPost.script);
-        likeNum.setText(String.valueOf(myShowPost.likedUsers.size()));
-        commentNum.setText(String.valueOf(myShowPost.postComments.size()));
-        edited.setText(myShowPost.edited);
+        text.setText(BasePost.myShowPost.script);
+        likeNum.setText(String.valueOf(BasePost.myShowPost.likedUsers.size()));
+        commentNum.setText(String.valueOf(BasePost.myShowPost.postComments.size()));
+        edited.setText(BasePost.myShowPost.edited);
     }
 }

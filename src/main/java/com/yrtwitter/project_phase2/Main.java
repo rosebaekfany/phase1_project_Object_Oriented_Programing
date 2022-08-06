@@ -2,12 +2,14 @@ package com.yrtwitter.project_phase2;
 
 import com.yrtwitter.project_phase2.controller.*;
 import com.yrtwitter.project_phase2.gui.*;
+import com.yrtwitter.project_phase2.gui.pages.BasePost;
 import com.yrtwitter.project_phase2.media.*;
 import com.yrtwitter.project_phase2.view.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,9 +37,11 @@ public class Main extends Application {
 
         Person friend1 = new Person();
         friend1.name = "Mahnoosh";
+        friend1.userID="@yek";
 
         Person friend2 = new Person();
         friend2.name = "Rosa";
+        friend2.userID ="@y";
 
         Input.myRegister.allRegisters.add(me);
         Input.myRegister.allRegisters.add(friend1);
@@ -76,29 +80,32 @@ public class Main extends Application {
         me.allMyGroap.add(group1);
         me.allMyGroap.add(group2);
 
-        myShowPost.script="hi";
-        myShowPost.postID="@fgh";
-        myShowPost.postDate= Calendar.getInstance().getTime();
-        myShowPost.usersPostId="@yekta";
-        myShowPost.edited="   ";
-        myShowPost.likedUsers.add(me);
-        myShowPost.likedUsers.add(friend1);
-        myShowPost.likedUsers.add(friend2);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        BasePost.myShowPost.script="hi";
+        BasePost.myShowPost.postID="@fgh";
+        BasePost.myShowPost.postDate= Calendar.getInstance().getTime();
+        BasePost.myShowPost.usersPostId="@yekta";
+        BasePost.myShowPost.edited="   ";
+        BasePost.myShowPost.likedUsers.add(me);
+        BasePost.myShowPost.likedUsers.add(friend1);
+        BasePost.myShowPost.likedUsers.add(friend2);
+        Image muMah = new Image(getClass().getResourceAsStream("/images/rose-flower.jpg"));
+        BasePost.myShowPost.postImage=muMah;
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load());
         SwitchScenes.window = stage;
         SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");
         SwitchScenes.window.setScene(scene);
         SwitchScenes.window.setWidth(815.0);
-        SwitchScenes.window.setHeight(640.0);
+        SwitchScenes.window.setHeight(615.0);
         SwitchScenes.window.show();
     }
 
     public static void main(String[] args) throws SQLException {
 
         Input myInput = new Input();
-
 
         Connection conn = null;
         Statement stmt = null;

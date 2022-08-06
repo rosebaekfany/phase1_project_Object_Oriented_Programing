@@ -18,7 +18,7 @@ public class postTop implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userid.setText(myShowPost.usersPostId);
-        postid.setText(myShowPost.postID);
+        userid.setText(BasePost.myShowPost.usersPostId);
+        postid.setText(BasePost.myShowPost.postID);
     }
 }

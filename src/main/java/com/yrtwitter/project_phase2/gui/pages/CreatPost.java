@@ -1,6 +1,7 @@
 package com.yrtwitter.project_phase2.gui.pages;
 
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
+import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.media.Post;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,8 @@ public class CreatPost extends SwitchScenes implements Initializable {
     public void creatPost (ActionEvent event) throws IOException {
         Post.writePost(myRegister, text.getText(),imageName.getText());
         Post.post(myRegister);
+        onPage = OnPage.MY_PAGE;
+        switchScenes("main_page.fxml");
     }
 
     @Override

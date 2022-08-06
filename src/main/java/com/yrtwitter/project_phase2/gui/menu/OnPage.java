@@ -9,5 +9,8 @@ public enum OnPage {
     CONTACTS ,
     GROUP_CHAT ,
     PRIVATE_CHAT ,
-    GROUP_INFO;
+    GROUP_INFO,
+    SBS_PAGE ,
+    LIKE_POST,
+    COMMENT_POST;
 }

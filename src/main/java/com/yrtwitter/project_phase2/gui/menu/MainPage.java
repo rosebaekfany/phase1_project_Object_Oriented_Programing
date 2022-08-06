@@ -1,7 +1,9 @@
 package com.yrtwitter.project_phase2.gui.menu;
 
 import com.yrtwitter.project_phase2.Main;
+import com.yrtwitter.project_phase2.gui.SearchIdSingle;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,12 +46,18 @@ public class MainPage extends SwitchScenes implements Initializable {
             case MY_PAGE -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
+                SearchIdSingle.myPersonPage= Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount);
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPage.fxml"));
             }
             case SEARCH -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("search.fxml"));
+            }
+            case SBS_PAGE -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPage.fxml"));
             }
             case CONTACTS -> {
                 contentPane.getChildren().clear();
@@ -75,6 +83,16 @@ public class MainPage extends SwitchScenes implements Initializable {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat.fxml"));
+            }
+            case LIKE_POST -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("showPostLikes.fxml"));
+            }
+            case COMMENT_POST -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("postComment.fxml"));
             }
             default -> fxmlLoader2 =  new FXMLLoader(Main.class.getResource("startPage.fxml"));
         }

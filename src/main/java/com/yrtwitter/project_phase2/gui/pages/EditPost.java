@@ -1,7 +1,9 @@
 package com.yrtwitter.project_phase2.gui.pages;
 
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
+import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.media.Post;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,13 +24,12 @@ public class EditPost extends SwitchScenes implements Initializable {
 
     public void edit_post(ActionEvent event) throws IOException {
         String newText = editedText.getText() ;
-        Post.editPost(myShowPost,newText);
+        Post.editPost(BasePost.myShowPost,newText);
+        onPage = OnPage.MY_PAGE;
+        switchScenes("main_page.fxml");
 
     }
 
-    public void delete_post(ActionEvent event) throws IOException {
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
