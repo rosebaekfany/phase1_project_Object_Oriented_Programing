@@ -16,6 +16,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+
+import static com.yrtwitter.project_phase2.gui.pages.BasePost.myShowPost;
 
 
 public class Main extends Application {
@@ -27,7 +30,7 @@ public class Main extends Application {
         //TEST
         Person me = new Person();
         me.name = "yekta";
-        me.userID = "yekta";
+        me.userID = "@yekta";
         me.userPasswords = "1111";
 
         Person friend1 = new Person();
@@ -73,7 +76,16 @@ public class Main extends Application {
         me.allMyGroap.add(group1);
         me.allMyGroap.add(group2);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+        myShowPost.script="hi";
+        myShowPost.postID="@fgh";
+        myShowPost.postDate= Calendar.getInstance().getTime();
+        myShowPost.usersPostId="@yekta";
+        myShowPost.edited="   ";
+        myShowPost.likedUsers.add(me);
+        myShowPost.likedUsers.add(friend1);
+        myShowPost.likedUsers.add(friend2);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         SwitchScenes.window = stage;
         SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");
@@ -87,16 +99,17 @@ public class Main extends Application {
 
         Input myInput = new Input();
 
+
         Connection conn = null;
         Statement stmt = null;
-       /* try {
+        try {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             }
             catch (Exception e) {
                 System.out.println(e);
             }
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/myTwitter", "root", "manager");
+            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
             stmt = (Statement) conn.createStatement();
             String query1 = "INSERT INTO allregister " + "VALUES ()";
 
@@ -111,26 +124,16 @@ public class Main extends Application {
 
         myInput.register_menu(conn);
 
+        launch();
+
         while (myInput.registerMenu == 1) {
             myInput.inputRegister();
         }
         if(myInput.registerMenu == 0){
             DatabaseUpdate.insertAll(myInput.myRegister,conn);
             conn.close();
-        }*/
+        }
 
-
-        launch();
-
-       /* view.Input myInput = new view.Input() ;
-        myInput.register_menu();
-        while (myInput.registerMenu==1){
-            myInput.inputRegister();
-        }*/
     }
 }
 
-// ToDO : css stylesheet ->
-//                          .selected { -fx-background-color : #color }
-//                          .mouse-moved: hover { -fx-background-color : #color }
-//      then add this to the buttons stylesheet in sceneBuilder

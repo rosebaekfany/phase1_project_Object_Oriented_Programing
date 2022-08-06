@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 public class Post {
     public String script = new String();
 
+    public Image postImage ;
     public boolean commercialPost = false;
     public Media media = new Media();
     public String imagePath = new String();
@@ -39,8 +40,10 @@ public class Post {
         return unlikedUsers;
     }
 
-    public static void writePost(RegisterMenu myRegister, String text) {
+    public static void writePost(RegisterMenu myRegister, String text,String imageName) {
         Post newPost = new Post();
+        Image postImage = new Image("/images/"+imageName);
+        newPost.postImage=postImage;
         newPost.script = text;
         Date postDate = new Date();
         newPost.postDate = Calendar.getInstance().getTime();
