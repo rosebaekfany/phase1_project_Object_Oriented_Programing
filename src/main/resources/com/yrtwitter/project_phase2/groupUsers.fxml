@@ -20,38 +20,49 @@
                         <Font size="31.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="129.0" layoutY="94.0" prefHeight="34.0" prefWidth="133.0" text="members" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="129.0" layoutY="71.0" prefHeight="34.0" prefWidth="133.0" text="members" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="108.0" layoutY="218.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
+                  <ScrollPane layoutX="108.0" layoutY="191.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
                      <content>
                         <VBox fx:id="memberBox" prefHeight="318.0" prefWidth="173.0" style="-fx-background-color: #535353; -fx-border-color: WHITE; -fx-border-radius: 10;" />
                      </content>
                   </ScrollPane>
-                  <Button fx:id="addMemberButton" layoutX="108.0" layoutY="182.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
+                  <Button fx:id="addMemberButton" layoutX="108.0" layoutY="159.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="340.0" layoutY="94.0" prefHeight="39.0" prefWidth="220.0" text="banned member" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="340.0" layoutY="71.0" prefHeight="39.0" prefWidth="220.0" text="banned member" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="362.0" layoutY="218.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
+                  <ScrollPane layoutX="363.0" layoutY="191.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
                      <content>
                         <VBox fx:id="bannedBox" prefHeight="318.0" prefWidth="173.0" style="-fx-background-color: #535353; -fx-border-color: WHITE; -fx-border-radius: 10;" />
                      </content>
                   </ScrollPane>
-                  <Button fx:id="addBannedButton" layoutX="362.0" layoutY="182.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
+                  <Button fx:id="addBannedButton" layoutX="362.0" layoutY="159.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="addTextField" layoutX="125.0" layoutY="144.0" prefHeight="38.0" prefWidth="149.0" promptText="enter userid" />
-                  <TextField fx:id="bannTextField" layoutX="375.0" layoutY="143.0" prefHeight="39.0" prefWidth="149.0" promptText="enter userid" />
+                  <TextField fx:id="addTextField" layoutX="109.0" layoutY="121.0" prefHeight="38.0" prefWidth="186.0" promptText="enter userid" />
+                  <TextField fx:id="bannTextField" layoutX="360.0" layoutY="120.0" prefHeight="39.0" prefWidth="187.0" promptText="enter userid" />
+                  <Label fx:id="guide" alignment="CENTER" layoutX="125.0" layoutY="29.0" prefHeight="39.0" prefWidth="374.0" text="members" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="removeTextField" layoutX="159.0" layoutY="526.0" prefHeight="38.0" prefWidth="176.0" promptText="enter userid" />
+                  <Button fx:id="removeMemberButton" layoutX="341.0" layoutY="526.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: #535353;" text="- remove member" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </content>

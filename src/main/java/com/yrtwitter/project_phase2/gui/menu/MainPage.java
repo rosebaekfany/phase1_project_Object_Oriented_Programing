@@ -41,7 +41,7 @@ public class MainPage extends SwitchScenes implements Initializable {
             case HOME -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("home.fxml"));
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("mainBase.fxml"));
             }
             case MY_PAGE -> {
                 contentPane.getChildren().clear();

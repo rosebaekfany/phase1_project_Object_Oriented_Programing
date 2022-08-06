@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import static com.yrtwitter.project_phase2.gui.pages.BasePost.myShowPost;
@@ -43,9 +44,14 @@ public class Main extends Application {
         friend2.name = "Rosa";
         friend2.userID ="@y";
 
+        Person newPerson = new Person();
+        newPerson.name = "oop";
+        newPerson.userID = "@oop";
+
         Input.myRegister.allRegisters.add(me);
         Input.myRegister.allRegisters.add(friend1);
         Input.myRegister.allRegisters.add(friend2);
+        Input.myRegister.allRegisters.add(newPerson);
 
         Chat myChat1 = new Chat();
         myChat1.person1 = friend1;
@@ -89,6 +95,10 @@ public class Main extends Application {
         BasePost.myShowPost.likedUsers.add(me);
         BasePost.myShowPost.likedUsers.add(friend1);
         BasePost.myShowPost.likedUsers.add(friend2);
+        Comment newComment = new Comment();
+        newComment.script = "1st comment";
+        newComment.usersPostId = "@1234";
+        BasePost.myShowPost.postComments.add(newComment);
         Image muMah = new Image(getClass().getResourceAsStream("/images/rose-flower.jpg"));
         BasePost.myShowPost.postImage=muMah;
         Post nn = myShowPost;
@@ -113,39 +123,39 @@ public class Main extends Application {
 
         Input myInput = new Input();
 
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-            }
-            catch (Exception e) {
-                System.out.println(e);
-            }
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
-            stmt = (Statement) conn.createStatement();
-            String query1 = "INSERT INTO allregister " + "VALUES ()";
-
-            stmt.executeUpdate(query1);
-        }
-        catch (SQLException excep) {
-            excep.printStackTrace();
-        }
-        catch (Exception excep) {
-            excep.printStackTrace();
-        }
-
-        myInput.register_menu(conn);
-
+//        Connection conn = null;
+//        Statement stmt = null;
+//        try {
+//            try {
+//                Class.forName("com.mysql.cj.jdbc.Driver");
+//            }
+//            catch (Exception e) {
+//                System.out.println(e);
+//            }
+//            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
+//            stmt = (Statement) conn.createStatement();
+//            String query1 = "INSERT INTO allregister " + "VALUES ()";
+//
+//            stmt.executeUpdate(query1);
+//        }
+//        catch (SQLException excep) {
+//            excep.printStackTrace();
+//        }
+//        catch (Exception excep) {
+//            excep.printStackTrace();
+//        }
+//
+//        myInput.register_menu(conn);
+        Input.myRegister.logedInAccount = /*Input.myRegister.allRegisters.size()-1*/ 0;
         launch();
-
-        while (myInput.registerMenu == 1) {
-            myInput.inputRegister();
-        }
-        if(myInput.registerMenu == 0){
-            DatabaseUpdate.insertAll(myInput.myRegister,conn);
-            conn.close();
-        }
+//
+//        while (myInput.registerMenu == 1) {
+//            myInput.inputRegister();
+//        }
+//        if(myInput.registerMenu == 0){
+//            DatabaseUpdate.insertAll(myInput.myRegister,conn);
+//            conn.close();
+//        }
 
     }
 }

@@ -20,8 +20,6 @@ public class EachGroup extends MyGroups implements Initializable {
     HBox back;
     @FXML
     Label name , text;
-    @FXML
-    Label unreadNum;
 
 
     @Override
@@ -29,11 +27,17 @@ public class EachGroup extends MyGroups implements Initializable {
         back.setOnMouseClicked(mouseEvent -> enterGroup());
         if (groupNum != -1){
             Group thisGroup = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allMyGroap.get(groupNum);
-            // name
+
+            try {
+                text.setText(thisGroup.allTexts.get(thisGroup.allTexts.size()-1).script);
+            }catch (Exception e){
+                text.setText("GROUP JUST CREATED");
+                System.out.println(e.fillInStackTrace());
+                System.out.println(groupNum);
+            }
             name.setText(thisGroup.groupName);
 
-            //text
-            text.setText(thisGroup.allTexts.get(thisGroup.allTexts.size()-1).script);
+
         }
     }
 
