@@ -3,6 +3,7 @@ package com.yrtwitter.project_phase2.gui.menu;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.media.Person;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -59,8 +60,8 @@ public class SignUp extends SwitchScenes implements Initializable {
             warning("passwords do not match" , signUpLabel);
             return;
         }
-        for (int i = 0; i < RegisterMenu.allRegisters.size(); i++) {
-            if (RegisterMenu.allRegisters.get(i).name.equals(username)) {
+        for (int i = 0; i < Input.myRegister.allRegisters.size(); i++) {
+            if (Input.myRegister.allRegisters.get(i).name.equals(username)) {
                 warning("a user exists with this username" , signUpLabel);
                 return;
             }
@@ -69,8 +70,8 @@ public class SignUp extends SwitchScenes implements Initializable {
         newPerson.name = username;
         newPerson.userPasswords = password;
         newPerson.securityQuestion = favoriteFlower;
-        newPerson.userID = "@" + String.valueOf(RegisterMenu.allRegisters.size()) + "***";
-        RegisterMenu.allRegisters.add(newPerson);
+        newPerson.userID = "@" + String.valueOf(Input.myRegister.allRegisters.size()) + "***";
+        Input.myRegister.allRegisters.add(newPerson);
         successfulPage();
     }
 

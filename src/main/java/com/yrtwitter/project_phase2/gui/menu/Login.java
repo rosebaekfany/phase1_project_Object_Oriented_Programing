@@ -2,6 +2,7 @@ package com.yrtwitter.project_phase2.gui.menu;
 
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -120,10 +121,10 @@ public class Login extends SwitchScenes implements Initializable {
             texting("password format is invalid" , welcomeLabel);
             return;
         }
-        for (int i = 0; i < RegisterMenu.allRegisters.size(); i++) {
-            if (RegisterMenu.allRegisters.get(i).name.equals(username)) {
-                if (RegisterMenu.allRegisters.get(i).userPasswords.equals(password)) {
-                    RegisterMenu.logedInAccount = i;
+        for (int i = 0; i < Input.myRegister.allRegisters.size(); i++) {
+            if (Input.myRegister.allRegisters.get(i).name.equals(username)) {
+                if (Input.myRegister.allRegisters.get(i).userPasswords.equals(password)) {
+                    Input.myRegister.logedInAccount = i;
                     onPage = OnPage.START;
                     switchScenes("main_page.fxml");
                     return;

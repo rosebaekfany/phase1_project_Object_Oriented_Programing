@@ -8,13 +8,13 @@ import com.yrtwitter.project_phase2.controller.*;
 
 public class RegisterMenu {
 
-    public static ArrayList<Person> allRegisters = new ArrayList<>();
-    public static int logedInAccount = -1;
-    public static Chat chatOnBord;
-    public static Group grouponBord;
-    public static ArrayList<BusinessUser> businessUsers = new ArrayList<>();
-    public static ArrayList<Post> allPosts = new ArrayList<>() ;
-    public static ArrayList<BusinessPost> allbussinessPost = new ArrayList<>();
-    public static ArrayList<Chat> allRegistersPersonalChats = new ArrayList<>();
-    public static ArrayList<Group> allRegisterGroup = new ArrayList<>();
+    public ArrayList<Person> allRegisters = new ArrayList<>();
+    public int logedInAccount = -1;
+    public Chat chatOnBord;
+    public Group grouponBord;
+    public ArrayList<BusinessUser> businessUsers = new ArrayList<>();
+    public ArrayList<Post> allPosts = new ArrayList<>() ;
+    public ArrayList<BusinessPost> allbussinessPost = new ArrayList<>();
+    public ArrayList<Chat> allRegistersPersonalChats = new ArrayList<>();
+    public ArrayList<Group> allRegisterGroup = new ArrayList<>();
 }

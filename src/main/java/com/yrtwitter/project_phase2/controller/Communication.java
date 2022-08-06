@@ -109,6 +109,26 @@ public class Communication {
 
     }
 
+    public static void DMing(Chat myChat, Person myPerson, String newText , String url) {
+
+        Date rand = new Date();
+
+        Post newDm = new Post();
+        newDm.postDate = Calendar.getInstance().getTime();
+        newDm.script = newText;
+        newDm.usersPostId = myPerson.userID;
+        newDm.imagePath = url;
+        newDm.postID = "@" + String.valueOf(myChat.allTexts.size()) + String.valueOf(Calendar.getInstance().getTime().getTime()) + "*-*";
+        myChat.allTexts.add(newDm);
+        if (myPerson.userID.equals(myChat.person1.userID)) {
+            myChat.person1Texts.add(newDm);
+        } else if (myPerson.userID.equals(myChat.person2.userID)) {
+            myChat.person2Texts.add(newDm);
+        }
+
+    }
+
+
     public static void editDmInChat(Chat myChat, Post myDm, String newText) {
         int num, i, ff = 0;
         myDm.script = newText;
@@ -174,6 +194,8 @@ public class Communication {
         }
 
     }
+
+
 
     public static void searchPost(Person myPerson, ArrayList<Post> searchedPost, String text) {
         int i, j, ii, jj;

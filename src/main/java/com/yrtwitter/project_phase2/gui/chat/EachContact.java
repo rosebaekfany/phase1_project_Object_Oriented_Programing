@@ -5,6 +5,7 @@ import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.media.Chat;
 import com.yrtwitter.project_phase2.media.Group;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -29,12 +30,12 @@ public class EachContact extends MyChats implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (chatNum != -1){
-            Chat thisChat = RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).allPersonalChats.get(chatNum);
+            Chat thisChat = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allPersonalChats.get(chatNum);
             // name
             String name1 = thisChat.person1.name;
             String name2 = thisChat.person2.name;
             String chatterName;
-            if (name1.equals(RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).name)) {
+            if (name1.equals(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).name)) {
                 chatterName = name2;
             } else {
                 chatterName = name1;
@@ -45,7 +46,7 @@ public class EachContact extends MyChats implements Initializable {
             text.setText(thisChat.allTexts.get(thisChat.allTexts.size()-1).script);
         }
         if (groupNum != -1){
-            Group thisGroup = RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).allMyGroap.get(groupNum);
+            Group thisGroup = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allMyGroap.get(groupNum);
             // name
             name.setText(thisGroup.groupName);
 
@@ -57,14 +58,14 @@ public class EachContact extends MyChats implements Initializable {
 
     public void enterChat(){
 
-        RegisterMenu.chatOnBord = findChat(name.getText());
+        Input.myRegister.chatOnBord = findChat(name.getText());
         SwitchScenes.onPage = OnPage.PRIVATE_CHAT;
         switchScenes("main_page.fxml");
 
     }
 
     private Chat findChat (String name){
-        for (Chat personalChat : RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).allPersonalChats) {
+        for (Chat personalChat : Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allPersonalChats) {
             if (personalChat.person2.name.equals(name) ||
                 personalChat.person1.name.equals(name)){
                 return personalChat;

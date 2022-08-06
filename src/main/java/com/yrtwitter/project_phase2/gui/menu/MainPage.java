@@ -66,6 +66,11 @@ public class MainPage extends SwitchScenes implements Initializable {
                 menuPane.getChildren().clear();
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("group_chat.fxml"));
             }
+            case GROUP_INFO -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("groupUsers.fxml"));
+            }
             case PRIVATE_CHAT -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();

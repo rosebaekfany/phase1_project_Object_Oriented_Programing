@@ -8,5 +8,6 @@ public enum OnPage {
     HOME ,
     CONTACTS ,
     GROUP_CHAT ,
-    PRIVATE_CHAT ;
+    PRIVATE_CHAT ,
+    GROUP_INFO;
 }

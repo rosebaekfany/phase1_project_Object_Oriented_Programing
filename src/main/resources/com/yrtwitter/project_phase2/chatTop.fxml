@@ -17,7 +17,7 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Button fx:id="editButton" layoutX="552.0" layoutY="8.0" minWidth="53.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="53.0" style="-fx-border-radius: 10; -fx-background-color: 0; -fx-border-color: #ffffff; -fx-border-width: 3;" text="edit" textFill="WHITE">
+            <Button fx:id="blockButton" layoutX="518.0" layoutY="8.0" minWidth="53.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" style="-fx-border-radius: 10; -fx-background-color: 0; -fx-border-color: #ffffff; -fx-border-width: 3;" text="block" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>

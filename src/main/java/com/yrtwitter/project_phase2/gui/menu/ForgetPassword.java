@@ -3,6 +3,7 @@ package com.yrtwitter.project_phase2.gui.menu;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.media.Person;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -152,7 +153,7 @@ public class ForgetPassword extends SwitchScenes implements Initializable {
             warning("match passwords" , label);
             return;
         }
-        for (Person registered : RegisterMenu.allRegisters) {
+        for (Person registered : Input.myRegister.allRegisters) {
             if (registered.name.equals(username)){
                 if (registered.securityQuestion.equals(favoriteFlower)){
                     registered.userPasswords = newPassword;
@@ -187,7 +188,7 @@ public class ForgetPassword extends SwitchScenes implements Initializable {
 
         //favoriteFlowerTextField
         favoriteFlowerTextField.setText("");
-        if (RegisterMenu.logedInAccount == -1){
+        if (Input.myRegister.logedInAccount == -1){
             switchScenes("login.fxml");
         } else {
             switchScenes("main_page.fxml");

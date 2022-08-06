@@ -83,10 +83,10 @@ public class Setting extends MainPage implements Initializable {
         }
 
         //userid
-        userIdTextField.setText(RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).userID);
+        userIdTextField.setText(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userID);
 
         //bio
-        bioTextField.setText(RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).bio);
+        bioTextField.setText(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).bio);
 
         //spinners
         spinners[0] = healthSp;
@@ -154,7 +154,7 @@ public class Setting extends MainPage implements Initializable {
     }
 
     private void logout(){
-        RegisterMenu.logedInAccount = -1;
+        Input.myRegister.logedInAccount = -1;
         switchScenes("login.fxml");
     }
 
@@ -193,8 +193,8 @@ public class Setting extends MainPage implements Initializable {
             successful = "@ should be at first";
             flag = 1;
         }
-        for (i = 0; i < RegisterMenu.allRegisters.size(); i++) {
-            if (RegisterMenu.allRegisters.get(i).userID.equals(newString)) {
+        for (i = 0; i < Input.myRegister.allRegisters.size(); i++) {
+            if (Input.myRegister.allRegisters.get(i).userID.equals(newString)) {
                 if (flag == 0) {
                     successful = "a user exists with this Id";
                     flag = 1;
@@ -202,16 +202,16 @@ public class Setting extends MainPage implements Initializable {
             }
         }
         if (flag == 0) {
-            RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).userID = newString;
-            for (i = 0; i < RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).posts.size(); i++) {
-                RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).posts.get(i).usersPostId = newString;
+            Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userID = newString;
+            for (i = 0; i < Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).posts.size(); i++) {
+                Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).posts.get(i).usersPostId = newString;
             }
         }
         return successful;
     }
 
     private void setBio(String newString){
-        RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).bio = newString;
+        Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).bio = newString;
     }
 
     private void setBirthDate(){
@@ -222,7 +222,7 @@ public class Setting extends MainPage implements Initializable {
     private String chooseFavGenre(){
         int healthNum=0 , techNum=0 , fashionNum=0 , marketNum=0 , artsNum=0 , gamingNum=0;
         String successful = "successful";
-        CommercialGenres[] faveGenre = RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).favoriteGenres;
+        CommercialGenres[] faveGenre = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).favoriteGenres;
         for (int i = 0; i < 6; i++) {
 
         }

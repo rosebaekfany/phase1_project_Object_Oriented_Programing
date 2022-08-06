@@ -7,6 +7,7 @@ import com.yrtwitter.project_phase2.media.*;
 import com.yrtwitter.project_phase2.temporary.*;
 import com.yrtwitter.project_phase2.view.*;
 import com.yrtwitter.project_phase2.controller.*;
+import javafx.scene.image.Image;
 
 
 public class Post {
@@ -14,6 +15,7 @@ public class Post {
 
     public boolean commercialPost = false;
     public Media media = new Media();
+    public String imagePath = new String();
     public String postID = new String();
     public String usersPostId = new String();
     public ArrayList<Person> likedUsers = new ArrayList<>();
@@ -45,6 +47,10 @@ public class Post {
         newPost.postID = "@" + String.valueOf(myRegister.allRegisters.get(myRegister.logedInAccount).posts.size()) + String.valueOf(Calendar.getInstance().getTime().getTime()) + "*****";
         newPost.usersPostId = myRegister.allRegisters.get(myRegister.logedInAccount).userID;
         myRegister.allRegisters.get(myRegister.logedInAccount).draftPosts.add(newPost);
+    }
+
+    public static void writePost(RegisterMenu myRegister, String text , Image image){
+
     }
 
     public static void post(RegisterMenu myRegister) {

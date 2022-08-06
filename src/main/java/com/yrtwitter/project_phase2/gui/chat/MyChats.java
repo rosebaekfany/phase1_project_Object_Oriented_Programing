@@ -3,6 +3,7 @@ package com.yrtwitter.project_phase2.gui.chat;
 import com.yrtwitter.project_phase2.Main;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
+import com.yrtwitter.project_phase2.view.Input;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +28,8 @@ public class MyChats extends SwitchScenes implements Initializable {
     public static int groupNum = -1;
     public static int chatNum = -1;
 
-    private int allPersonalChatsNum = RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).allPersonalChats.size();
-    private int allGroupChatsNum = RegisterMenu.allRegisters.get(RegisterMenu.logedInAccount).allMyGroap.size();
+    private int allPersonalChatsNum = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allPersonalChats.size();
+    private int allGroupChatsNum = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allMyGroap.size();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

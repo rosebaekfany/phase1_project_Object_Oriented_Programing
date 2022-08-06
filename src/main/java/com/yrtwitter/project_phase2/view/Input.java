@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class Input {
     public Scanner sc = new Scanner(System.in);
-    public RegisterMenu myRegister = new RegisterMenu();
+    public static RegisterMenu myRegister = new RegisterMenu();
     public String sample = new String();
 
 

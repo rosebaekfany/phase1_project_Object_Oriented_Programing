@@ -36,9 +36,9 @@ public class Main extends Application {
         Person friend2 = new Person();
         friend2.name = "Rosa";
 
-        RegisterMenu.allRegisters.add(me);
-        RegisterMenu.allRegisters.add(friend1);
-        RegisterMenu.allRegisters.add(friend2);
+        Input.myRegister.allRegisters.add(me);
+        Input.myRegister.allRegisters.add(friend1);
+        Input.myRegister.allRegisters.add(friend2);
 
         Chat myChat1 = new Chat();
         myChat1.person1 = friend1;
