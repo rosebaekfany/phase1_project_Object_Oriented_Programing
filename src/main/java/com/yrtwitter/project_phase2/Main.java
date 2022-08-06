@@ -81,6 +81,9 @@ public class Main extends Application {
         myShowPost.postDate= Calendar.getInstance().getTime();
         myShowPost.usersPostId="@yekta";
         myShowPost.edited="   ";
+        myShowPost.likedUsers.add(me);
+        myShowPost.likedUsers.add(friend1);
+        myShowPost.likedUsers.add(friend2);
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);

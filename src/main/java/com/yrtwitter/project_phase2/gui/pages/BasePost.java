@@ -2,6 +2,7 @@ package com.yrtwitter.project_phase2.gui.pages;
 
 import com.yrtwitter.project_phase2.Main;
 import javafx.fxml.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -38,6 +39,9 @@ public class BasePost implements Initializable{
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        Image myImage = new Image(getClass().getResourceAsStream("/images/rose-flower.jpg"));
+        image.setImage(myShowPost.postImage);
 
     }
 }
