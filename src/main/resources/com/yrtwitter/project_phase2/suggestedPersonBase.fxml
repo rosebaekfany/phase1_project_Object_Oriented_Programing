@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.SuggestedPersonBase">
+<AnchorPane prefHeight="600.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.SuggestedPersonBase">
    <children>
       <ScrollPane prefHeight="600.0" prefWidth="310.0" style="-fx-background-color: #535353;">
          <content>
@@ -22,10 +21,10 @@
                   </Label>
                   <ScrollPane layoutX="69.0" layoutY="105.0" prefHeight="441.0" prefWidth="178.0" style="-fx-background-color: #535353;">
                      <content>
-                        <VBox prefHeight="439.0" prefWidth="176.0" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;" />
+                        <VBox fx:id="suggestedBox" prefHeight="439.0" prefWidth="176.0" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 20;" />
                      </content>
                   </ScrollPane>
-                  <Button minWidth="36.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="36.0" style="-fx-background-color: #535353; -fx-border-color: #535353; -fx-border-width: 1; -fx-border-radius: 10;" text="&lt;" textFill="WHITE" />
+                  <Button minWidth="36.0" mnemonicParsing="false" onAction="#backToPage" prefHeight="30.0" prefWidth="36.0" style="-fx-background-color: #535353; -fx-border-color: #535353; -fx-border-width: 1; -fx-border-radius: 10;" text="&lt;" textFill="WHITE" />
                </children>
             </Pane>
          </content>

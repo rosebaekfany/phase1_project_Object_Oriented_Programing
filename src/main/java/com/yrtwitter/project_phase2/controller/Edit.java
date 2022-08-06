@@ -115,9 +115,9 @@ public class Edit {
         }
     }
 
-    public static void confirmFollow(RegisterMenu myRegister, Person myPerson, String newString) {
+    public static void confirmFollow(RegisterMenu myRegister, Person myPerson, int newString) {
         int index, i, ff = 0;
-        index = myPerson.massageRequests.size() - Integer.parseInt(newString);
+        index = newString ;
         String[] split;
         split = myPerson.massageRequests.get(index).split(" ");
         for (i = 0; i < myRegister.allRegisters.size(); i++) {

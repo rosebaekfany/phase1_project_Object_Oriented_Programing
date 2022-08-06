@@ -395,7 +395,7 @@ public class Input {
             }
 
             else if (split[0].equals("confirmFollowRequest")) {
-                Edit.confirmFollow(myRegister, myRegister.allRegisters.get(myRegister.logedInAccount), split[1]);
+                //Edit.confirmFollow(myRegister, myRegister.allRegisters.get(myRegister.logedInAccount), split[1]);
             }
 
             else if (sample.equals("creat post")) {

@@ -19,6 +19,11 @@
                      </font>
                   </TextField>
                   <Button layoutX="14.0" layoutY="75.0" mnemonicParsing="false" onAction="#edit_post" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 20;" text="edit" textFill="WHITE" />
+                  <Button layoutX="483.0" layoutY="70.0" mnemonicParsing="false" onAction="#delete_post" style="-fx-background-color: #535353;" text="delete post" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </content>
