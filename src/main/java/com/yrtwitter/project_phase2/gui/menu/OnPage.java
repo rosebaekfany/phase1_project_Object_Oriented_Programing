@@ -12,5 +12,11 @@ public enum OnPage {
     GROUP_INFO,
     SBS_PAGE ,
     LIKE_POST,
-    COMMENT_POST;
+    COMMENT_POST,
+    massageRequestBase,
+    removeFollow,
+    creatPost,
+    suggestedPersonBase,
+    followerList,
+    followingList;
 }

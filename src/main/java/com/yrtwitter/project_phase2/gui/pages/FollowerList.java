@@ -23,7 +23,13 @@ public class FollowerList extends SwitchScenes implements Initializable {
     VBox followerList;
 
     public void backToPage(ActionEvent event) throws IOException {
-        switchScenes("myPage.fxml");
+        if(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userID.equals(SearchIdSingle.myPersonPage.userID)){
+            onPage = OnPage.MY_PAGE;
+        }
+        else {
+            onPage = OnPage.SBS_PAGE;
+        }
+        switchScenes("main_page.fxml");
     }
 
 

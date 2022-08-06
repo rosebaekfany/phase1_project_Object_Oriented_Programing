@@ -94,6 +94,37 @@ public class MainPage extends SwitchScenes implements Initializable {
                 menuPane.getChildren().clear();
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("postComment.fxml"));
             }
+            case creatPost -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("creatPost.fxml"));
+            }
+            case removeFollow -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("removeFollow.fxml"));
+            }
+            case massageRequestBase -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("massageRequestBase.fxml"));
+
+            }
+            case followerList -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("followerList.fxml"));
+            }
+            case followingList -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("followingList.fxml"));
+            }
+            case suggestedPersonBase -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("suggestedPersonBase.fxml"));
+            }
             default -> fxmlLoader2 =  new FXMLLoader(Main.class.getResource("startPage.fxml"));
         }
 

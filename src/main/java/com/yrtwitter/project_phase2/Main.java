@@ -86,7 +86,7 @@ public class Main extends Application {
         me.allMyGroap.add(group1);
         me.allMyGroap.add(group2);
 
-        Input.myRegister.logedInAccount=Input.myRegister.allRegisters.size()-1;
+/*        Input.myRegister.logedInAccount=Input.myRegister.allRegisters.size()-1;
         BasePost.myShowPost.script="hi";
         BasePost.myShowPost.postID="@fgh";
         BasePost.myShowPost.postDate= Calendar.getInstance().getTime();
@@ -106,9 +106,9 @@ public class Main extends Application {
         SearchIdSingle.myPersonPage.massageRequests.add("hi");
         SearchIdSingle.myPersonPage.folowings.add(me);
         SearchIdSingle.myPersonPage.folowings.add(friend1);
-        SearchIdSingle.myPersonPage.posts.add(nn);
+        SearchIdSingle.myPersonPage.posts.add(nn);*/
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("myPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         SwitchScenes.window = stage;

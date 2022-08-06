@@ -3,6 +3,7 @@ package com.yrtwitter.project_phase2.gui.pages;
 import com.yrtwitter.project_phase2.Main;
 import com.yrtwitter.project_phase2.gui.SearchIdSingle;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
+import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.view.Input;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -38,15 +39,17 @@ public class MyPageTop extends SwitchScenes implements Initializable {
     Button Sbut;
 
     public void show_suggestedPerson (ActionEvent event) throws IOException {
-        switchScenes("suggestedPersonBase.fxml");
+        onPage = OnPage.suggestedPersonBase;
+        switchScenes("main_page.fxml");
     }
 
     public void show_follower (ActionEvent event) throws IOException {
-        switchScenes("followerList.fxml");
-    }
+        onPage = OnPage.followerList;
+        switchScenes("main_page.fxml");    }
 
     public void show_following (ActionEvent event) throws IOException {
-        switchScenes("followingList.fxml");
+        onPage = OnPage.followingList;
+        switchScenes("main_page.fxml");
     }
 
 
