@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class SwitchScenes {
 
     public static Stage window = new Stage();
-    public boolean darkTheme = true;
+    public static boolean darkTheme = true;
     public static OnPage onPage;
 
 

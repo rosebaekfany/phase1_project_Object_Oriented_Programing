@@ -48,7 +48,12 @@ public class Search extends SwitchScenes{
 
         try {
             for (indexSearch = 0; indexSearch < mysearchIdResult.size(); indexSearch++) {
-                FXMLLoader singleLoader = new FXMLLoader(Main.class.getResource("searchIdSingle.fxml"));
+                FXMLLoader singleLoader ;
+                if (!SwitchScenes.darkTheme) {
+                    singleLoader = new FXMLLoader(Main.class.getResource("searchIdSingleLight.fxml"));
+                } else {
+                    singleLoader = new FXMLLoader(Main.class.getResource("searchIdSingle.fxml"));
+                }
                 try {
                     if(bodyyy!=null) {
                         bodyyy.getChildren().add(singleLoader.load());

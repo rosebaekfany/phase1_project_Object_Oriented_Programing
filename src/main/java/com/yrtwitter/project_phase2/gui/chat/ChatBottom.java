@@ -73,9 +73,16 @@ public class ChatBottom extends SwitchScenes implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for (Post allText : Input.myRegister.chatOnBord.allTexts) {
             Message.recentPost = allText;
-            FXMLLoader messageLoader = new FXMLLoader(Main.class.getResource("message.fxml"));
+            FXMLLoader messageLoader ;
+            if(!SwitchScenes.darkTheme){
+                messageLoader = new FXMLLoader(Main.class.getResource("messageLight.fxml"));
+            }
+            else {
+                messageLoader = new FXMLLoader(Main.class.getResource("message.fxml"));
+            }
             try {
                 chatContent.getChildren().add(messageLoader.load());
+
             } catch (Exception e){
                 e.fillInStackTrace();
             }

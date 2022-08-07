@@ -30,7 +30,12 @@ public class MyGroups extends SwitchScenes implements Initializable {
         try {
             if(group_back!=null) {
                 for (groupNum = allGroupChatsNum - 1; groupNum >= 0; groupNum--) {
-                    fxmlLoader = new FXMLLoader(Main.class.getResource("each_group.fxml"));
+                    if(!SwitchScenes.darkTheme){
+                        fxmlLoader = new FXMLLoader(Main.class.getResource("each_groupLight.fxml"));
+                    }
+                    else {
+                        fxmlLoader = new FXMLLoader(Main.class.getResource("each_group.fxml"));
+                    }
                     group_back.getChildren().add(fxmlLoader.load());
                 }
                 groupNum = -1;

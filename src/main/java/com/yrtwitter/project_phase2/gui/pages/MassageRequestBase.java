@@ -37,7 +37,12 @@ public class MassageRequestBase extends SwitchScenes implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(requestBox!=null) {
             for (requestIndex=SearchIdSingle.myPersonPage.massageRequests.size()-1 ; requestIndex>=0; requestIndex--) {
-                FXMLLoader requestt = new FXMLLoader(Main.class.getResource("massageRequestSingle.fxml"));
+                FXMLLoader requestt ;
+                if (!SwitchScenes.darkTheme) {
+                    requestt = new FXMLLoader(Main.class.getResource("massageRequestSingleLight.fxml"));
+                } else {
+                    requestt = new FXMLLoader(Main.class.getResource("massageRequestSingle.fxml"));
+                }
                 try {
                     requestBox.getChildren().add(requestt.load());
                 } catch (Exception e) {
