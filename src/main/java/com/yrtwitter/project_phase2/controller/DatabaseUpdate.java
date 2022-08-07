@@ -6,6 +6,7 @@ import com.yrtwitter.project_phase2.media.*;
 import com.yrtwitter.project_phase2.temporary.*;
 import com.yrtwitter.project_phase2.view.*;
 import com.yrtwitter.project_phase2.controller.*;
+import javafx.scene.image.Image;
 
 import java.sql.*;
 import java.sql.DriverManager;
@@ -40,7 +41,6 @@ public class DatabaseUpdate {
     public static void insertAll(RegisterMenu allRegister, Connection conn) throws SQLException {
         UserRepository.insertUsers(allRegister, conn);
         PostRepository.insertPost(allRegister, conn);
-        ;
         likedPostRepository.insertLikedPost(allRegister, conn);
         draftPostRepository.insertDraftPost(allRegister, conn);
         viewPostRepository.insertViewPost(allRegister, conn);
@@ -182,6 +182,8 @@ class PostRepository {
                 myPost.forwarded = resultSet.getString("forwarded");
                 myPost.edited = resultSet.getString("edited");
                 myPost.script = resultSet.getString("script");
+                myPost.imagePath = resultSet.getString("imageName");
+                Image newIm = new Image(PostRepository.class.getResourceAsStream(myPost.imagePath));
                 Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
                 myPost.postDate = myDate;
                 if (resultSet.getInt("BorG") == 0) {

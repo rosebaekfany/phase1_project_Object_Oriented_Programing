@@ -1,6 +1,7 @@
 package com.yrtwitter.project_phase2.gui.pages;
 
 import com.yrtwitter.project_phase2.Main;
+import com.yrtwitter.project_phase2.controller.DatabaseUpdate;
 import com.yrtwitter.project_phase2.gui.SearchIdSingle;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.gui.menu.OnPage;
@@ -24,6 +25,7 @@ public class MyPage2 extends SwitchScenes implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         FXMLLoader topLoader = new FXMLLoader(Main.class.getResource("myPageTop.fxml"));
         try {
             pageTop.getChildren().add(topLoader.load());

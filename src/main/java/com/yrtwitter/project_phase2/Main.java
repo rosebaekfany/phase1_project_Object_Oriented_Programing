@@ -31,7 +31,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
 
         //TEST
-        Person me = new Person();
+        /*Person me = new Person();
         me.name = "yekta";
         me.userID = "@yekta";
         me.userPasswords = "1111";
@@ -85,7 +85,7 @@ public class Main extends Application {
         me.allPersonalChats.add(myChat2);
         me.allMyGroap.add(group1);
         me.allMyGroap.add(group2);
-
+*/
 /*        Input.myRegister.logedInAccount=Input.myRegister.allRegisters.size()-1;
         BasePost.myShowPost.script="hi";
         BasePost.myShowPost.postID="@fgh";
@@ -146,16 +146,16 @@ public class Main extends Application {
 
        myInput.register_menu(conn);
 
-        launch();
+       if (Input.registerMenu == 1) {
+           launch();
+       }
+       if(Input.registerMenu == 0){
+           DatabaseUpdate.insertAll(myInput.myRegister,conn);
+           conn.close();
+           System.out.println("finished");
+       }
 
-        while (Input.registerMenu == 1) {
-            myInput.inputRegister();
-        }
-        if(Input.registerMenu == 0){
-            DatabaseUpdate.insertAll(myInput.myRegister,conn);
-            conn.close();
-            System.out.println("finished");
-        }
+
 
     }
 }
