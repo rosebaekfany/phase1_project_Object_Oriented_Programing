@@ -182,8 +182,12 @@ class PostRepository {
                 myPost.forwarded = resultSet.getString("forwarded");
                 myPost.edited = resultSet.getString("edited");
                 myPost.script = resultSet.getString("script");
-                myPost.imagePath = resultSet.getString("imageName");
-                Image newIm = new Image(PostRepository.class.getResourceAsStream(myPost.imagePath));
+                myPost.imagePath = resultSet.getString("imagName");
+                if(myPost.imagePath==null || myPost.imagePath.equals("  ") ){
+                }
+                else {
+                    Image newIm = new Image(Objects.requireNonNull(PostRepository.class.getResourceAsStream(myPost.imagePath)));
+                }
                 Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
                 myPost.postDate = myDate;
                 if (resultSet.getInt("BorG") == 0) {
@@ -221,8 +225,8 @@ class PostRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO post(postId,usersPostId,forwarded,edited,script,postDate,BorG) " +
-                            "VALUES(?, ?, ?, ?, ?, ?,?)");
+                    "INSERT INTO post(postId,usersPostId,forwarded,edited,script,postDate,BorG,imagName) " +
+                            "VALUES(?, ?, ?, ?, ?, ?,?,?)");
             for (i = 0; i < allRegister.allRegisters.get(j).posts.size(); i++) {
                 preparedStatementA.setString(1, allRegister.allRegisters.get(j).posts.get(i).postID);
                 preparedStatementA.setString(2, allRegister.allRegisters.get(j).posts.get(i).usersPostId);
@@ -234,12 +238,18 @@ class PostRepository {
                     preparedStatementA.setInt(7, 1);
                 } else {
                     preparedStatementA.setInt(7, 0);
+                    if(allRegister.allRegisters.get(j).posts.get(i).imagePath==null){
+                        preparedStatementA.setString(8, "  ");
+                    }
+                    else {
+                        preparedStatementA.setString(8, allRegister.allRegisters.get(j).posts.get(i).imagePath);
+                    }
+                    preparedStatementA.executeUpdate();
                 }
-                preparedStatementA.executeUpdate();
             }
         }
-    }
 
+    }
 }
 
 class likedPostRepository {

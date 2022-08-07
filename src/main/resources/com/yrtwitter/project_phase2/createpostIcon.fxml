@@ -31,11 +31,6 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button fx:id="stat" layoutX="97.0" layoutY="-1.0" mnemonicParsing="false" onAction="#showState" prefHeight="37.0" prefWidth="67.0" style="-fx-background-color: #535353;" text="state" textFill="#2499f8">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </children>

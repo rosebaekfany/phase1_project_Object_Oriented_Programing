@@ -23,8 +23,7 @@ import java.util.ResourceBundle;
 
 public class CreatepostIcon extends SwitchScenes implements Initializable {
 
-    @FXML
-    Button stat;
+
 
     public void massage(ActionEvent event) throws IOException {
         onPage = OnPage.massageRequestBase;
@@ -73,22 +72,11 @@ public class CreatepostIcon extends SwitchScenes implements Initializable {
         System.out.println("finished");*/
         Platform.exit();
     }
-    public void showState(ActionEvent event) throws IOException, SQLException {
-        for (i = 0; i < myRegister.allbussinessPost.size(); i++) {
-            if (myRegister.allbussinessPost.get(i).postID.equals(split[1]) && myRegister.allbussinessPost.get(i).usersPostId.equals(myRegister.allRegisters.get(myRegister.logedInAccount).userID)) {
-                Show.show_stat(myRegister.allbussinessPost.get(i));
-                ff = 1;
-                break;
-            }
-        }
-    }
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(SearchIdSingle.myPersonPage.userAccountType.equals("Business_Account")){}
-        else{
-            stat.setVisible(false);
-        }
+
     }
 }
