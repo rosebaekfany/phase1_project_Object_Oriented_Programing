@@ -4,12 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="590.0" prefWidth="596.0" style="-fx-background-color: #535353 ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.GroupUsers">
+<AnchorPane prefHeight="600.0" prefWidth="596.0" style="-fx-background-color: #535353 ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.GroupUsers">
    <children>
       <ScrollPane prefHeight="590.0" prefWidth="605.0" style="-fx-background-color: #535353;">
          <content>
@@ -20,45 +21,52 @@
                         <Font size="31.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="129.0" layoutY="71.0" prefHeight="34.0" prefWidth="133.0" text="members" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="97.0" layoutY="90.0" prefHeight="34.0" prefWidth="133.0" text="members" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="108.0" layoutY="191.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
+                  <ScrollPane layoutX="83.0" layoutY="216.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
                      <content>
                         <VBox fx:id="memberBox" prefHeight="318.0" prefWidth="173.0" style="-fx-background-color: #535353; -fx-border-color: WHITE; -fx-border-radius: 10;" />
                      </content>
                   </ScrollPane>
-                  <Button fx:id="addMemberButton" layoutX="108.0" layoutY="159.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
+                  <Button fx:id="addMemberButton" layoutX="76.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="340.0" layoutY="71.0" prefHeight="39.0" prefWidth="220.0" text="banned member" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="308.0" layoutY="90.0" prefHeight="39.0" prefWidth="220.0" text="banned member" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="363.0" layoutY="191.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
+                  <ScrollPane layoutX="334.0" layoutY="216.0" prefHeight="320.0" prefWidth="175.0" style="-fx-background-color: #535353;">
                      <content>
                         <VBox fx:id="bannedBox" prefHeight="318.0" prefWidth="173.0" style="-fx-background-color: #535353; -fx-border-color: WHITE; -fx-border-radius: 10;" />
                      </content>
                   </ScrollPane>
-                  <Button fx:id="addBannedButton" layoutX="362.0" layoutY="159.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
+                  <Button fx:id="addBannedButton" layoutX="330.0" layoutY="178.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #535353;" text="+add member" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="addTextField" layoutX="109.0" layoutY="121.0" prefHeight="38.0" prefWidth="186.0" promptText="enter userid" />
-                  <TextField fx:id="bannTextField" layoutX="360.0" layoutY="120.0" prefHeight="39.0" prefWidth="187.0" promptText="enter userid" />
-                  <Label fx:id="guide" alignment="CENTER" layoutX="125.0" layoutY="29.0" prefHeight="39.0" prefWidth="374.0" text="members" textFill="WHITE">
+                  <TextField fx:id="addTextField" layoutX="77.0" layoutY="140.0" prefHeight="38.0" prefWidth="186.0" promptText="enter userid" />
+                  <TextField fx:id="bannTextField" layoutX="328.0" layoutY="139.0" prefHeight="39.0" prefWidth="187.0" promptText="enter userid" />
+                  <Label fx:id="guide" alignment="CENTER" layoutX="83.0" layoutY="60.0" prefHeight="39.0" prefWidth="374.0" text="members" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="removeTextField" layoutX="159.0" layoutY="526.0" prefHeight="38.0" prefWidth="176.0" promptText="enter userid" />
-                  <Button fx:id="removeMemberButton" layoutX="341.0" layoutY="526.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: #535353;" text="- remove member" textFill="WHITE">
+                  <TextField fx:id="removeTextField" layoutX="127.0" layoutY="545.0" prefHeight="38.0" prefWidth="176.0" promptText="enter userid" />
+                  <Button fx:id="removeMemberButton" layoutX="304.0" layoutY="544.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: #535353;" text="- remove member" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="path" layoutX="266.0" layoutY="14.0" prefHeight="38.0" prefWidth="176.0" promptText="enter image path" />
+                  <ImageView fx:id="profile" fitHeight="83.0" fitWidth="108.0" layoutX="481.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="pathButton" layoutX="442.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="27.0" style="-fx-background-color: #535353;" text="+" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>

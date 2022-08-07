@@ -38,6 +38,7 @@ public class Home extends SwitchScenes implements Initializable {
         addGroupButton.setOnAction(event -> addGroup());
         startChatButton.setOnAction(event -> startChat());
 
+        me.mainPagePostFinal.clear();
         Person.makeMainPage(me,Input.myRegister);
         FXMLLoader postLoader;
         try {

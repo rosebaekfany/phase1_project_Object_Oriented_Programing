@@ -58,6 +58,7 @@ public class Main extends Application {
         myChat1.person2 = me;
         Post chat1Post = new Post();
         chat1Post.script = "Hello good morning";
+        chat1Post.usersPostId = "@yek";
         myChat1.allTexts.add(chat1Post);
 
         Chat myChat2 = new Chat();
@@ -115,47 +116,47 @@ public class Main extends Application {
         SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");
         SwitchScenes.window.setScene(scene);
         SwitchScenes.window.setWidth(815.0);
-        SwitchScenes.window.setHeight(615.0);
+        SwitchScenes.window.setHeight(640.0);
         SwitchScenes.window.show();
     }
 
     public static void main(String[] args) throws SQLException {
 
-       Input myInput = new Input();
-       Connection conn = null;
-       Statement stmt = null;
-       try {
-           try {
-               Class.forName("com.mysql.cj.jdbc.Driver");
-           }
-           catch (Exception e) {
-               System.out.println(e);
-           }
-           conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
-           stmt = (Statement) conn.createStatement();
-           String query1 = "INSERT INTO allregister " + "VALUES ()";
-
-           stmt.executeUpdate(query1);
-       }
-       catch (SQLException excep) {
-           excep.printStackTrace();
-       }
-       catch (Exception excep) {
-           excep.printStackTrace();
-       }
-
-       myInput.register_menu(conn);
+//       Input myInput = new Input();
+//       Connection conn = null;
+//       Statement stmt = null;
+//       try {
+//           try {
+//               Class.forName("com.mysql.cj.jdbc.Driver");
+//           }
+//           catch (Exception e) {
+//               System.out.println(e);
+//           }
+//           conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
+//           stmt = (Statement) conn.createStatement();
+//           String query1 = "INSERT INTO allregister " + "VALUES ()";
+//
+//           stmt.executeUpdate(query1);
+//       }
+//       catch (SQLException excep) {
+//           excep.printStackTrace();
+//       }
+//       catch (Exception excep) {
+//           excep.printStackTrace();
+//       }
+//
+//       myInput.register_menu(conn);
 
         launch();
 
-        while (Input.registerMenu == 1) {
-            myInput.inputRegister();
-        }
-        if(Input.registerMenu == 0){
-            DatabaseUpdate.insertAll(myInput.myRegister,conn);
-            conn.close();
-            System.out.println("finished");
-        }
+//        while (Input.registerMenu == 1) {
+//            myInput.inputRegister();
+//        }
+//        if(Input.registerMenu == 0){
+//            DatabaseUpdate.insertAll(myInput.myRegister,conn);
+//            conn.close();
+//            System.out.println("finished");
+//        }
 
     }
 }

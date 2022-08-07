@@ -24,7 +24,6 @@ public class MyGroups extends SwitchScenes implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(allGroupChatsNum);
         group_back.setStyle("-fx-background-color: #535353");
         FXMLLoader fxmlLoader;
         try {

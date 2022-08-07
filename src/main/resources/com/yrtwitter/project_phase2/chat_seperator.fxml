@@ -8,12 +8,12 @@
    <tabs>
       <Tab fx:id="personalTab" text="personal chats">
          <content>
-            <VBox fx:id="personal" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="personal" prefHeight="600.0" prefWidth="100.0" />
          </content>
       </Tab>
       <Tab fx:id="groupTab" text="groups">
          <content>
-            <VBox fx:id="group" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="group" prefHeight="600.0" prefWidth="100.0" />
          </content></Tab>
    </tabs>
 </TabPane>

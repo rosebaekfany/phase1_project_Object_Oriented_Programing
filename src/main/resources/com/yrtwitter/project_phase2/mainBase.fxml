@@ -25,7 +25,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="startChatButton" layoutX="-3.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #535353;" text="+start chat" textFill="WHITE" />
+            <Button fx:id="startChatButton" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #535353;" text="+start chat" textFill="WHITE" />
             <TextField fx:id="startChatTextField" layoutX="77.0" layoutY="15.0" prefHeight="25.0" prefWidth="155.0" promptText="userId" />
          </children>
       </Pane>

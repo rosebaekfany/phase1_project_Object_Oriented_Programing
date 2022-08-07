@@ -13,6 +13,7 @@ public class Person {
 
     public String userType = "public";
     public String userAccountType = new String("General_Account");
+    public String profilePath = new String();
     public String selectedPostId = new String();
     public String name = new String();
     public String userID = new String();
@@ -122,6 +123,16 @@ public class Person {
             }
         }
         return max;
+    }
+
+
+    public static Person findPerson(String userId){
+        for (Person allRegister : Input.myRegister.allRegisters) {
+            if (allRegister.userID.equals(userId)){
+                return allRegister;
+            }
+        }
+        return null;
     }
 
 

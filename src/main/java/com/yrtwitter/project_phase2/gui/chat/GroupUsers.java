@@ -1,5 +1,6 @@
 package com.yrtwitter.project_phase2.gui.chat;
 
+import com.yrtwitter.project_phase2.Main;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.media.Group;
@@ -7,17 +8,27 @@ import com.yrtwitter.project_phase2.media.Person;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
 import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GroupUsers extends SwitchScenes implements Initializable {
+    @FXML
+    ImageView profile;
+    @FXML
+    TextField path;
+    @FXML
+    Button pathButton;
     @FXML
     Button backButton , addMemberButton , addBannedButton;
     @FXML
@@ -35,19 +46,56 @@ public class GroupUsers extends SwitchScenes implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        pathButton.setOnAction(event -> setImg());
+
+        try {
+            Image image = new Image(new FileInputStream(Input.myRegister.grouponBord.profilePath));
+            profile.setImage(image);
+        } catch (Exception e) {
+            e.fillInStackTrace();
+        }
+
+        FXMLLoader fxmlLoader;
+
         for (Person groupUser : Input.myRegister.grouponBord.groupUsers) {
-            Label user = new Label(groupUser.name , memberBox);
-            user.setTextFill(Color.WHITE);
+            fxmlLoader = new FXMLLoader(Main.class.getResource("member.fxml"));
+            Member.person = groupUser;
+            try {
+                memberBox.getChildren().add(fxmlLoader.load());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
         for (Person bannedUser : Input.myRegister.grouponBord.bannedUsers) {
-            Label banned = new Label(bannedUser.name , bannedBox);
-            banned.setTextFill(Color.WHITE);
+            fxmlLoader = new FXMLLoader(Main.class.getResource("member.fxml"));
+            Member.person = bannedUser;
+            try {
+                bannedBox.getChildren().add(fxmlLoader.load());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
+
 
         addMemberButton.setOnAction(event -> addMember());
         addBannedButton.setOnAction(event -> addBanned());
         backButton.setOnAction(event -> back());
         removeMemberButton.setOnAction(event -> removeMember());
+    }
+
+    private void setImg(){
+        String s = path.getText();
+        if (s.equals("")){
+            return;
+        }
+        try {
+            Image image = new Image(new FileInputStream(s));
+            profile.setImage(image);
+            Input.myRegister.grouponBord.profilePath = s;
+        } catch (Exception e) {
+            e.fillInStackTrace();
+        }
     }
 
     private void addMember(){
@@ -131,7 +179,7 @@ public class GroupUsers extends SwitchScenes implements Initializable {
                 guide.setText("the userId id incorrect");
             }
         } else {
-            System.out.println("only admin can remove users");
+            guide.setText("only admin can remove users");
 
         }
     }

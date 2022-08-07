@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: #535353;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.PostComment">
    <children>
-      <ScrollPane prefHeight="520.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+      <ScrollPane prefHeight="520.0" prefWidth="620.0" style="-fx-background-color: #535353;" vvalue="1.0">
          <content>
             <VBox fx:id="commentsBox" prefHeight="518.0" prefWidth="618.0" style="-fx-background-color: #535353;" />
          </content>

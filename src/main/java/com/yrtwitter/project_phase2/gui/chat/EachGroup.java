@@ -7,9 +7,11 @@ import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,6 +30,12 @@ public class EachGroup extends MyGroups implements Initializable {
         if (groupNum != -1){
             Group thisGroup = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allMyGroap.get(groupNum);
 
+            try {
+                Image image = new Image(new FileInputStream(thisGroup.profilePath));
+                profile.setImage(image);
+            } catch (Exception e) {
+                e.fillInStackTrace();
+            }
             try {
                 text.setText(thisGroup.allTexts.get(thisGroup.allTexts.size()-1).script);
             }catch (Exception e){

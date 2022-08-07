@@ -4,14 +4,17 @@ import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.media.Chat;
 import com.yrtwitter.project_phase2.media.Group;
+import com.yrtwitter.project_phase2.media.Person;
 import com.yrtwitter.project_phase2.media.RegisterMenu;
 import com.yrtwitter.project_phase2.view.Input;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,6 +33,7 @@ public class EachContact extends MyChats implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
         back.setOnMouseClicked(mouseEvent -> enterChat());
 
         if (chatNum != -1){
@@ -40,8 +44,20 @@ public class EachContact extends MyChats implements Initializable {
             String chatterName;
             if (name1.equals(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).name)) {
                 chatterName = name2;
+                try {
+                    Image image = new Image(new FileInputStream(thisChat.person2.profilePath));
+                    profile.setImage(image);
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
             } else {
                 chatterName = name1;
+                try {
+                    Image image = new Image(new FileInputStream(thisChat.person1.profilePath));
+                    profile.setImage(image);
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
             }
             name.setText(chatterName);
 

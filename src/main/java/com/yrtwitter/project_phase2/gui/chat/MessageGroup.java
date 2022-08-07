@@ -21,7 +21,7 @@ public class MessageGroup extends SwitchScenes implements Initializable {
     @FXML
     VBox messagePane;
     @FXML
-    Label  forwardLabel , nameLabel , textLabel , dateLabel;
+    Label  replyLabel , forwardLabel , nameLabel , textLabel , dateLabel;
     @FXML
     Button replyButton , forwardButton , likeButton , editButton , deleteButton;
     @FXML
@@ -38,6 +38,13 @@ public class MessageGroup extends SwitchScenes implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(recentPost.forwarded.equals("forwarded")){
             forwardLabel.setText("forwarded");
+        } else {
+            forwardLabel.setText("");
+        }
+        if (recentPost.edited.equals("edited")){
+            replyLabel.setText("edited");
+        } else {
+            replyLabel.setText("");
         }
         nameLabel.setText(recentPost.usersPostId);
         textLabel.setText(recentPost.script);

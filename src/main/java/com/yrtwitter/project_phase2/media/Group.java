@@ -9,6 +9,7 @@ import com.yrtwitter.project_phase2.controller.*;
 
 public class Group {
     public String groupName = new String();
+    public String profilePath = new String();
     public Person admin = new Person();
     public ArrayList<Person> groupUsers = new ArrayList<>();
     public ArrayList<Person> bannedUsers = new ArrayList<>();
