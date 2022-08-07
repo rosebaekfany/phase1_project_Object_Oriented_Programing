@@ -16,6 +16,7 @@ public class Group {
     public ArrayList<Comment> allReply = new ArrayList<>();
     //String[] adminID = new String[50] ;
     public String groupId = new String();
+    public String profilePath = new String();
 
     public static void creatGroup(RegisterMenu myRegister,Person myPerson, String groupName) {
         Group newGroup = new Group();

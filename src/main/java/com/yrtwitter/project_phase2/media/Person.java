@@ -33,6 +33,7 @@ public class Person {
     public ArrayList<Group> allMyGroap = new ArrayList<>();
     public CommercialGenres[] favoriteGenres = {HEALTH_AND_CARE, FASHION, SCIENCE_AND_TECHNOLOGY, STOCK_MARKET, ARTS, GAMING};
     public CommercialGenres commercialGenre;
+    public String profilePath = new String();
 
     public boolean equals(Person person) {
         if (this.name.equals(person.name)) {

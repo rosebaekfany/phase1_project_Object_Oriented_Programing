@@ -9,6 +9,7 @@ module com.yrtwitter.project_phase2 {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires mysql.connector.java;
+    requires javafx.graphics;
 
     opens com.yrtwitter.project_phase2 to javafx.fxml;
     exports com.yrtwitter.project_phase2;

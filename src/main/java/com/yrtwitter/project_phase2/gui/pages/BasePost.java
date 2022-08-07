@@ -40,8 +40,8 @@ public class BasePost implements Initializable{
             e.printStackTrace();
         }
 
-        Image myImage = new Image(getClass().getResourceAsStream("/images/rose-flower.jpg"));
-        image.setImage(myShowPost.postImage);
+        Image myImage = new Image(getClass().getResourceAsStream("/images/"+myShowPost.imagePath));
+        image.setImage(myImage);
 
     }
 }

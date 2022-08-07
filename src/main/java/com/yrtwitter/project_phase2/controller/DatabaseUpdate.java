@@ -78,6 +78,7 @@ class UserRepository {
                 user.userAccountType = (resultSet.getString("userAccountType"));
                 user.bio = (resultSet.getString("bio"));
                 user.userPasswords = (resultSet.getString("userPassword"));
+                user.profilePath = resultSet.getString("profilePath");
                 for (i = 0; i < 6; i++) {
                     if (resultSet.getInt("gene_HEALTH_AND_CARE") == i) {
                         user.favoriteGenres[i] = HEALTH_AND_CARE;
@@ -109,8 +110,8 @@ class UserRepository {
         preparedStatement.executeUpdate();
         for (j = 0; j < allRegister.allRegisters.size(); j++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO allregister(userType, userPassword, bio, name, userAccountType , securityQuestion ,userId , gene_HEALTH_AND_CARE , gene_FASHION , gene_SCIENCE_AND_TECHNOLOGY , gene_STOCK_MARKET , gene_ARTS , gene_GAMING) " +
-                            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
+                    "INSERT INTO allregister(userType, userPassword, bio, name, userAccountType , securityQuestion ,userId , gene_HEALTH_AND_CARE , gene_FASHION , gene_SCIENCE_AND_TECHNOLOGY , gene_STOCK_MARKET , gene_ARTS , gene_GAMING , profilePath) " +
+                            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)");
 
             preparedStatementA.setString(1, allRegister.allRegisters.get(j).userType);
             preparedStatementA.setString(2, allRegister.allRegisters.get(j).userPasswords);
@@ -155,6 +156,7 @@ class UserRepository {
                     break;
                 }
             }
+            preparedStatementA.setString(14,allRegister.allRegisters.get(j).profilePath);
 
             preparedStatementA.executeUpdate();
 
@@ -183,11 +185,11 @@ class PostRepository {
                 myPost.edited = resultSet.getString("edited");
                 myPost.script = resultSet.getString("script");
                 myPost.imagePath = resultSet.getString("imagName");
-                if(myPost.imagePath==null || myPost.imagePath.equals("  ") ){
+                /*if(myPost.imagePath==null || myPost.imagePath.equals("  ") ){
                 }
-                else {
-                    Image newIm = new Image(Objects.requireNonNull(PostRepository.class.getResourceAsStream(myPost.imagePath)));
-                }
+                else if(myPost.postImage!=null){
+                    Image newIm = new Image(Objects.requireNonNull(PostRepository.class.getResourceAsStream("/images/" + myPost.imagePath)));
+                }*/
                 Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
                 myPost.postDate = myDate;
                 if (resultSet.getInt("BorG") == 0) {
@@ -480,7 +482,7 @@ class CommentRepository {
                 myPost.forwarded = resultSet.getString("forwarded");
                 myPost.edited = resultSet.getString("edited");
                 myPost.script = resultSet.getString("script");
-                Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
+                Date myDate = new Date(Long.parseLong(resultSet.getString("date")));
                 myPost.postDate = myDate;
 
                 for (i = 0; i < allRegister.allPosts.size(); i++) {
@@ -1050,6 +1052,7 @@ class groupRepasitory {
                 myGroup.groupId = resultSet.getString("groupId");
                 myGroup.groupId = resultSet.getString("admin");
                 myGroup.groupName = resultSet.getString("groupName");
+                myGroup.profilePath = resultSet.getString("profilePath1");
                 if (resultSet.getString("1u").equals(" ")) {
                 } else {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
@@ -1334,8 +1337,8 @@ class groupRepasitory {
         preparedStatement.executeUpdate();
         for (i = 0; i < allRegister.allRegisterGroup.size(); i++) {
             PreparedStatement preparedStatementA = connection.prepareStatement(
-                    "INSERT INTO groupp(groupName,admin,groupId,1u,2u,3u,4u,5u,6u,7u,8u,9u,10u,11u,12u,13u,14u,15u,16u,17u,18u,19u,20u,1b,2b,3b,4b,5b,6b,7b,8b,9b,10b) " +
-                            "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "INSERT INTO groupp(groupName,admin,groupId,1u,2u,3u,4u,5u,6u,7u,8u,9u,10u,11u,12u,13u,14u,15u,16u,17u,18u,19u,20u,1b,2b,3b,4b,5b,6b,7b,8b,9b,10b,profilePath1) " +
+                            "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             preparedStatementA.setString(1, allRegister.allRegisterGroup.get(i).groupName);
             preparedStatementA.setString(2, allRegister.allRegisterGroup.get(i).admin.userID);
             preparedStatementA.setString(3, allRegister.allRegisterGroup.get(i).groupId);
@@ -1355,6 +1358,8 @@ class groupRepasitory {
                     preparedStatementA.setString(h, " ");
                 }
             }
+            preparedStatement.setString(34,allRegister.allRegisterGroup.get(i).profilePath);
+
             preparedStatementA.executeUpdate();
         }
     }
