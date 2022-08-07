@@ -466,7 +466,7 @@ class CommentRepository {
                 myPost.forwarded = resultSet.getString("forwarded");
                 myPost.edited = resultSet.getString("edited");
                 myPost.script = resultSet.getString("script");
-                Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
+                Date myDate = new Date(Long.parseLong(resultSet.getString("date")));
                 myPost.postDate = myDate;
 
                 for (i = 0; i < allRegister.allPosts.size(); i++) {
