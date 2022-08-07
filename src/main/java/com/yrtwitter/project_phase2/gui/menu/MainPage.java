@@ -31,8 +31,13 @@ public class MainPage extends SwitchScenes implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader fxmlLoader1;
+        if (SwitchScenes.darkTheme){
+            fxmlLoader1 = new FXMLLoader(Main.class.getResource("menu.fxml"));
+        } else {
+            fxmlLoader1 = new FXMLLoader(Main.class.getResource("menuLight.fxml"));
+        }
 
-        FXMLLoader fxmlLoader1 = new FXMLLoader(Main.class.getResource("menu.fxml"));
         FXMLLoader fxmlLoader2;
 
 
@@ -67,7 +72,12 @@ public class MainPage extends SwitchScenes implements Initializable {
             case SETTING -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("setting.fxml"));
+                if (SwitchScenes.darkTheme){
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("setting.fxml"));
+                }else{
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("settingLight.fxml"));
+                }
+
             }
             case GROUP_CHAT -> {
                 contentPane.getChildren().clear();
@@ -124,6 +134,11 @@ public class MainPage extends SwitchScenes implements Initializable {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
                 fxmlLoader2 = new FXMLLoader(Main.class.getResource("suggestedPersonBase.fxml"));
+            }
+            case showState -> {
+                contentPane.getChildren().clear();
+                menuPane.getChildren().clear();
+                fxmlLoader2 = new FXMLLoader(Main.class.getResource("showState.fxml"));
             }
             default -> fxmlLoader2 =  new FXMLLoader(Main.class.getResource("startPage.fxml"));
         }

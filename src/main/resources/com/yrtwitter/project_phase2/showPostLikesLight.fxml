@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="310.0" style="-fx-background-color: #535353 ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.ShowPostLikes">
+    <children>
+        <ScrollPane prefHeight="600.0" prefWidth="310.0">
+            <content>
+                <Pane prefHeight="598.0" prefWidth="308.0" style="-fx-background-color: white;">
+                    <children>
+                        <ScrollPane layoutX="54.0" layoutY="81.0" prefHeight="468.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;">
+                            <content>
+                                <VBox fx:id="likedUser" prefHeight="466.0" prefWidth="198.0" style="-fx-background-color: white; -fx-border-width: 3; -fx-border-color: WHITE; -fx-border-radius: 30;" />
+                            </content>
+                        </ScrollPane>
+                        <Label alignment="CENTER" layoutX="120.0" layoutY="37.0" prefHeight="33.0" prefWidth="68.0" text="likes">
+                            <font>
+                                <Font size="23.0" />
+                            </font>
+                        </Label>
+                        <Button minWidth="36.0" mnemonicParsing="false" onAction="#backToPost" prefHeight="30.0" prefWidth="36.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 10;" text="&lt;" />
+                    </children>
+                </Pane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

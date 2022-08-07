@@ -31,7 +31,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
 
         //TEST
-        Person me = new Person();
+        /*Person me = new Person();
         me.name = "yekta";
         me.userID = "@yekta";
         me.userPasswords = "1111";
@@ -86,7 +86,7 @@ public class Main extends Application {
         me.allPersonalChats.add(myChat2);
         me.allMyGroap.add(group1);
         me.allMyGroap.add(group2);
-
+*/
 /*        Input.myRegister.logedInAccount=Input.myRegister.allRegisters.size()-1;
         BasePost.myShowPost.script="hi";
         BasePost.myShowPost.postID="@fgh";
@@ -122,41 +122,41 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
 
-//       Input myInput = new Input();
-//       Connection conn = null;
-//       Statement stmt = null;
-//       try {
-//           try {
-//               Class.forName("com.mysql.cj.jdbc.Driver");
-//           }
-//           catch (Exception e) {
-//               System.out.println(e);
-//           }
-//           conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
-//           stmt = (Statement) conn.createStatement();
-//           String query1 = "INSERT INTO allregister " + "VALUES ()";
-//
-//           stmt.executeUpdate(query1);
-//       }
-//       catch (SQLException excep) {
-//           excep.printStackTrace();
-//       }
-//       catch (Exception excep) {
-//           excep.printStackTrace();
-//       }
-//
-//       myInput.register_menu(conn);
+       Input myInput = new Input();
+       Connection conn = null;
+       Statement stmt = null;
+       try {
+           try {
+               Class.forName("com.mysql.cj.jdbc.Driver");
+           }
+           catch (Exception e) {
+               System.out.println(e);
+           }
+           conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mytwitter", "root", "manager");
+           stmt = (Statement) conn.createStatement();
+           String query1 = "INSERT INTO allregister " + "VALUES ()";
 
-        launch();
+           stmt.executeUpdate(query1);
+       }
+       catch (SQLException excep) {
+           excep.printStackTrace();
+       }
+       catch (Exception excep) {
+           excep.printStackTrace();
+       }
 
-//        while (Input.registerMenu == 1) {
-//            myInput.inputRegister();
-//        }
-//        if(Input.registerMenu == 0){
-//            DatabaseUpdate.insertAll(myInput.myRegister,conn);
-//            conn.close();
-//            System.out.println("finished");
-//        }
+       myInput.register_menu(conn);
+
+       if (Input.registerMenu == 1) {
+           launch();
+       }
+       if(Input.registerMenu == 0){
+           DatabaseUpdate.insertAll(myInput.myRegister,conn);
+           conn.close();
+           System.out.println("finished");
+       }
+
+
 
     }
 }

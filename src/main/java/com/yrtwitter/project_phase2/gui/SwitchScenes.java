@@ -8,10 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SwitchScenes {
 
     public static Stage window = new Stage();
-    public boolean darkTheme = true;
+    public static boolean darkTheme = true;
     public static OnPage onPage;
 
 
@@ -24,6 +27,16 @@ public class SwitchScenes {
         double preWidth = window.getWidth();
         double preHeight = window.getHeight();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
+//        if(darkTheme){
+            fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
+//        } else {
+//            String regexStr = "(.+).fxml";
+//            Pattern pattern = Pattern.compile(regexStr);
+//            Matcher matcher = pattern.matcher(fxml);
+//            String fxml2 = matcher.group(0);
+//            String fxmlfinal = fxml2 + "Light.fxml";
+//            fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlfinal));
+//        }
         try {
             Scene scene = new Scene(fxmlLoader.load() );
             SwitchScenes.window.setTitle("Rosa_Yekta_Twitter");

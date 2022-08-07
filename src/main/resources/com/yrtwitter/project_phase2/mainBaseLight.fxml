@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: #535353 ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.Home">
+    <children>
+        <ScrollPane hbarPolicy="NEVER" prefHeight="551.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+            <content>
+                <VBox fx:id="mainPageContent" prefHeight="552.0" prefWidth="618.0" style="-fx-background-color: #535353;" />
+            </content>
+        </ScrollPane>
+        <Pane layoutY="551.0" prefHeight="50.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+            <children>
+                <Button fx:id="addGroupButton" layoutX="549.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: #535353;" text="+group" textFill="WHITE" />
+                <TextField fx:id="groupNameTextField" layoutX="393.0" layoutY="13.0" prefHeight="25.0" prefWidth="155.0" promptText="group name" />
+                <Label fx:id="label" layoutX="281.0" layoutY="16.0" prefHeight="20.0" prefWidth="103.0" text="group created" textFill="#f5f5f5">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Button fx:id="startChatButton" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #535353;" text="+start chat" textFill="WHITE" />
+                <TextField fx:id="startChatTextField" layoutX="77.0" layoutY="15.0" prefHeight="25.0" prefWidth="155.0" promptText="userId" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

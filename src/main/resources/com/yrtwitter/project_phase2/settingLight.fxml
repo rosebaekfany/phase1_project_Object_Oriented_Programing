@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.Setting">
+    <content>
+        <Pane fx:id="backPane" maxWidth="-Infinity" prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: white;">
+            <children>
+                <Label fx:id="themeLabel" layoutX="20.0" layoutY="127.0" prefHeight="40.0" prefWidth="200.0" text="Theme">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="userIdTextField" alignment="CENTER" layoutX="230.0" layoutY="13.0" prefHeight="40.0" prefWidth="250.0" promptText="userID">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="userIdLabel" layoutX="20.0" layoutY="17.0" prefHeight="40.0" prefWidth="200.0" text="your userID">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="bioLabel" layoutX="20.0" layoutY="70.0" prefHeight="42.0" prefWidth="200.0" text="biography">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="bioTextField" alignment="CENTER" layoutX="230.0" layoutY="68.0" prefHeight="40.0" prefWidth="250.0" promptText="bio">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </TextField>
+                <ChoiceBox fx:id="themeChoiceBox" layoutX="230.0" layoutY="124.0" prefHeight="40.0" prefWidth="250.0" />
+                <Label fx:id="favGenre" layoutX="20.0" layoutY="302.0" prefHeight="40.0" prefWidth="200.0" text="favorite genres">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="healthLabel" layoutX="77.0" layoutY="340.0" prefHeight="40.0" prefWidth="200.0" text="health and care">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="fashionLabel" layoutX="77.0" layoutY="531.0" prefHeight="40.0" prefWidth="200.0" text="fashion">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="techLabel" layoutX="79.0" layoutY="379.0" prefHeight="40.0" prefWidth="238.0" text="science and technology">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Spinner fx:id="healthSp" layoutX="20.0" layoutY="341.0" prefHeight="25.0" prefWidth="44.0" />
+                <Label fx:id="gamingLabel" layoutX="76.0" layoutY="493.0" prefHeight="40.0" prefWidth="200.0" text="gaming">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="marketLabel" layoutX="80.0" layoutY="419.0" prefHeight="40.0" prefWidth="238.0" text="stock market">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="artsLabel" layoutX="79.0" layoutY="456.0" prefHeight="40.0" prefWidth="238.0" text="arts" textFill="#060607">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Spinner fx:id="techSp" layoutX="20.0" layoutY="380.0" prefHeight="25.0" prefWidth="44.0" />
+                <Spinner fx:id="marketSp" layoutX="20.0" layoutY="419.0" prefHeight="25.0" prefWidth="44.0" />
+                <Spinner fx:id="artsSp" layoutX="20.0" layoutY="458.0" prefHeight="25.0" prefWidth="44.0" />
+                <Spinner fx:id="fashionSp" layoutX="20.0" layoutY="534.0" prefHeight="25.0" prefWidth="44.0" />
+                <Spinner fx:id="gamingSp" layoutX="20.0" layoutY="496.0" prefHeight="25.0" prefWidth="44.0" />
+                <Button fx:id="logoutButton" layoutX="20.0" layoutY="179.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="461.0" style="-fx-background-color: white; -fx-border-color: #2499F8FF; -fx-border-width: 6; -fx-border-radius: 20;" text="logout">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fx:id="logout_icon" fitHeight="28.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/logout_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="changePassword" layoutX="20.0" layoutY="244.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="461.0" style="-fx-background-color: white; -fx-border-color: #2499F8FF; -fx-border-width: 6; -fx-border-radius: 20;" text="change password">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fx:id="changePass_icon" fitHeight="28.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/password_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="doneButton" layoutX="395.0" layoutY="531.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="173.0" style="-fx-background-color: white; -fx-border-color: #2499F8FF; -fx-border-width: 6; -fx-border-radius: 20;" text="DONE">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Label fx:id="guide" contentDisplay="RIGHT" layoutX="24.0" layoutY="567.0" prefHeight="40.0" prefWidth="365.0" text="Label" textFill="#e40d0d">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="accountTypeLabel" layoutX="276.0" layoutY="315.0" prefHeight="40.0" prefWidth="203.0" text="Account Type">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <RadioButton fx:id="publicRadioButton" layoutX="421.0" layoutY="327.0" mnemonicParsing="false" text="Public">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </RadioButton>
+                <RadioButton fx:id="privateRadioButton" layoutX="431.0" layoutY="337.0" mnemonicParsing="false" text="Private">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </RadioButton>
+                <CheckBox fx:id="businessAccountCheckBox" layoutX="385.0" layoutY="397.0" mnemonicParsing="false" text="BusinessAccount">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </CheckBox>
+                <TextField fx:id="phoneNumTextField" alignment="CENTER" layoutX="264.0" layoutY="438.0" prefHeight="40.0" prefWidth="250.0" promptText="phone number">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="businessGenreLabel" layoutX="251.0" layoutY="476.0" prefHeight="40.0" prefWidth="203.0" text="Business Genre">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="businessGenreChoiceBox" layoutX="329.0" layoutY="501.0" prefHeight="40.0" prefWidth="250.0" />
+                <Label fx:id="phoneNumLabel" layoutX="261.0" layoutY="486.0" prefHeight="40.0" prefWidth="203.0" text="Phone number">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="profileTextField" alignment="CENTER" layoutX="317.0" layoutY="167.0" prefHeight="40.0" prefWidth="250.0" promptText="image url">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="profileLabel" layoutX="294.0" layoutY="219.0" prefHeight="40.0" prefWidth="241.0" text="your profile path">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="profileImageView" fitHeight="130.0" fitWidth="130.0" layoutX="356.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" />
+            </children></Pane>
+    </content>
+</ScrollPane>

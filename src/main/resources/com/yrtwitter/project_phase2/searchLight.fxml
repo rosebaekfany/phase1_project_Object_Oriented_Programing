@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: #535353;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.Search">
+    <children>
+        <Pane prefHeight="60.0" prefWidth="620.0">
+            <children>
+                <VBox fx:id="topp" prefHeight="60.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+                    <children>
+                        <Pane prefHeight="60.0" prefWidth="620.0" style="-fx-background-color: white;">
+                            <children>
+                                <TextField fx:id="searchId" layoutX="55.0" layoutY="12.0" prefHeight="36.0" prefWidth="486.0" promptText="search name" style="-fx-background-color: #ffffff; -fx-border-color: black;">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </TextField>
+                                <Button layoutX="560.0" layoutY="10.0" mnemonicParsing="false" onAction="#search" prefHeight="36.0" prefWidth="46.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3; -fx-border-radius: 10;" text="search">
+                                    <font>
+                                        <Font size="9.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </Pane>
+                    </children></VBox>
+            </children>
+        </Pane>
+        <ScrollPane layoutY="60.0" prefHeight="539.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+            <content>
+                <VBox fx:id="bodyyy" prefHeight="537.0" prefWidth="618.0" style="-fx-background-color: white;" />
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

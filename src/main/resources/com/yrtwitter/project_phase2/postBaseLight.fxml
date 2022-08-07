@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="750.0" prefWidth="620.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.BasePost">
+    <children>
+        <VBox fx:id="top" prefHeight="92.0" prefWidth="620.0" />
+        <VBox fx:id="buttom" layoutY="510.0" prefHeight="240.0" prefWidth="620.0" />
+        <ImageView fx:id="image" fitHeight="412.0" fitWidth="620.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+</AnchorPane>

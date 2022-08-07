@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="60.0" prefWidth="620.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.chat.GroupTop">
+    <children>
+        <ScrollPane prefHeight="36.0" prefWidth="620.0" />
+        <Pane prefHeight="36.0" prefWidth="620.0" style="-fx-background-color: white;">
+            <children>
+                <Label fx:id="memberNumLabel" layoutX="276.0" layoutY="10.0" text="num">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font></Label>
+                <Label layoutX="310.0" layoutY="10.0" prefHeight="17.0" prefWidth="67.0" text="members">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font></Label>
+                <Label fx:id="groupId" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="190.0" text="goupId">
+                    <font>
+                        <Font size="18.0" />
+                    </font></Label>
+                <Button fx:id="usersButton" layoutX="569.0" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="37.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10;" text="users">
+                    <font>
+                        <Font size="9.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

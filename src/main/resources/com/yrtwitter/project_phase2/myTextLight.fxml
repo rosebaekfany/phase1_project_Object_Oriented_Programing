@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="myTextPane" prefHeight="46.0" prefWidth="453.0" style="-fx-background-color: #535353; -fx-border-color: #2499F8FF; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui">
+    <children>
+        <Label fx:id="content" layoutX="6.0" layoutY="6.0" prefHeight="44.0" prefWidth="420.0" text="name">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="menuButton" layoutX="420.0" layoutY="5.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="33.0" style="-fx-background-color: #535353;" text="...">
+            <font>
+                <Font name="System Bold Italic" size="15.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

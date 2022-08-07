@@ -2,6 +2,7 @@ package com.yrtwitter.project_phase2.gui;
 
 import com.yrtwitter.project_phase2.gui.*;
 import com.yrtwitter.project_phase2.gui.menu.MainPage;
+import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.media.*;
 import com.yrtwitter.project_phase2.temporary.*;
 import com.yrtwitter.project_phase2.view.*;
@@ -244,6 +245,11 @@ public class Setting extends MainPage implements Initializable {
         toggleGroup = new ToggleGroup();
         publicRadioButton.setToggleGroup(toggleGroup);
         privateRadioButton.setToggleGroup(toggleGroup);
+        if (Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userAccountType.equals("public")){
+            publicRadioButton.selectedProperty().set(true);
+        }else{
+            privateRadioButton.selectedProperty().set(true);
+        }
 
         phoneNumLabel.setVisible(false);
         phoneNumTextField.setVisible(false);
@@ -375,13 +381,15 @@ public class Setting extends MainPage implements Initializable {
         }
         guide.setVisible(true);
         guide.setText("successful");
+        onPage = OnPage.SETTING;
+        switchScenes("main_page.fxml");
     }
 
     private void setTheme(){
         String theme = themeChoiceBox.getValue();
         switch (theme){
-            case "Dark" -> darkTheme = true;
-            case "Light" -> darkTheme = false;
+            case "Dark" -> SwitchScenes.darkTheme = true;
+            case "Light" -> SwitchScenes.darkTheme = false;
         }
     }
 

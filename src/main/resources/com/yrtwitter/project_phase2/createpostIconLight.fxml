@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="30.0" prefWidth="620.0" style="-fx-background-color: #535353 ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.CreatepostIcon">
+    <children>
+        <ScrollPane prefHeight="36.0" prefWidth="620.0" />
+        <Pane prefHeight="36.0" prefWidth="620.0" style="-fx-background-color: white;">
+            <children>
+                <Button layoutX="310.0" layoutY="-1.0" mnemonicParsing="false" onAction="#creatPost" style="-fx-background-color: white;" text="+create post" textFill="#2499f8">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Button>
+                <Button layoutX="440.0" layoutY="-1.0" mnemonicParsing="false" onAction="#massage" style="-fx-background-color: white;" text="massage requests">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Button>
+                <Button layoutX="182.0" layoutY="-1.0" mnemonicParsing="false" onAction="#con" style="-fx-background-color: white;" text="controller">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Button>
+                <Button layoutX="31.0" layoutY="-1.0" mnemonicParsing="false" onAction="#exit" prefHeight="29.0" prefWidth="52.0" style="-fx-background-color: white;" text="exit" textFill="RED">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

@@ -5,6 +5,7 @@ import com.yrtwitter.project_phase2.gui.SearchIdSingle;
 import com.yrtwitter.project_phase2.gui.SwitchScenes;
 import com.yrtwitter.project_phase2.gui.menu.OnPage;
 import com.yrtwitter.project_phase2.view.Input;
+import com.yrtwitter.project_phase2.view.Show;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MyPageTop extends SwitchScenes implements Initializable {
@@ -38,6 +40,7 @@ public class MyPageTop extends SwitchScenes implements Initializable {
     @FXML
     Button Sbut;
 
+
     public void show_suggestedPerson (ActionEvent event) throws IOException {
         onPage = OnPage.suggestedPersonBase;
         switchScenes("main_page.fxml");
@@ -51,6 +54,7 @@ public class MyPageTop extends SwitchScenes implements Initializable {
         onPage = OnPage.followingList;
         switchScenes("main_page.fxml");
     }
+
 
 
     @Override
@@ -69,5 +73,6 @@ public class MyPageTop extends SwitchScenes implements Initializable {
             Sbut.setVisible(false);
             ImBur.setVisible(false);
         }
+
     }
 }

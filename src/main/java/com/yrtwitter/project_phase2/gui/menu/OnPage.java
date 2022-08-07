@@ -18,5 +18,6 @@ public enum OnPage {
     creatPost,
     suggestedPersonBase,
     followerList,
-    followingList;
+    followingList,
+    showState;
 }

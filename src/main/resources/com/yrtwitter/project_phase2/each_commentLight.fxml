@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="messagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="400.0" style="-fx-background-color: white; -fx-border-color: #2499F8; -fx-border-width: 3; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.EachComment">
+    <children>
+        <Label fx:id="nameLabel" prefHeight="39.0" prefWidth="275.0" text="Label">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="textLabel" prefHeight="27.0" prefWidth="394.0" text="Label">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="dateLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="379.0" text="Label" />
+    </children>
+</VBox>

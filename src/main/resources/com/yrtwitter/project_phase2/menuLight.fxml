@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.menu.Menu">
+    <content>
+        <Pane fx:id="backPane" prefHeight="600.0" prefWidth="180.0" style="-fx-background-color: #535353;">
+            <children>
+                <Button fx:id="homeButton" mnemonicParsing="false" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-radius: 0; -fx-border-color: #2499f8; -fx-border-width: 3;" text="Home">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fx:id="home_icon" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                            <viewport>
+                                <Rectangle2D />
+                            </viewport>
+                            <image>
+                                <Image url="@../../../images/home_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="searchButton" layoutY="360.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-radius: 0; -fx-border-color: #2499f8; -fx-border-width: 3;" text="Search" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fx:id="search_icon" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/search_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="settingButton" layoutY="480.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-color: #2499f8; -fx-border-width: 3; -fx-border-radius: 0;" text="Setting" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fx:id="setting_icon" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/setting_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="myPageButton" layoutY="120.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-color: #2499f8; -fx-border-radius: 0; -fx-border-width: 3;" text="MyPage" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fx:id="profile_icon" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/profile_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="myChatsButton" layoutY="240.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-radius: 0; -fx-border-width: 3; -fx-border-color: #2499f8;" text="MyChats" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fx:id="chat_icon" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../../../images/chat_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </Pane>
+    </content>
+</ScrollPane>
