@@ -38,7 +38,12 @@ public class MyChats extends SwitchScenes implements Initializable {
 
         try {
             for (chatNum = allPersonalChatsNum-1; chatNum >= 0; chatNum--) {
-                fxmlLoader = new FXMLLoader(Main.class.getResource("each_contact.fxml"));
+                if(!SwitchScenes.darkTheme){
+                    fxmlLoader = new FXMLLoader(Main.class.getResource("each_contactLight.fxml"));
+                }
+                else{
+                    fxmlLoader = new FXMLLoader(Main.class.getResource("each_contact.fxml"));
+                }
                 personal_back.getChildren().add(fxmlLoader.load());
             } chatNum = -1;
 

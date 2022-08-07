@@ -49,7 +49,11 @@ public class PostComment extends SwitchScenes implements Initializable {
         try {
             for (Comment postComment : BasePost.myShowPost.postComments) {
                 recentComment = postComment;
-                fxmlLoader = new FXMLLoader(Main.class.getResource("each_comment.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader = new FXMLLoader(Main.class.getResource("each_commentLight.fxml"));
+                } else {
+                    fxmlLoader = new FXMLLoader(Main.class.getResource("each_comment.fxml"));
+                }
                 commentsBox.getChildren().add(fxmlLoader.load());
             }
         } catch (Exception e){

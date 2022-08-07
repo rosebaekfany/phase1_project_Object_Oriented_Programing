@@ -26,7 +26,12 @@ public class MyPage2 extends SwitchScenes implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        FXMLLoader topLoader = new FXMLLoader(Main.class.getResource("myPageTop.fxml"));
+        FXMLLoader topLoader ;
+        if (!SwitchScenes.darkTheme) {
+            topLoader = new FXMLLoader(Main.class.getResource("myPageTopLight.fxml"));
+        } else {
+            topLoader = new FXMLLoader(Main.class.getResource("myPageTop.fxml"));
+        }
         try {
             pageTop.getChildren().add(topLoader.load());
         }catch (Exception e){
@@ -34,7 +39,12 @@ public class MyPage2 extends SwitchScenes implements Initializable {
         }
 
         if(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userID.equals(SearchIdSingle.myPersonPage.userID)){
-            FXMLLoader buttomLoader = new FXMLLoader(Main.class.getResource("createpostIcon.fxml"));
+            FXMLLoader buttomLoader ;
+            if (!SwitchScenes.darkTheme) {
+                buttomLoader = new FXMLLoader(Main.class.getResource("createpostIconLight.fxml"));
+            } else {
+                buttomLoader = new FXMLLoader(Main.class.getResource("createpostIcon.fxml"));
+            }
             try {
                 pageButtom.getChildren().add(buttomLoader.load());
             }catch (Exception e){
@@ -42,7 +52,12 @@ public class MyPage2 extends SwitchScenes implements Initializable {
             }
         }
         else {
-            FXMLLoader buttomLoader = new FXMLLoader(Main.class.getResource("follow&unfollow.fxml"));
+            FXMLLoader buttomLoader ;
+            if (!SwitchScenes.darkTheme) {
+                buttomLoader = new FXMLLoader(Main.class.getResource("follow&unfollowLight.fxml"));
+            } else {
+                buttomLoader = new FXMLLoader(Main.class.getResource("follow&unfollow.fxml"));
+            }
             try {
                 pageButtom.getChildren().add(buttomLoader.load());
             }catch (Exception e){
@@ -70,7 +85,12 @@ public class MyPage2 extends SwitchScenes implements Initializable {
         if (flag == 1) {
             for(i=SearchIdSingle.myPersonPage.posts.size()-1 ; i>=0 ; i--){
                 BasePost.myShowPost=SearchIdSingle.myPersonPage.posts.get(i);
-                FXMLLoader bodyLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
+                FXMLLoader bodyLoader ;
+                if (!SwitchScenes.darkTheme) {
+                    bodyLoader = new FXMLLoader(Main.class.getResource("postBaseLight.fxml"));
+                } else {
+                    bodyLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
+                }
                 try {
                     pageBody.getChildren().add(bodyLoader.load());
                 }catch (Exception e){

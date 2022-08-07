@@ -44,7 +44,11 @@ public class Home extends SwitchScenes implements Initializable {
         try {
             for (Post post : me.mainPagePostFinal) {
                 BasePost.myShowPost = post;
-                postLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    postLoader = new FXMLLoader(Main.class.getResource("postBaseLight.fxml"));
+                } else {
+                    postLoader = new FXMLLoader(Main.class.getResource("postBase.fxml"));
+                }
                 mainPageContent.getChildren().add(postLoader.load());
             }
         } catch (Exception e){

@@ -75,8 +75,14 @@ public class GroupBottom extends SwitchScenes implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for (Post allText : Input.myRegister.grouponBord.allTexts) {
+            FXMLLoader messageLoader ;
             Message.recentPost = allText;
-            FXMLLoader messageLoader = new FXMLLoader(Main.class.getResource("message.fxml"));
+            if(!SwitchScenes.darkTheme){
+                messageLoader = new FXMLLoader(Main.class.getResource("messageLight.fxml"));
+            }
+            else{
+                messageLoader = new FXMLLoader(Main.class.getResource("message.fxml"));
+            }
             try {
                 chatContent.getChildren().add(messageLoader.load());
             } catch (Exception e){

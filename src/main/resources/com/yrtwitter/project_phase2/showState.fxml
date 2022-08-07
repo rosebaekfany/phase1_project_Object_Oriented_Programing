@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yrtwitter.project_phase2.gui.pages.ShowState">
    <children>
-      <Pane prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: #535353;" />
+      <Pane prefHeight="600.0" prefWidth="620.0" style="-fx-background-color: #535353;">
+         <children>
+            <Label layoutX="159.0" layoutY="104.0" text="viewed" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="395.0" layoutY="104.0" text="liked" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <ScrollPane layoutX="121.0" layoutY="150.0" prefHeight="339.0" prefWidth="141.0" style="-fx-background-color: #535353;">
+               <content>
+                  <VBox fx:id="viewed" prefHeight="337.0" prefWidth="139.0" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 20;" />
+               </content>
+            </ScrollPane>
+            <ScrollPane layoutX="346.0" layoutY="150.0" prefHeight="339.0" prefWidth="141.0" style="-fx-background-color: #535353;">
+               <content>
+                  <VBox fx:id="liked" prefHeight="337.0" prefWidth="139.0" style="-fx-background-color: #535353; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 20;" />
+               </content>
+            </ScrollPane>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToPagee" style="-fx-background-color: #535353;" text="&lt;" textFill="WHITE" />
+         </children></Pane>
    </children>
 </AnchorPane>

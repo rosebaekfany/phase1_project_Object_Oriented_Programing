@@ -41,7 +41,12 @@ public class SuggestedPersonBase extends SwitchScenes implements Initializable {
         if(suggestedBox!=null) {
             suggestedPerson = Commercial.sortSuggestedPerson(SearchIdSingle.myPersonPage);
             for (suggestedIndex = 0; suggestedIndex< suggestedPerson.size(); suggestedIndex++) {
-                FXMLLoader suggest = new FXMLLoader(Main.class.getResource("suggestFollow.fxml"));
+                FXMLLoader suggest ;
+                if (!SwitchScenes.darkTheme) {
+                    suggest = new FXMLLoader(Main.class.getResource("suggestFollowLight.fxml"));
+                } else {
+                    suggest = new FXMLLoader(Main.class.getResource("suggestFollow.fxml"));
+                }
                 try {
                     suggestedBox.getChildren().add(suggest.load());
                 } catch (Exception e) {

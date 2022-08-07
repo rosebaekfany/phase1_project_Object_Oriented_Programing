@@ -48,7 +48,7 @@ public class postTop extends SwitchScenes implements Initializable {
         userid.setText(BasePost.myShowPost.usersPostId);
         postid.setText(BasePost.myShowPost.postID);
 
-        if(SearchIdSingle.myPersonPage.userAccountType.equals("Business_Account")){}
+        if(SearchIdSingle.myPersonPage.userAccountType.equals("Business_Account") && SearchIdSingle.myPersonPage.userID.equals(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userID)){}
         else{
             stat.setVisible(false);
         }

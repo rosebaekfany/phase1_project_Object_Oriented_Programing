@@ -38,6 +38,7 @@ public class MainPage extends SwitchScenes implements Initializable {
             fxmlLoader1 = new FXMLLoader(Main.class.getResource("menuLight.fxml"));
         }
 
+        //FXMLLoader fxmlLoader1 = new FXMLLoader(Main.class.getResource("menu.fxml"));
         FXMLLoader fxmlLoader2;
 
 
@@ -46,101 +47,177 @@ public class MainPage extends SwitchScenes implements Initializable {
             case HOME -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("mainBase.fxml"));
+                if(!SwitchScenes.darkTheme){
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("mainBaseLight.fxml"));
+                }
+                else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("mainBase.fxml"));
+                }
             }
             case MY_PAGE -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
                 SearchIdSingle.myPersonPage= Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount);
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPage.fxml"));
+                if(!SwitchScenes.darkTheme){
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPageLight.fxml"));
+                }
+                else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPage.fxml"));
+                }
             }
             case SEARCH -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("search.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("searchLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("search.fxml"));
+
+                }
             }
             case SBS_PAGE -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPage.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPageLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("myPage.fxml"));
+                }
             }
             case CONTACTS -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat_seperator.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat_seperatorLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat_seperator.fxml"));
+                }
             }
             case SETTING -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                if (SwitchScenes.darkTheme){
-                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("setting.fxml"));
-                }else{
+                if (!SwitchScenes.darkTheme) {
                     fxmlLoader2 = new FXMLLoader(Main.class.getResource("settingLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("setting.fxml"));
                 }
-
             }
             case GROUP_CHAT -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("group_chat.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("group_chatLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("group_chat.fxml"));
+                }
             }
             case GROUP_INFO -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("groupUsers.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("groupUsersLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("groupUsers.fxml"));
+                }
             }
             case PRIVATE_CHAT -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("chatLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("chat.fxml"));
+                }
             }
             case LIKE_POST -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("showPostLikes.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("showPostLikesLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("showPostLikes.fxml"));
+                }
             }
             case COMMENT_POST -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("postComment.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("postCommentLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("postComment.fxml"));
+                }
             }
             case creatPost -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("creatPost.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("creatPostLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("creatPost.fxml"));
+                }
             }
             case removeFollow -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("removeFollow.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("removeFollowLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("removeFollow.fxml"));
+                }
             }
             case massageRequestBase -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("massageRequestBase.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("massageRequestBaseLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("massageRequestBase.fxml"));
+                }
 
             }
             case followerList -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("followerList.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("followerListLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("followerList.fxml"));
+                }
             }
             case followingList -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("followingList.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("followingListLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("followingList.fxml"));
+                }
             }
             case suggestedPersonBase -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("suggestedPersonBase.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("suggestedPersonBaseLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("suggestedPersonBase.fxml"));
+                }
             }
             case showState -> {
                 contentPane.getChildren().clear();
                 menuPane.getChildren().clear();
-                fxmlLoader2 = new FXMLLoader(Main.class.getResource("showState.fxml"));
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("showStateLight.fxml"));
+                } else {
+                    fxmlLoader2 = new FXMLLoader(Main.class.getResource("showState.fxml"));
+                }
             }
-            default -> fxmlLoader2 =  new FXMLLoader(Main.class.getResource("startPage.fxml"));
+            default -> {
+                if (!SwitchScenes.darkTheme) {
+                    fxmlLoader2 =  new FXMLLoader(Main.class.getResource("startPageLight.fxml"));
+                } else {
+                    fxmlLoader2 =  new FXMLLoader(Main.class.getResource("startPage.fxml"));
+                }
+            }
         }
 
         try {
