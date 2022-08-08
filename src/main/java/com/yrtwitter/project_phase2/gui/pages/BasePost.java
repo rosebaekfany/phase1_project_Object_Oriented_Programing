@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class BasePost implements Initializable{
@@ -56,7 +57,7 @@ public class BasePost implements Initializable{
             e.printStackTrace();
         }
 
-        Image myImage = new Image(getClass().getResourceAsStream("/images/"+myShowPost.imagePath));
+        Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + myShowPost.imagePath)));
         image.setImage(myImage);
 
     }

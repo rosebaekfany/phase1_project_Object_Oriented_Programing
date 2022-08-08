@@ -23,6 +23,7 @@ public class MyPage2 extends SwitchScenes implements Initializable {
     @FXML
     VBox pageButtom;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

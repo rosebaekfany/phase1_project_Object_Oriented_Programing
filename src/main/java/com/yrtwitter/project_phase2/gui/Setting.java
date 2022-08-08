@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Setting extends MainPage implements Initializable {
@@ -294,7 +295,7 @@ public class Setting extends MainPage implements Initializable {
 
         //profile
         try {
-            Image image = new Image(new FileInputStream(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).profilePath));
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).profilePath)));
             profileImageView.setImage(image);
         } catch (Exception e) {
             e.fillInStackTrace();
@@ -326,7 +327,7 @@ public class Setting extends MainPage implements Initializable {
             return;
         }
         try {
-            Image image = new Image(new FileInputStream(url));
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + url)));
             profileImageView.setImage(image);
             Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).profilePath = url;
         } catch (Exception e) {
@@ -406,9 +407,15 @@ public class Setting extends MainPage implements Initializable {
         }
         for (i = 0; i < Input.myRegister.allRegisters.size(); i++) {
             if (Input.myRegister.allRegisters.get(i).userID.equals(newString)) {
-                if (flag == 0) {
-                    successful = "a user exists with this Id";
-                    flag = 1;
+                if(newString.equals(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).userID)){
+                    break;
+                }
+                else {
+                    if (flag == 0) {
+                        successful = "a user exists with this Id";
+                        flag = 1;
+                        break;
+                    }
                 }
             }
         }

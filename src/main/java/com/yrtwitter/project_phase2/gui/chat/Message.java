@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Message extends SwitchScenes implements Initializable {
@@ -56,7 +57,7 @@ public class Message extends SwitchScenes implements Initializable {
         textLabel.setText(recentPost.script);
         dateLabel.setText(recentPost.postDate.toString());
         try {
-            Image image = new Image(new FileInputStream(Person.findPerson(recentPost.usersPostId).profilePath));
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + Person.findPerson(recentPost.usersPostId).profilePath)));
             profile.setImage(image);
         } catch (Exception e) {
             e.fillInStackTrace();

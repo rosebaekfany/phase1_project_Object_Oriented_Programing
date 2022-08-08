@@ -117,6 +117,7 @@ public class Main extends Application {
         SwitchScenes.window.setScene(scene);
         SwitchScenes.window.setWidth(815.0);
         SwitchScenes.window.setHeight(640.0);
+        SwitchScenes.window.getIcons().add(new Image(Main.class.getResource("/images/chat_icon.png").toExternalForm()));
         SwitchScenes.window.show();
     }
 

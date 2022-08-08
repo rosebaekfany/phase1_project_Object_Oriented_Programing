@@ -42,7 +42,12 @@ public class FollowerList extends SwitchScenes implements Initializable {
                 userr.setText("  "+SearchIdSingle.myPersonPage.folowers.get(i).userID);
                 userr.setFont(new Font(18));
                 userr.setTextAlignment(TextAlignment.CENTER);
-                userr.setTextFill(Color.WHITE);
+                if(!SwitchScenes.darkTheme){
+                    userr.setTextFill(Color.BLACK);
+                }
+                else {
+                    userr.setTextFill(Color.WHITE);
+                }
                 followerList.getChildren().add(userr);
             }
         }

@@ -11,11 +11,13 @@ import javafx.fxml.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MyPageTop extends SwitchScenes implements Initializable {
@@ -39,6 +41,8 @@ public class MyPageTop extends SwitchScenes implements Initializable {
     ImageView ImBur;
     @FXML
     Button Sbut;
+    @FXML
+    ImageView im;
 
 
     public void show_suggestedPerson (ActionEvent event) throws IOException {
@@ -73,6 +77,8 @@ public class MyPageTop extends SwitchScenes implements Initializable {
             Sbut.setVisible(false);
             ImBur.setVisible(false);
         }
+        Image myIm = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + SearchIdSingle.myPersonPage.profilePath)));
+        im.setImage(myIm);
 
     }
 }

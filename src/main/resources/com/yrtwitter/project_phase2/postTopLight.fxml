@@ -24,7 +24,7 @@
                     </font>
                 </Label>
                 <Label fx:id="postid" layoutX="76.0" layoutY="55.0" prefHeight="27.0" prefWidth="193.0" text="Label" />
-                <ImageView fx:id="avatar" fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imm" fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
                 <Button fx:id="stat" layoutX="553.0" layoutY="50.0" mnemonicParsing="false" onAction="#showState" prefHeight="37.0" prefWidth="67.0" style="-fx-background-color: white;" text="state" textFill="#2499f8">
                     <font>
                         <Font size="17.0" />

@@ -51,7 +51,12 @@ public class ShowPostLikes extends SwitchScenes implements Initializable {
             myUser.setText("  "+BasePost.myShowPost.likedUsers.get(i).userID);
             myUser.setFont(Font.font(18));
             myUser.setTextAlignment(TextAlignment.CENTER);
-            myUser.setTextFill(Color.WHITE);
+            if(!SwitchScenes.darkTheme){
+                myUser.setTextFill(Color.BLACK);
+            }
+            else {
+                myUser.setTextFill(Color.WHITE);
+            }
             likedUser.getChildren().add(myUser);
 
         }

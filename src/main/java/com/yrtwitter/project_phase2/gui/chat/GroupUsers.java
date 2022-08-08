@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GroupUsers extends SwitchScenes implements Initializable {
@@ -49,7 +50,7 @@ public class GroupUsers extends SwitchScenes implements Initializable {
         pathButton.setOnAction(event -> setImg());
 
         try {
-            Image image = new Image(new FileInputStream(Input.myRegister.grouponBord.profilePath));
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + Input.myRegister.grouponBord.profilePath)));
             profile.setImage(image);
         } catch (Exception e) {
             e.fillInStackTrace();
@@ -90,7 +91,7 @@ public class GroupUsers extends SwitchScenes implements Initializable {
             return;
         }
         try {
-            Image image = new Image(new FileInputStream(s));
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + s)));
             profile.setImage(image);
             Input.myRegister.grouponBord.profilePath = s;
         } catch (Exception e) {

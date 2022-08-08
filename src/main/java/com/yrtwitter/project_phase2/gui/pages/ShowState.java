@@ -39,7 +39,7 @@ public class ShowState extends SwitchScenes implements Initializable {
                 if(views!=null){
                     for (j=0 ; j<views.size() ; j++){
                         Label newV= new Label();
-                        newV.setText(views.get(j).toString());
+                        newV.setText("   "+views.get(j).toString());
                         newV.setFont(new Font(18));
                         newV.setTextAlignment(TextAlignment.CENTER);
                         newV.setTextFill(Color.WHITE);
@@ -56,10 +56,15 @@ public class ShowState extends SwitchScenes implements Initializable {
                 if(liked!=null){
                     for (j=0 ; j<likes.size() ; j++){
                         Label newV= new Label();
-                        newV.setText(likes.get(j).toString());
+                        newV.setText("   "+likes.get(j).toString());
                         newV.setFont(new Font(18));
                         newV.setTextAlignment(TextAlignment.CENTER);
-                        newV.setTextFill(Color.WHITE);
+                        if(!SwitchScenes.darkTheme){
+                            newV.setTextFill(Color.BLACK);
+                        }
+                        else {
+                            newV.setTextFill(Color.WHITE);
+                        }
                         liked.getChildren().add(newV);
                     }
                 }

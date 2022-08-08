@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EachContact extends MyChats implements Initializable {
@@ -45,7 +46,7 @@ public class EachContact extends MyChats implements Initializable {
             if (name1.equals(Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).name)) {
                 chatterName = name2;
                 try {
-                    Image image = new Image(new FileInputStream(thisChat.person2.profilePath));
+                    Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + thisChat.person2.profilePath)));
                     profile.setImage(image);
                 } catch (Exception e) {
                     e.fillInStackTrace();
@@ -62,7 +63,11 @@ public class EachContact extends MyChats implements Initializable {
             name.setText(chatterName);
 
             //text
-            text.setText(thisChat.allTexts.get(thisChat.allTexts.size()-1).script);
+            if (thisChat.allTexts.size() == 0){
+                text.setText("CHAT JUST STARTED");
+            }else{
+                text.setText(thisChat.allTexts.get(thisChat.allTexts.size()-1).script);
+            }
         }
 
 

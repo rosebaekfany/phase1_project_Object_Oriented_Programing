@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EachGroup extends MyGroups implements Initializable {
@@ -31,7 +32,7 @@ public class EachGroup extends MyGroups implements Initializable {
             Group thisGroup = Input.myRegister.allRegisters.get(Input.myRegister.logedInAccount).allMyGroap.get(groupNum);
 
             try {
-                Image image = new Image(new FileInputStream(thisGroup.profilePath));
+                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/" + thisGroup.profilePath)));
                 profile.setImage(image);
             } catch (Exception e) {
                 e.fillInStackTrace();
