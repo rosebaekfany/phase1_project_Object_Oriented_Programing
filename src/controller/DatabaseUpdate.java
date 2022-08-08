@@ -1,9 +1,12 @@
 
 package controller;
 
+
 import media.*;
-import controller.*;
+import temporary.*;
 import view.*;
+import controller.*;
+import javafx.scene.image.Image;
 
 import java.sql.*;
 import java.sql.DriverManager;
@@ -38,7 +41,6 @@ public class DatabaseUpdate {
     public static void insertAll(RegisterMenu allRegister, Connection conn) throws SQLException {
         UserRepository.insertUsers(allRegister, conn);
         PostRepository.insertPost(allRegister, conn);
-        ;
         likedPostRepository.insertLikedPost(allRegister, conn);
         draftPostRepository.insertDraftPost(allRegister, conn);
         viewPostRepository.insertViewPost(allRegister, conn);
@@ -76,6 +78,7 @@ class UserRepository {
                 user.userAccountType = (resultSet.getString("userAccountType"));
                 user.bio = (resultSet.getString("bio"));
                 user.userPasswords = (resultSet.getString("userPassword"));
+                //user.profilePath = resultSet.getString("profilePath");
                 for (i = 0; i < 6; i++) {
                     if (resultSet.getInt("gene_HEALTH_AND_CARE") == i) {
                         user.favoriteGenres[i] = HEALTH_AND_CARE;
@@ -153,6 +156,7 @@ class UserRepository {
                     break;
                 }
             }
+            //preparedStatementA.setString(14,allRegister.allRegisters.get(j).profilePath);
 
             preparedStatementA.executeUpdate();
 
@@ -180,6 +184,12 @@ class PostRepository {
                 myPost.forwarded = resultSet.getString("forwarded");
                 myPost.edited = resultSet.getString("edited");
                 myPost.script = resultSet.getString("script");
+               //myPost.imagePath = resultSet.getString("imagName");
+                /*if(myPost.imagePath==null || myPost.imagePath.equals("  ") ){
+                }
+                else if(myPost.postImage!=null){
+                    Image newIm = new Image(Objects.requireNonNull(PostRepository.class.getResourceAsStream("/images/" + myPost.imagePath)));
+                }*/
                 Date myDate = new Date(Long.parseLong(resultSet.getString("postDate")));
                 myPost.postDate = myDate;
                 if (resultSet.getInt("BorG") == 0) {
@@ -230,12 +240,18 @@ class PostRepository {
                     preparedStatementA.setInt(7, 1);
                 } else {
                     preparedStatementA.setInt(7, 0);
+                    /*if(allRegister.allRegisters.get(j).posts.get(i).imagePath==null){
+                        preparedStatementA.setString(8, "  ");
+                    }
+                    else {
+                        preparedStatementA.setString(8, allRegister.allRegisters.get(j).posts.get(i).imagePath);
+                    }*/
+                    preparedStatementA.executeUpdate();
                 }
-                preparedStatementA.executeUpdate();
             }
         }
-    }
 
+    }
 }
 
 class likedPostRepository {
@@ -1036,11 +1052,13 @@ class groupRepasitory {
                 myGroup.groupId = resultSet.getString("groupId");
                 myGroup.groupId = resultSet.getString("admin");
                 myGroup.groupName = resultSet.getString("groupName");
+                //myGroup.profilePath = resultSet.getString("profilePath1");
                 if (resultSet.getString("1u").equals(" ")) {
                 } else {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("1u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1050,6 +1068,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("2u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1059,6 +1078,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("3u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1068,6 +1088,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("4u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1077,6 +1098,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("5u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1086,6 +1108,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("6u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1095,6 +1118,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("7u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1104,6 +1128,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("8u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1113,6 +1138,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("9u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1122,6 +1148,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("10u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1131,6 +1158,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("11u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1140,6 +1168,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("12u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1149,6 +1178,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("13u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1158,6 +1188,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("14u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1167,6 +1198,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("15u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1176,6 +1208,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("16u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1185,6 +1218,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("17u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1194,6 +1228,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("18u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1203,6 +1238,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("19u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1212,6 +1248,7 @@ class groupRepasitory {
                     for (i = 0; i < allRegister.allRegisters.size(); i++) {
                         if (allRegister.allRegisters.get(i).userID.equals(resultSet.getString("20u"))) {
                             myGroup.groupUsers.add(allRegister.allRegisters.get(i));
+                            allRegister.allRegisters.get(i).allMyGroap.add(myGroup);
                             break;
                         }
                     }
@@ -1341,6 +1378,9 @@ class groupRepasitory {
                     preparedStatementA.setString(h, " ");
                 }
             }
+
+            //preparedStatementA.setString(34, allRegister.allRegisterGroup.get(i).profilePath);
+
             preparedStatementA.executeUpdate();
         }
     }
@@ -1376,7 +1416,7 @@ class chatMassageReasitory {
                 for (i = 0; i < allRegister.allRegistersPersonalChats.size(); i++) {
                     if (allRegister.allRegistersPersonalChats.get(i).person1.userID.equals(resultSet.getString("person1"))) {
                         for (j = 0; j < allRegister.allRegistersPersonalChats.get(i).allTexts.size(); j++) {
-                            if (allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postID.equals(resultSet.getString("postOfComment"))) {
+                            if (allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postID.equals(resultSet.getString("postIdOfComment"))) {
                                 myPost.postOfTheComment = allRegister.allRegistersPersonalChats.get(i).allTexts.get(j);
 
                                 break;
@@ -1413,7 +1453,7 @@ class chatMassageReasitory {
         for (i = 0; i < allRegister.allRegistersPersonalChats.size(); i++) {
             for (j = 0; j < allRegister.allRegistersPersonalChats.get(i).allTexts.size(); j++) {
                 PreparedStatement preparedStatementA = connection.prepareStatement(
-                        "INSERT INTO allpersonalchat(person1,person2,postId,usersPostId,forwarded,edited,script,postOfComment,postDate,chatId) " +
+                        "INSERT INTO allpersonalchat(person1,person2,postId,usersPostId,forwarded,edited,script,postIdOfComment,postDate,chatId) " +
                                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 preparedStatementA.setString(1, allRegister.allRegistersPersonalChats.get(i).person1.userID);
                 preparedStatementA.setString(2, allRegister.allRegistersPersonalChats.get(i).person2.userID);
@@ -1433,7 +1473,7 @@ class chatMassageReasitory {
                     preparedStatementA.setString(8, " ");
                 }
                 preparedStatementA.setString(9, String.valueOf(allRegister.allRegistersPersonalChats.get(i).allTexts.get(j).postDate.getTime()));
-                preparedStatementA.setString(10, allRegister.allRegistersPersonalChats.get(i).chatId);
+                preparedStatementA.setString(10, "@"+String.valueOf(Calendar.getInstance().getTime().getTime()));
 
                 preparedStatementA.executeUpdate();
             }
@@ -1453,7 +1493,7 @@ class groupMassageReasitory {
                         .executeQuery(
                                 "SELECT * FROM allgroups");
         while (resultSet.next()) {
-            if (resultSet.getString("groupId").equals("1")) {
+            if (resultSet.getString("allgroupid").equals("1")) {
             } else {
                 Comment myPost = new Comment();
                 myPost.postID = resultSet.getString("postId");
@@ -1472,7 +1512,7 @@ class groupMassageReasitory {
                 for (i = 0; i < allRegister.allRegisterGroup.size(); i++) {
                     if (allRegister.allRegisterGroup.get(i).groupId.equals(resultSet.getString("groupId"))) {
                         for (j = 0; j < allRegister.allRegisterGroup.get(i).allTexts.size(); j++) {
-                            if (allRegister.allRegisterGroup.get(i).allTexts.get(j).postID.equals(resultSet.getString("postOfComment"))) {
+                            if (allRegister.allRegisterGroup.get(i).allTexts.get(j).postID.equals(resultSet.getString("postIdOfComment"))) {
                                 myPost.postOfTheComment = allRegister.allRegisterGroup.get(i).allTexts.get(j);
                                 break;
                             }
@@ -1501,8 +1541,8 @@ class groupMassageReasitory {
         for (i = 0; i < allRegister.allRegisterGroup.size(); i++) {
             for (j = 0; j < allRegister.allRegisterGroup.get(i).allTexts.size(); j++) {
                 PreparedStatement preparedStatementA = connection.prepareStatement(
-                        "INSERT INTO allgroups(groupId,postId,usersPostId,forwarded,edited,script,postIdOfComment,postDate) " +
-                                "VALUES( ?, ?, ?, ?, ?, ?, ?, ?)");
+                        "INSERT INTO allgroups(groupId,postId,usersPostId,forwarded,edited,script,postIdOfComment,postDate,allgroupid) " +
+                                "VALUES( ?, ?, ?, ?, ?, ?, ?, ?,?)");
                 preparedStatementA.setString(1, allRegister.allRegisterGroup.get(i).groupId);
                 preparedStatementA.setString(2, allRegister.allRegisterGroup.get(i).allTexts.get(j).postID);
                 preparedStatementA.setString(3, allRegister.allRegisterGroup.get(i).allTexts.get(j).usersPostId);
@@ -1520,6 +1560,8 @@ class groupMassageReasitory {
                     preparedStatementA.setString(7, " ");
                 }
                 preparedStatementA.setString(8, String.valueOf(allRegister.allRegisterGroup.get(i).allTexts.get(j).postDate.getTime()));
+                preparedStatementA.setString(9, String.valueOf(Calendar.getInstance().getTime().getTime()));
+
                 preparedStatementA.executeUpdate();
             }
 
